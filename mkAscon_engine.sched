@@ -1,0 +1,51 @@
+=== Generated schedule for mkAscon_engine ===
+
+Method schedule
+---------------
+Method: input_function
+Ready signal: True
+Sequenced before (restricted): input_function
+Sequenced after (restricted): ciphertext, tag
+ 
+Method: ciphertext
+Ready signal: ready_ciphertext
+Conflict-free: ciphertext, tag
+Sequenced before (restricted): input_function
+ 
+Method: tag
+Ready signal: ready_tag
+Conflict-free: ciphertext, tag
+Sequenced before (restricted): input_function
+ 
+Rule schedule
+-------------
+Rule: intialization_state
+Predicate: fsm_state == 3'd1
+Blocking rules: (none)
+ 
+Rule: associated_data_state
+Predicate: fsm_state == 3'd2
+Blocking rules: (none)
+ 
+Rule: permutate_associated_data_state
+Predicate: fsm_state == 3'd3
+Blocking rules: (none)
+ 
+Rule: encryption_state
+Predicate: fsm_state == 3'd4
+Blocking rules: (none)
+ 
+Rule: finalization_state
+Predicate: fsm_state == 3'd5
+Blocking rules: (none)
+ 
+Logical execution order: ciphertext,
+			 tag,
+			 intialization_state,
+			 associated_data_state,
+			 permutate_associated_data_state,
+			 encryption_state,
+			 finalization_state,
+			 input_function
+
+==============================================
