@@ -1,2 +1,0 @@
-# Ascon
-ASCON implementation
