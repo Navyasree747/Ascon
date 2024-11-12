@@ -4,3 +4,4 @@
     <testcase name="ascon_test" classname="ascon_test" file="/home/navya/Ascon/Ascon/ascon_test.py" lineno="5" time="0.006337165832519531" sim_time_ns="600.001" ratio_time="94679.70633197893" />
   </testsuite>
 </testsuites>
+
