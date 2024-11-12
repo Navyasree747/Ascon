@@ -103,7 +103,7 @@ return updated_state;
 endactionvalue
 endfunction
 
-typedef enum {IDLE,INTIALIZE, ASSOCIATED_DATA,PERMUTATE_ASSOCIATED_DATA,ENCRYPTION,FINALIZATION}Phase deriving (Bits, Eq);
+typedef enum {IDLE,INTIALIZE, ASSOCIATED_DATA,PERMUTATE_ASSOCIATED_DATA,ENCRYPTION,DECRYPTION,PERMUTATE_ENCRYPTED_DATA,FINALIZATION}Phase deriving (Bits, Eq);
 typedef enum {Eight, Twelve} Rounds deriving (Bits,Eq);
 
 
@@ -121,6 +121,8 @@ module mkAscon_engine(Userinterface);
     Reg#(Bit#(4)) counter<-mkReg(0);
     Reg#(Bit#(1))req_associated_data<-mkReg(1);
     Vector# (4,Reg#(Bit#(128)))rg_interface <- replicateM(mkReg(0));
+    //Wire#(Bit#(1)) select <- mkWire(0);
+
     
    Vector# (5,Reg#(Bit#(64)))rg_state <- replicateM(mkReg(0));
    Vector#(5,Bit#(64)) local_state =unpack({320'h0});
@@ -138,7 +140,7 @@ begin
         local_state[3]= rg_interface[3][127:64];
         local_state[4]= rg_interface[3][63:0];
         counter<=counter+1;
-    $display("local_state=%h,%h,%h,%h,%h",local_state[0],local_state[1],local_state[2],local_state[3],local_state[4]);
+   // $display("local_state=%h,%h,%h,%h,%h",local_state[0],local_state[1],local_state[2],local_state[3],local_state[4]);
     end
     else 
     begin
@@ -151,7 +153,7 @@ begin
    
    let permutation_value <- permutation(local_state,Twelve,counter);
    writeVReg(rg_state,permutation_value); // 12 rounds are performed. and it will update in rg_sate register.
-   //$display("rg_state=%h",rg_state
+   //$display("rg_state=%h",rg_state)
 
    end 
 else
@@ -162,14 +164,14 @@ else
         new_state[2]=rg_state[2];
         new_state[1]=rg_state[3];
         new_state[0]=rg_state[4];
-        $display("newstate ,%h",new_state);
+        //$display("newstate ,%h",new_state);
 
         let packed_rg_state =  pack(new_state);
-        $display("packed_rg_state %h",packed_rg_state);
+        //$display("packed_rg_state %h",packed_rg_state);
         let padded_key = {192'b0, rg_interface[0]};
-        $display("padded_key %h",padded_key);
+        //$display("padded_key %h",padded_key);
         let intialization_output= packed_rg_state ^ padded_key;
-        $display("intialization_output %h",intialization_output);
+        //$display("intialization_output %h",intialization_output);
         Vector#(5,Bit#(64))new_rg_state;
 
         new_rg_state[4] = unpack(intialization_output[63:0]);
@@ -180,7 +182,7 @@ else
 
 
         
-        $display("new_rg_state %h %h ",new_rg_state[0], new_rg_state[1]);
+        $display("new_rg_state %h %h",new_rg_state[0], new_rg_state[1]);
         writeVReg(rg_state,new_rg_state);
        // $dispalay("rg_state %h,%h,%h,%h,%h",rg_state[0],rg_state[1],rg_state[2],rg_state[3],rg_state[4]);
         fsm_state <=ASSOCIATED_DATA  ;  
@@ -194,8 +196,7 @@ rule associated_data_state(fsm_state==ASSOCIATED_DATA);
 Vector#(5,Bit#(64))new_lv_state;
     if(req_associated_data==1)
         begin
-        $display("rg_interface[2][127:64] %h",rg_interface[2][127:64]);
-        $display("rg_interface[2][63:0] %h",rg_interface[2][63:0]);
+       
             rg_state[0]<=rg_interface[2][127:64]^rg_state[0]; //here associated data will xored with the updated rg_state and the result will also stored in rg_state itself.
             rg_state[1]<=rg_interface[2][63:0]^rg_state[1];
             req_associated_data<=0;
@@ -212,7 +213,7 @@ Vector#(5,Bit#(64))new_lv_state;
             else
                 begin
                     let processed_data={1'b1,319'b0};
-                    $display("processed_data,%h",processed_data);
+                    //$display("processed_data%h",processed_data);
                     Vector#(5,Bit#(64))associated_lv_data;
                     associated_lv_data[4]=rg_state[0];
                     associated_lv_data[3]=rg_state[1];
@@ -222,9 +223,9 @@ Vector#(5,Bit#(64))new_lv_state;
 
 
                     let packed_associated_data=pack(associated_lv_data);
-                     $display("packed_associated_data %h",packed_associated_data);
+                     //$display("packed_associated_data%h",packed_associated_data);
                     let lv_updated_asso_data=packed_associated_data^processed_data;
-                    $display("lv_updated_asso_data %h",lv_updated_asso_data);
+                   // $display("lv_updated_asso_data%h",lv_updated_asso_data);
                     new_lv_state[4]=unpack(lv_updated_asso_data[63:0]);
                     new_lv_state[3]=unpack(lv_updated_asso_data[127:64]);
                     new_lv_state[2]=unpack(lv_updated_asso_data[191:128]);
@@ -261,17 +262,17 @@ endrule
 
 rule encryption_state(fsm_state==ENCRYPTION); 
     Vector#(5,Bit#(64))new_encrypted_lv_state;
-Vector#(5,Bit#(64))lv_encrypted_state;
+    Vector#(5,Bit#(64))lv_encrypted_state;
         if(counter==0)
             begin
-            rg_state[1]<=rg_interface[1][63:0]^rg_state[1];
-            rg_state[0]<=rg_interface[1][127:64]^rg_state[0]; // xoring with first two rows to get ciphertext
-           
+            rg_state[0]<=rg_interface[1][63:0]^rg_state[0];
+            rg_state[1]<=rg_interface[1][127:64]^rg_state[1]; // xoring with first two rows to get ciphertext
+            
             let encryption0=rg_interface[1][127:64]^rg_state[0]; 
             let encryption1=rg_interface[1][63:0]^rg_state[1];
-            $display("rg_encrypted_data=%h %h",rg_encrypted_data[0],rg_encrypted_data[1]);
-            $display("encryption_result %h %h",encryption0,encryption1);
-            ready_ciphertext<=1;
+            $display("rg_encrypted_data=%h%h",rg_encrypted_data[0],rg_encrypted_data[1]);
+            $display("encryption_result=%h%h",encryption0,encryption1);
+            
             
                 counter<=counter+1;
                 
@@ -279,7 +280,10 @@ Vector#(5,Bit#(64))lv_encrypted_state;
             end
         else 
             begin
-           
+            rg_encrypted_data[0]<=rg_state[1];
+            rg_encrypted_data[1]<=rg_state[0];
+            ready_ciphertext<=1;
+
             lv_encrypted_state[4]=rg_state[0];
             lv_encrypted_state[3]=rg_state[1];
             lv_encrypted_state[2]=rg_state[2];
@@ -288,49 +292,106 @@ Vector#(5,Bit#(64))lv_encrypted_state;
             
             
                 let lv_updated_encrypted=pack(lv_encrypted_state);
-                let padded_key_state = {rg_interface[0],192'b0};
-                $display("lv_padded_key_state%h",padded_key_state);
-                let pre_finalized_state=lv_updated_encrypted^padded_key_state;
+               // $display("lv_updated_encrypted_state%h",lv_updated_encrypted);
+                //let padded_key_state = {rg_interface[0],192'b0};
+                let lv_processed_data={319'b0, 1'b1};
+                //$display("lv_padded_key_state%h",padded_key_state);
+                //$display("lv_processed_data%h",lv_processed_data);
+                let pre_finalized_state=lv_updated_encrypted^lv_processed_data;
                 
-                $display("pre_finalized state%h",pre_finalized_state);
+                //$display("pre_finalized state%h",pre_finalized_state);
                 
-                new_encrypted_lv_state[4]=unpack(pre_finalized_state[63:0]);
-                new_encrypted_lv_state[3]=unpack(pre_finalized_state[127:64]);
-                new_encrypted_lv_state[2]=unpack(pre_finalized_state[191:128]);
-                new_encrypted_lv_state[1]=unpack(pre_finalized_state[255:192]);
                 new_encrypted_lv_state[0]=unpack(pre_finalized_state[319:256]);
+                new_encrypted_lv_state[1]=unpack(pre_finalized_state[255:192]);
+                new_encrypted_lv_state[2]=unpack(pre_finalized_state[191:128]);
+                new_encrypted_lv_state[3]=unpack(pre_finalized_state[127:64]);
+                new_encrypted_lv_state[4]=unpack(pre_finalized_state[63:0]);
+               // $display("new_encrypted_lv_state%h",new_encrypted_lv_state);
 
                 writeVReg(rg_state,new_encrypted_lv_state);
+
 
                  //let permutation_value1<-permutation(lv_updated_state,Eight,counter);
                // writeVReg(rg_state,permutation_value1); 
                 
-                fsm_state <=FINALIZATION;
-                //ready_ciphertext<=1;
+                fsm_state <=PERMUTATE_ENCRYPTED_DATA;
+                //ready_ciphertext<=0;
                  counter<=0;
+               
             end
         //local_counter2=counter+1;
         
 endrule
 
+rule permutate_encrypted_data_state(fsm_state==PERMUTATE_ENCRYPTED_DATA);
+    if(counter!=8)
+        begin
+
+            let lv_updated_encrypted_data = readVReg(rg_state);
+            let permutation_value2<-permutation(lv_updated_encrypted_data,Eight,counter);
+            writeVReg(rg_state,permutation_value2); // 8 rounds of permutation
+            counter<=counter+1;
+        end
+    else
+    
+        begin
+            let processed_data1={1'b1,319'b0};
+            $display("processed_data1%h",processed_data1);
+            Vector#(5,Bit#(64))pre_finalized_lv_data;
+            pre_finalized_lv_data[4]=rg_state[0];
+            pre_finalized_lv_data[3]=rg_state[1];
+            pre_finalized_lv_data[2]=rg_state[2];
+            pre_finalized_lv_data[1]=rg_state[3];
+            pre_finalized_lv_data[0]=rg_state[4];
+
+
+            let packed_pre_finalized_data=pack(pre_finalized_lv_data);
+            $display("packed_pre_finalized_data%h",packed_pre_finalized_data);
+            let lv_updated_finalized_data=packed_pre_finalized_data^processed_data1;
+            $display("lv_updated_finalized_data%h",lv_updated_finalized_data);
+            let lv_finalized_key={128'b0,rg_interface[0],64'b0};
+            $display("lv_finalized_key%h",lv_finalized_key);
+            let finalized_out=lv_finalized_key^lv_updated_finalized_data;
+            Vector#(5,Bit#(64))new_lv_finalized;
+            new_lv_finalized[4]=unpack(finalized_out[63:0]);
+            new_lv_finalized[3]=unpack(finalized_out[127:64]);
+            new_lv_finalized[2]=unpack(finalized_out[191:128]);
+            new_lv_finalized[1]=unpack(finalized_out[255:192]);
+            new_lv_finalized[0]=unpack(finalized_out[319:256]);  
+            writeVReg(rg_state,new_lv_finalized);
+
+
+
+            fsm_state <=FINALIZATION;
+            counter<=0;
+        end
+
+    
+endrule
+
 rule finalization_state(fsm_state==FINALIZATION);
    // Bit#(4)local_counter3=counter;
     let lv_final_rg_state=readVReg(rg_state);
-    $display("lv_final_rg_state%h",lv_final_rg_state);
-    let permutation_value2<-permutation(lv_final_rg_state,Twelve,counter);
+    //$display("lv_final_rg_state%h",lv_final_rg_state);
+    
     //if(local_counter3<12)
-    if(counter!=12)
+    if(counter<12)
         begin
-        writeVReg(rg_state,permutation_value2);
-        counter<=counter+1;
+            let permutation_value3<-permutation(lv_final_rg_state,Twelve,counter);
+            writeVReg(rg_state,permutation_value3);
+            counter<=counter+1;
         
         end
 
     
     else 
         begin
-            rg_encryption_tag[0]<=rg_interface[0][127:64]^rg_state[0];
-            rg_encryption_tag[1]<=rg_interface[0][63:0]^rg_state[1];
+            rg_encryption_tag[1]<=rg_interface[0][127:64]^rg_state[3];
+            rg_encryption_tag[0]<=rg_interface[0][63:0]^rg_state[4];
+            let encryption_tag0=rg_interface[0][127:64]^rg_state[3];
+            let encryption_tag1=rg_interface[0][63:0]^rg_state[4];
+            $display("encryption_tag0%h",encryption_tag0);
+            $display("encryption_tag1%h",encryption_tag1);
             
             fsm_state <=IDLE  ;
             ready_tag<=1;
@@ -347,6 +408,7 @@ method Action input_function(Bit#(128)plaintext,Bit#(128)associated_data,Bit#(12
     rg_interface[1]<= plaintext;
     rg_interface[2]<= associated_data;
     rg_interface[3]<= nonce;
+   
     fsm_state <= INTIALIZE;
 endmethod
 
