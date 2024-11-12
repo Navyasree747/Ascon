@@ -1,6 +1,6 @@
 import cocotb
 from cocotb.clock import Clock
-from cocotb.triggers import RisingEdge
+from cocotb.triggers import RisingEdge,FallingEdge
 
 @cocotb.test()
 async def ascon_test(dut):
@@ -19,7 +19,11 @@ async def ascon_test(dut):
     dut.input_function_associated_data.value =in_associated_data
     await RisingEdge(dut.CLK)
     dut.EN_input_function.value =0
+    #for i in range(39):
+    #    await RisingEdge(dut.CLK)
+
     await RisingEdge(dut.RDY_ciphertext)
+  
     dut_ciphertext_data=dut.ciphertext.value
     await RisingEdge(dut.RDY_tag )
     dut_encrypted_tag=dut.tag.value

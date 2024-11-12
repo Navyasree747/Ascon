@@ -116,8 +116,17 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__4(Vtop__Syms* __restrict vlSymsp) {
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vtop::_sequent__TOP__4\n"); );
     Vtop* const __restrict vlTOPp VL_ATTR_UNUSED = vlSymsp->TOPp;
     // Variables
-    WData/*319:0*/ __Vtemp26[10];
+    WData/*255:0*/ __Vtemp18[8];
+    WData/*319:0*/ __Vtemp20[10];
     // Body
+    if (vlTOPp->RST_N) {
+        if (vlTOPp->mkAscon_engine__DOT__ready_ciphertext_EN) {
+            vlTOPp->mkAscon_engine__DOT__ready_ciphertext 
+                = vlTOPp->mkAscon_engine__DOT__ready_ciphertext_D_IN;
+        }
+    } else {
+        vlTOPp->mkAscon_engine__DOT__ready_ciphertext = 0U;
+    }
     if (vlTOPp->RST_N) {
         if (vlTOPp->mkAscon_engine__DOT__ready_tag_EN) {
             vlTOPp->mkAscon_engine__DOT__ready_tag 
@@ -125,6 +134,14 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__4(Vtop__Syms* __restrict vlSymsp) {
         }
     } else {
         vlTOPp->mkAscon_engine__DOT__ready_tag = 0U;
+    }
+    if (vlTOPp->RST_N) {
+        if (vlTOPp->mkAscon_engine__DOT__rg_encryption_tag_1_EN) {
+            vlTOPp->mkAscon_engine__DOT__rg_encryption_tag_1 
+                = vlTOPp->mkAscon_engine__DOT__rg_encryption_tag_1_D_IN;
+        }
+    } else {
+        vlTOPp->mkAscon_engine__DOT__rg_encryption_tag_1 = 0ULL;
     }
     if (vlTOPp->RST_N) {
         if (vlTOPp->mkAscon_engine__DOT__rg_encrypted_data_0_EN) {
@@ -143,45 +160,12 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__4(Vtop__Syms* __restrict vlSymsp) {
         vlTOPp->mkAscon_engine__DOT__rg_encrypted_data_1 = 0ULL;
     }
     if (vlTOPp->RST_N) {
-        if (vlTOPp->mkAscon_engine__DOT__ready_ciphertext_EN) {
-            vlTOPp->mkAscon_engine__DOT__ready_ciphertext 
-                = vlTOPp->mkAscon_engine__DOT__ready_ciphertext_D_IN;
-        }
-    } else {
-        vlTOPp->mkAscon_engine__DOT__ready_ciphertext = 0U;
-    }
-    if (vlTOPp->RST_N) {
-        if (vlTOPp->mkAscon_engine__DOT__rg_encryption_tag_1_EN) {
-            vlTOPp->mkAscon_engine__DOT__rg_encryption_tag_1 
-                = vlTOPp->mkAscon_engine__DOT__rg_encryption_tag_1_D_IN;
-        }
-    } else {
-        vlTOPp->mkAscon_engine__DOT__rg_encryption_tag_1 = 0ULL;
-    }
-    if (vlTOPp->RST_N) {
         if (vlTOPp->mkAscon_engine__DOT__rg_encryption_tag_0_EN) {
             vlTOPp->mkAscon_engine__DOT__rg_encryption_tag_0 
                 = vlTOPp->mkAscon_engine__DOT__rg_encryption_tag_0_D_IN;
         }
     } else {
         vlTOPp->mkAscon_engine__DOT__rg_encryption_tag_0 = 0ULL;
-    }
-    if (vlTOPp->RST_N) {
-        if (vlTOPp->mkAscon_engine__DOT__rg_interface_1_EN) {
-            vlTOPp->mkAscon_engine__DOT__rg_interface_1[0U] 
-                = vlTOPp->mkAscon_engine__DOT__rg_interface_1_D_IN[0U];
-            vlTOPp->mkAscon_engine__DOT__rg_interface_1[1U] 
-                = vlTOPp->mkAscon_engine__DOT__rg_interface_1_D_IN[1U];
-            vlTOPp->mkAscon_engine__DOT__rg_interface_1[2U] 
-                = vlTOPp->mkAscon_engine__DOT__rg_interface_1_D_IN[2U];
-            vlTOPp->mkAscon_engine__DOT__rg_interface_1[3U] 
-                = vlTOPp->mkAscon_engine__DOT__rg_interface_1_D_IN[3U];
-        }
-    } else {
-        vlTOPp->mkAscon_engine__DOT__rg_interface_1[0U] = 0U;
-        vlTOPp->mkAscon_engine__DOT__rg_interface_1[1U] = 0U;
-        vlTOPp->mkAscon_engine__DOT__rg_interface_1[2U] = 0U;
-        vlTOPp->mkAscon_engine__DOT__rg_interface_1[3U] = 0U;
     }
     if (vlTOPp->RST_N) {
         if (vlTOPp->mkAscon_engine__DOT__rg_interface_2_EN) {
@@ -199,6 +183,23 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__4(Vtop__Syms* __restrict vlSymsp) {
         vlTOPp->mkAscon_engine__DOT__rg_interface_2[1U] = 0U;
         vlTOPp->mkAscon_engine__DOT__rg_interface_2[2U] = 0U;
         vlTOPp->mkAscon_engine__DOT__rg_interface_2[3U] = 0U;
+    }
+    if (vlTOPp->RST_N) {
+        if (vlTOPp->mkAscon_engine__DOT__rg_interface_1_EN) {
+            vlTOPp->mkAscon_engine__DOT__rg_interface_1[0U] 
+                = vlTOPp->mkAscon_engine__DOT__rg_interface_1_D_IN[0U];
+            vlTOPp->mkAscon_engine__DOT__rg_interface_1[1U] 
+                = vlTOPp->mkAscon_engine__DOT__rg_interface_1_D_IN[1U];
+            vlTOPp->mkAscon_engine__DOT__rg_interface_1[2U] 
+                = vlTOPp->mkAscon_engine__DOT__rg_interface_1_D_IN[2U];
+            vlTOPp->mkAscon_engine__DOT__rg_interface_1[3U] 
+                = vlTOPp->mkAscon_engine__DOT__rg_interface_1_D_IN[3U];
+        }
+    } else {
+        vlTOPp->mkAscon_engine__DOT__rg_interface_1[0U] = 0U;
+        vlTOPp->mkAscon_engine__DOT__rg_interface_1[1U] = 0U;
+        vlTOPp->mkAscon_engine__DOT__rg_interface_1[2U] = 0U;
+        vlTOPp->mkAscon_engine__DOT__rg_interface_1[3U] = 0U;
     }
     if (vlTOPp->RST_N) {
         if (vlTOPp->mkAscon_engine__DOT__req_associated_data_EN) {
@@ -241,14 +242,6 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__4(Vtop__Syms* __restrict vlSymsp) {
         vlTOPp->mkAscon_engine__DOT__rg_state_1 = 0ULL;
     }
     if (vlTOPp->RST_N) {
-        if (vlTOPp->mkAscon_engine__DOT__rg_state_4_EN) {
-            vlTOPp->mkAscon_engine__DOT__rg_state_4 
-                = vlTOPp->mkAscon_engine__DOT__rg_state_4_D_IN;
-        }
-    } else {
-        vlTOPp->mkAscon_engine__DOT__rg_state_4 = 0ULL;
-    }
-    if (vlTOPp->RST_N) {
         if (vlTOPp->mkAscon_engine__DOT__rg_interface_3_EN) {
             vlTOPp->mkAscon_engine__DOT__rg_interface_3[0U] 
                 = vlTOPp->mkAscon_engine__DOT__rg_interface_3_D_IN[0U];
@@ -283,6 +276,14 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__4(Vtop__Syms* __restrict vlSymsp) {
         vlTOPp->mkAscon_engine__DOT__rg_interface_0[3U] = 0U;
     }
     if (vlTOPp->RST_N) {
+        if (vlTOPp->mkAscon_engine__DOT__rg_state_4_EN) {
+            vlTOPp->mkAscon_engine__DOT__rg_state_4 
+                = vlTOPp->mkAscon_engine__DOT__rg_state_4_D_IN;
+        }
+    } else {
+        vlTOPp->mkAscon_engine__DOT__rg_state_4 = 0ULL;
+    }
+    if (vlTOPp->RST_N) {
         if (vlTOPp->mkAscon_engine__DOT__rg_state_3_EN) {
             vlTOPp->mkAscon_engine__DOT__rg_state_3 
                 = vlTOPp->mkAscon_engine__DOT__rg_state_3_D_IN;
@@ -305,6 +306,7 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__4(Vtop__Syms* __restrict vlSymsp) {
     } else {
         vlTOPp->mkAscon_engine__DOT__counter = 0U;
     }
+    vlTOPp->mkAscon_engine__DOT__RDY_ciphertext = vlTOPp->mkAscon_engine__DOT__ready_ciphertext;
     vlTOPp->mkAscon_engine__DOT__RDY_tag = vlTOPp->mkAscon_engine__DOT__ready_tag;
     vlTOPp->mkAscon_engine__DOT__ciphertext[0U] = (IData)(vlTOPp->mkAscon_engine__DOT__rg_encrypted_data_0);
     vlTOPp->mkAscon_engine__DOT__ciphertext[1U] = (IData)(
@@ -314,7 +316,6 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__4(Vtop__Syms* __restrict vlSymsp) {
     vlTOPp->mkAscon_engine__DOT__ciphertext[3U] = (IData)(
                                                           (vlTOPp->mkAscon_engine__DOT__rg_encrypted_data_1 
                                                            >> 0x20U));
-    vlTOPp->mkAscon_engine__DOT__RDY_ciphertext = vlTOPp->mkAscon_engine__DOT__ready_ciphertext;
     vlTOPp->mkAscon_engine__DOT__tag[0U] = (IData)(vlTOPp->mkAscon_engine__DOT__rg_encryption_tag_0);
     vlTOPp->mkAscon_engine__DOT__tag[1U] = (IData)(
                                                    (vlTOPp->mkAscon_engine__DOT__rg_encryption_tag_0 
@@ -325,166 +326,181 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__4(Vtop__Syms* __restrict vlSymsp) {
                                                     >> 0x20U));
     vlTOPp->mkAscon_engine__DOT__CAN_FIRE_RL_intialization_state 
         = (1U == (IData)(vlTOPp->mkAscon_engine__DOT__fsm_state));
-    vlTOPp->mkAscon_engine__DOT__CAN_FIRE_RL_encryption_state 
-        = (4U == (IData)(vlTOPp->mkAscon_engine__DOT__fsm_state));
+    vlTOPp->mkAscon_engine__DOT__CAN_FIRE_RL_permutate_encrypted_data_state 
+        = (6U == (IData)(vlTOPp->mkAscon_engine__DOT__fsm_state));
     vlTOPp->mkAscon_engine__DOT__CAN_FIRE_RL_associated_data_state 
         = (2U == (IData)(vlTOPp->mkAscon_engine__DOT__fsm_state));
+    vlTOPp->mkAscon_engine__DOT__CAN_FIRE_RL_encryption_state 
+        = (4U == (IData)(vlTOPp->mkAscon_engine__DOT__fsm_state));
     vlTOPp->mkAscon_engine__DOT__CAN_FIRE_RL_permutate_associated_data_state 
         = (3U == (IData)(vlTOPp->mkAscon_engine__DOT__fsm_state));
     vlTOPp->mkAscon_engine__DOT__CAN_FIRE_RL_finalization_state 
-        = (5U == (IData)(vlTOPp->mkAscon_engine__DOT__fsm_state));
-    vlTOPp->mkAscon_engine__DOT__encryption0___05Fh16813 
+        = (7U == (IData)(vlTOPp->mkAscon_engine__DOT__fsm_state));
+    vlTOPp->mkAscon_engine__DOT__rg_encrypted_data_1_D_IN 
+        = vlTOPp->mkAscon_engine__DOT__rg_state_0;
+    vlTOPp->mkAscon_engine__DOT__encryption0___05Fh16082 
         = ((((QData)((IData)(vlTOPp->mkAscon_engine__DOT__rg_interface_1[3U])) 
              << 0x20U) | (QData)((IData)(vlTOPp->mkAscon_engine__DOT__rg_interface_1[2U]))) 
            ^ vlTOPp->mkAscon_engine__DOT__rg_state_0);
-    vlTOPp->mkAscon_engine__DOT__din___05Fh12423 = 
+    vlTOPp->mkAscon_engine__DOT__x___05Fh15826 = ((
+                                                   ((QData)((IData)(
+                                                                    vlTOPp->mkAscon_engine__DOT__rg_interface_1[1U])) 
+                                                    << 0x20U) 
+                                                   | (QData)((IData)(
+                                                                     vlTOPp->mkAscon_engine__DOT__rg_interface_1[0U]))) 
+                                                  ^ vlTOPp->mkAscon_engine__DOT__rg_state_0);
+    vlTOPp->mkAscon_engine__DOT__din___05Fh10413 = 
         (((QData)((IData)((1U & (~ (IData)((vlTOPp->mkAscon_engine__DOT__rg_state_0 
                                             >> 0x3fU)))))) 
           << 0x3fU) | (0x7fffffffffffffffULL & vlTOPp->mkAscon_engine__DOT__rg_state_0));
-    vlTOPp->mkAscon_engine__DOT__x___05Fh10893 = ((
-                                                   ((QData)((IData)(
-                                                                    vlTOPp->mkAscon_engine__DOT__rg_interface_2[3U])) 
-                                                    << 0x20U) 
-                                                   | (QData)((IData)(
-                                                                     vlTOPp->mkAscon_engine__DOT__rg_interface_2[2U]))) 
-                                                  ^ vlTOPp->mkAscon_engine__DOT__rg_state_0);
-    vlTOPp->mkAscon_engine__DOT__encryption1___05Fh16814 
+    vlTOPp->mkAscon_engine__DOT__x___05Fh7099 = ((((QData)((IData)(
+                                                                   vlTOPp->mkAscon_engine__DOT__rg_interface_2[3U])) 
+                                                   << 0x20U) 
+                                                  | (QData)((IData)(
+                                                                    vlTOPp->mkAscon_engine__DOT__rg_interface_2[2U]))) 
+                                                 ^ vlTOPp->mkAscon_engine__DOT__rg_state_0);
+    vlTOPp->mkAscon_engine__DOT__rg_encrypted_data_0_D_IN 
+        = vlTOPp->mkAscon_engine__DOT__rg_state_1;
+    vlTOPp->mkAscon_engine__DOT__encryption1___05Fh16083 
         = ((((QData)((IData)(vlTOPp->mkAscon_engine__DOT__rg_interface_1[1U])) 
              << 0x20U) | (QData)((IData)(vlTOPp->mkAscon_engine__DOT__rg_interface_1[0U]))) 
            ^ vlTOPp->mkAscon_engine__DOT__rg_state_1);
-    vlTOPp->mkAscon_engine__DOT__x___05Fh10982 = ((
+    vlTOPp->mkAscon_engine__DOT__x___05Fh16020 = ((
+                                                   ((QData)((IData)(
+                                                                    vlTOPp->mkAscon_engine__DOT__rg_interface_1[3U])) 
+                                                    << 0x20U) 
+                                                   | (QData)((IData)(
+                                                                     vlTOPp->mkAscon_engine__DOT__rg_interface_1[2U]))) 
+                                                  ^ vlTOPp->mkAscon_engine__DOT__rg_state_1);
+    vlTOPp->mkAscon_engine__DOT__x___05Fh11626 = ((
                                                    ((QData)((IData)(
                                                                     vlTOPp->mkAscon_engine__DOT__rg_interface_2[1U])) 
                                                     << 0x20U) 
                                                    | (QData)((IData)(
                                                                      vlTOPp->mkAscon_engine__DOT__rg_interface_2[0U]))) 
                                                   ^ vlTOPp->mkAscon_engine__DOT__rg_state_1);
-    vlTOPp->mkAscon_engine__DOT__y___05Fh20630 = (vlTOPp->mkAscon_engine__DOT__rg_state_1 
+    vlTOPp->mkAscon_engine__DOT__y___05Fh24537 = (vlTOPp->mkAscon_engine__DOT__rg_state_1 
                                                   & vlTOPp->mkAscon_engine__DOT__rg_state_0);
-    vlTOPp->mkAscon_engine__DOT__x___05Fh20521 = (vlTOPp->mkAscon_engine__DOT__rg_state_4 
-                                                  & vlTOPp->mkAscon_engine__DOT__rg_state_0);
-    vlTOPp->mkAscon_engine__DOT__x___05Fh20633 = (vlTOPp->mkAscon_engine__DOT__rg_state_4 
-                                                  & vlTOPp->mkAscon_engine__DOT__rg_state_1);
-    vlTOPp->mkAscon_engine__DOT__padded_key_state___05Fh16617[0U] = 0U;
-    vlTOPp->mkAscon_engine__DOT__padded_key_state___05Fh16617[1U] = 0U;
-    vlTOPp->mkAscon_engine__DOT__padded_key_state___05Fh16617[2U] = 0U;
-    vlTOPp->mkAscon_engine__DOT__padded_key_state___05Fh16617[3U] = 0U;
-    vlTOPp->mkAscon_engine__DOT__padded_key_state___05Fh16617[4U] = 0U;
-    vlTOPp->mkAscon_engine__DOT__padded_key_state___05Fh16617[5U] = 0U;
-    vlTOPp->mkAscon_engine__DOT__padded_key_state___05Fh16617[6U] 
-        = vlTOPp->mkAscon_engine__DOT__rg_interface_0[0U];
-    vlTOPp->mkAscon_engine__DOT__padded_key_state___05Fh16617[7U] 
-        = vlTOPp->mkAscon_engine__DOT__rg_interface_0[1U];
-    vlTOPp->mkAscon_engine__DOT__padded_key_state___05Fh16617[8U] 
-        = vlTOPp->mkAscon_engine__DOT__rg_interface_0[2U];
-    vlTOPp->mkAscon_engine__DOT__padded_key_state___05Fh16617[9U] 
-        = vlTOPp->mkAscon_engine__DOT__rg_interface_0[3U];
-    vlTOPp->mkAscon_engine__DOT__rg_encryption_tag_0_D_IN 
-        = ((((QData)((IData)(vlTOPp->mkAscon_engine__DOT__rg_interface_0[3U])) 
-             << 0x20U) | (QData)((IData)(vlTOPp->mkAscon_engine__DOT__rg_interface_0[2U]))) 
-           ^ vlTOPp->mkAscon_engine__DOT__rg_state_0);
-    vlTOPp->mkAscon_engine__DOT__rg_encryption_tag_1_D_IN 
+    VL_EXTEND_WW(256,128, __Vtemp18, vlTOPp->mkAscon_engine__DOT__rg_interface_0);
+    vlTOPp->mkAscon_engine__DOT__lv_finalized_key___05Fh22041[0U] = 0U;
+    vlTOPp->mkAscon_engine__DOT__lv_finalized_key___05Fh22041[1U] = 0U;
+    vlTOPp->mkAscon_engine__DOT__lv_finalized_key___05Fh22041[2U] 
+        = __Vtemp18[0U];
+    vlTOPp->mkAscon_engine__DOT__lv_finalized_key___05Fh22041[3U] 
+        = __Vtemp18[1U];
+    vlTOPp->mkAscon_engine__DOT__lv_finalized_key___05Fh22041[4U] 
+        = __Vtemp18[2U];
+    vlTOPp->mkAscon_engine__DOT__lv_finalized_key___05Fh22041[5U] 
+        = __Vtemp18[3U];
+    vlTOPp->mkAscon_engine__DOT__lv_finalized_key___05Fh22041[6U] 
+        = __Vtemp18[4U];
+    vlTOPp->mkAscon_engine__DOT__lv_finalized_key___05Fh22041[7U] 
+        = __Vtemp18[5U];
+    vlTOPp->mkAscon_engine__DOT__lv_finalized_key___05Fh22041[8U] 
+        = __Vtemp18[6U];
+    vlTOPp->mkAscon_engine__DOT__lv_finalized_key___05Fh22041[9U] 
+        = __Vtemp18[7U];
+    VL_EXTEND_WW(320,128, __Vtemp20, vlTOPp->mkAscon_engine__DOT__rg_interface_0);
+    vlTOPp->mkAscon_engine__DOT__padded_key___05Fh1252[0U] 
+        = __Vtemp20[0U];
+    vlTOPp->mkAscon_engine__DOT__padded_key___05Fh1252[1U] 
+        = __Vtemp20[1U];
+    vlTOPp->mkAscon_engine__DOT__padded_key___05Fh1252[2U] 
+        = __Vtemp20[2U];
+    vlTOPp->mkAscon_engine__DOT__padded_key___05Fh1252[3U] 
+        = __Vtemp20[3U];
+    vlTOPp->mkAscon_engine__DOT__padded_key___05Fh1252[4U] 
+        = __Vtemp20[4U];
+    vlTOPp->mkAscon_engine__DOT__padded_key___05Fh1252[5U] 
+        = __Vtemp20[5U];
+    vlTOPp->mkAscon_engine__DOT__padded_key___05Fh1252[6U] 
+        = __Vtemp20[6U];
+    vlTOPp->mkAscon_engine__DOT__padded_key___05Fh1252[7U] 
+        = __Vtemp20[7U];
+    vlTOPp->mkAscon_engine__DOT__padded_key___05Fh1252[8U] 
+        = __Vtemp20[8U];
+    vlTOPp->mkAscon_engine__DOT__padded_key___05Fh1252[9U] 
+        = __Vtemp20[9U];
+    vlTOPp->mkAscon_engine__DOT__encryption_tag1___05Fh26647 
         = ((((QData)((IData)(vlTOPp->mkAscon_engine__DOT__rg_interface_0[1U])) 
              << 0x20U) | (QData)((IData)(vlTOPp->mkAscon_engine__DOT__rg_interface_0[0U]))) 
-           ^ vlTOPp->mkAscon_engine__DOT__rg_state_1);
-    vlTOPp->mkAscon_engine__DOT__rg_state_0_2_CONCAT_rg_state_1_4_6_XOR_rg_inte_ETC___05F_d235[0U] 
-        = ((IData)(vlTOPp->mkAscon_engine__DOT__rg_state_1) 
-           ^ vlTOPp->mkAscon_engine__DOT__rg_interface_0[0U]);
-    vlTOPp->mkAscon_engine__DOT__rg_state_0_2_CONCAT_rg_state_1_4_6_XOR_rg_inte_ETC___05F_d235[1U] 
-        = ((IData)((vlTOPp->mkAscon_engine__DOT__rg_state_1 
-                    >> 0x20U)) ^ vlTOPp->mkAscon_engine__DOT__rg_interface_0[1U]);
-    vlTOPp->mkAscon_engine__DOT__rg_state_0_2_CONCAT_rg_state_1_4_6_XOR_rg_inte_ETC___05F_d235[2U] 
-        = ((IData)(vlTOPp->mkAscon_engine__DOT__rg_state_0) 
-           ^ vlTOPp->mkAscon_engine__DOT__rg_interface_0[2U]);
-    vlTOPp->mkAscon_engine__DOT__rg_state_0_2_CONCAT_rg_state_1_4_6_XOR_rg_inte_ETC___05F_d235[3U] 
-        = ((IData)((vlTOPp->mkAscon_engine__DOT__rg_state_0 
-                    >> 0x20U)) ^ vlTOPp->mkAscon_engine__DOT__rg_interface_0[3U]);
-    VL_EXTEND_WW(320,128, __Vtemp26, vlTOPp->mkAscon_engine__DOT__rg_interface_0);
-    vlTOPp->mkAscon_engine__DOT__padded_key___05Fh6735[0U] 
-        = __Vtemp26[0U];
-    vlTOPp->mkAscon_engine__DOT__padded_key___05Fh6735[1U] 
-        = __Vtemp26[1U];
-    vlTOPp->mkAscon_engine__DOT__padded_key___05Fh6735[2U] 
-        = __Vtemp26[2U];
-    vlTOPp->mkAscon_engine__DOT__padded_key___05Fh6735[3U] 
-        = __Vtemp26[3U];
-    vlTOPp->mkAscon_engine__DOT__padded_key___05Fh6735[4U] 
-        = __Vtemp26[4U];
-    vlTOPp->mkAscon_engine__DOT__padded_key___05Fh6735[5U] 
-        = __Vtemp26[5U];
-    vlTOPp->mkAscon_engine__DOT__padded_key___05Fh6735[6U] 
-        = __Vtemp26[6U];
-    vlTOPp->mkAscon_engine__DOT__padded_key___05Fh6735[7U] 
-        = __Vtemp26[7U];
-    vlTOPp->mkAscon_engine__DOT__padded_key___05Fh6735[8U] 
-        = __Vtemp26[8U];
-    vlTOPp->mkAscon_engine__DOT__padded_key___05Fh6735[9U] 
-        = __Vtemp26[9U];
-    vlTOPp->mkAscon_engine__DOT__x___05Fh20441 = (vlTOPp->mkAscon_engine__DOT__rg_state_4 
-                                                  & vlTOPp->mkAscon_engine__DOT__rg_state_3);
-    vlTOPp->mkAscon_engine__DOT__y___05Fh20306 = (vlTOPp->mkAscon_engine__DOT__rg_state_3 
-                                                  & vlTOPp->mkAscon_engine__DOT__rg_state_1);
-    vlTOPp->mkAscon_engine__DOT__y___05Fh20522 = (vlTOPp->mkAscon_engine__DOT__rg_state_3 
+           ^ vlTOPp->mkAscon_engine__DOT__rg_state_4);
+    vlTOPp->mkAscon_engine__DOT__MUX_rg_state_4_write_1___05FVAL_4 
+        = ((0xfffffffffffffffeULL & vlTOPp->mkAscon_engine__DOT__rg_state_4) 
+           | (QData)((IData)((1U & (~ (IData)(vlTOPp->mkAscon_engine__DOT__rg_state_4))))));
+    vlTOPp->mkAscon_engine__DOT__x___05Fh24428 = (vlTOPp->mkAscon_engine__DOT__rg_state_4 
                                                   & vlTOPp->mkAscon_engine__DOT__rg_state_0);
-    vlTOPp->mkAscon_engine__DOT__lv_updated_asso_data___05Fh12195[0U] 
+    vlTOPp->mkAscon_engine__DOT__x___05Fh24540 = (vlTOPp->mkAscon_engine__DOT__rg_state_4 
+                                                  & vlTOPp->mkAscon_engine__DOT__rg_state_1);
+    vlTOPp->mkAscon_engine__DOT__encryption_tag0___05Fh26646 
+        = ((((QData)((IData)(vlTOPp->mkAscon_engine__DOT__rg_interface_0[3U])) 
+             << 0x20U) | (QData)((IData)(vlTOPp->mkAscon_engine__DOT__rg_interface_0[2U]))) 
+           ^ vlTOPp->mkAscon_engine__DOT__rg_state_3);
+    vlTOPp->mkAscon_engine__DOT__x___05Fh24348 = (vlTOPp->mkAscon_engine__DOT__rg_state_4 
+                                                  & vlTOPp->mkAscon_engine__DOT__rg_state_3);
+    vlTOPp->mkAscon_engine__DOT__y___05Fh24213 = (vlTOPp->mkAscon_engine__DOT__rg_state_3 
+                                                  & vlTOPp->mkAscon_engine__DOT__rg_state_1);
+    vlTOPp->mkAscon_engine__DOT__y___05Fh24429 = (vlTOPp->mkAscon_engine__DOT__rg_state_3 
+                                                  & vlTOPp->mkAscon_engine__DOT__rg_state_0);
+    vlTOPp->mkAscon_engine__DOT__lv_updated_finalized_data___05Fh22007[0U] 
         = (IData)(vlTOPp->mkAscon_engine__DOT__rg_state_4);
-    vlTOPp->mkAscon_engine__DOT__lv_updated_asso_data___05Fh12195[1U] 
+    vlTOPp->mkAscon_engine__DOT__lv_updated_finalized_data___05Fh22007[1U] 
         = (IData)((vlTOPp->mkAscon_engine__DOT__rg_state_4 
                    >> 0x20U));
-    vlTOPp->mkAscon_engine__DOT__lv_updated_asso_data___05Fh12195[2U] 
+    vlTOPp->mkAscon_engine__DOT__lv_updated_finalized_data___05Fh22007[2U] 
         = (IData)(vlTOPp->mkAscon_engine__DOT__rg_state_3);
-    vlTOPp->mkAscon_engine__DOT__lv_updated_asso_data___05Fh12195[3U] 
+    vlTOPp->mkAscon_engine__DOT__lv_updated_finalized_data___05Fh22007[3U] 
         = (IData)((vlTOPp->mkAscon_engine__DOT__rg_state_3 
                    >> 0x20U));
-    vlTOPp->mkAscon_engine__DOT__lv_updated_asso_data___05Fh12195[4U] 
+    vlTOPp->mkAscon_engine__DOT__lv_updated_finalized_data___05Fh22007[4U] 
         = (IData)(vlTOPp->mkAscon_engine__DOT__rg_state_2);
-    vlTOPp->mkAscon_engine__DOT__lv_updated_asso_data___05Fh12195[5U] 
+    vlTOPp->mkAscon_engine__DOT__lv_updated_finalized_data___05Fh22007[5U] 
         = (IData)((vlTOPp->mkAscon_engine__DOT__rg_state_2 
                    >> 0x20U));
-    vlTOPp->mkAscon_engine__DOT__lv_updated_asso_data___05Fh12195[6U] 
+    vlTOPp->mkAscon_engine__DOT__lv_updated_finalized_data___05Fh22007[6U] 
         = (IData)(vlTOPp->mkAscon_engine__DOT__rg_state_1);
-    vlTOPp->mkAscon_engine__DOT__lv_updated_asso_data___05Fh12195[7U] 
+    vlTOPp->mkAscon_engine__DOT__lv_updated_finalized_data___05Fh22007[7U] 
         = (IData)((vlTOPp->mkAscon_engine__DOT__rg_state_1 
                    >> 0x20U));
-    vlTOPp->mkAscon_engine__DOT__lv_updated_asso_data___05Fh12195[8U] 
+    vlTOPp->mkAscon_engine__DOT__lv_updated_finalized_data___05Fh22007[8U] 
         = (IData)((((QData)((IData)((1U & (~ (IData)(
                                                      (vlTOPp->mkAscon_engine__DOT__rg_state_0 
                                                       >> 0x3fU)))))) 
                     << 0x3fU) | (0x7fffffffffffffffULL 
                                  & vlTOPp->mkAscon_engine__DOT__rg_state_0)));
-    vlTOPp->mkAscon_engine__DOT__lv_updated_asso_data___05Fh12195[9U] 
+    vlTOPp->mkAscon_engine__DOT__lv_updated_finalized_data___05Fh22007[9U] 
         = (IData)(((((QData)((IData)((1U & (~ (IData)(
                                                       (vlTOPp->mkAscon_engine__DOT__rg_state_0 
                                                        >> 0x3fU)))))) 
                      << 0x3fU) | (0x7fffffffffffffffULL 
                                   & vlTOPp->mkAscon_engine__DOT__rg_state_0)) 
                    >> 0x20U));
-    vlTOPp->mkAscon_engine__DOT__packed_associated_data___05Fh11523[0U] 
+    vlTOPp->mkAscon_engine__DOT__packed_pre_finalized_data___05Fh21335[0U] 
         = (IData)(vlTOPp->mkAscon_engine__DOT__rg_state_4);
-    vlTOPp->mkAscon_engine__DOT__packed_associated_data___05Fh11523[1U] 
+    vlTOPp->mkAscon_engine__DOT__packed_pre_finalized_data___05Fh21335[1U] 
         = (IData)((vlTOPp->mkAscon_engine__DOT__rg_state_4 
                    >> 0x20U));
-    vlTOPp->mkAscon_engine__DOT__packed_associated_data___05Fh11523[2U] 
+    vlTOPp->mkAscon_engine__DOT__packed_pre_finalized_data___05Fh21335[2U] 
         = (IData)(vlTOPp->mkAscon_engine__DOT__rg_state_3);
-    vlTOPp->mkAscon_engine__DOT__packed_associated_data___05Fh11523[3U] 
+    vlTOPp->mkAscon_engine__DOT__packed_pre_finalized_data___05Fh21335[3U] 
         = (IData)((vlTOPp->mkAscon_engine__DOT__rg_state_3 
                    >> 0x20U));
-    vlTOPp->mkAscon_engine__DOT__packed_associated_data___05Fh11523[4U] 
+    vlTOPp->mkAscon_engine__DOT__packed_pre_finalized_data___05Fh21335[4U] 
         = (IData)(vlTOPp->mkAscon_engine__DOT__rg_state_2);
-    vlTOPp->mkAscon_engine__DOT__packed_associated_data___05Fh11523[5U] 
+    vlTOPp->mkAscon_engine__DOT__packed_pre_finalized_data___05Fh21335[5U] 
         = (IData)((vlTOPp->mkAscon_engine__DOT__rg_state_2 
                    >> 0x20U));
-    vlTOPp->mkAscon_engine__DOT__packed_associated_data___05Fh11523[6U] 
+    vlTOPp->mkAscon_engine__DOT__packed_pre_finalized_data___05Fh21335[6U] 
         = (IData)(vlTOPp->mkAscon_engine__DOT__rg_state_1);
-    vlTOPp->mkAscon_engine__DOT__packed_associated_data___05Fh11523[7U] 
+    vlTOPp->mkAscon_engine__DOT__packed_pre_finalized_data___05Fh21335[7U] 
         = (IData)((vlTOPp->mkAscon_engine__DOT__rg_state_1 
                    >> 0x20U));
-    vlTOPp->mkAscon_engine__DOT__packed_associated_data___05Fh11523[8U] 
+    vlTOPp->mkAscon_engine__DOT__packed_pre_finalized_data___05Fh21335[8U] 
         = (IData)(vlTOPp->mkAscon_engine__DOT__rg_state_0);
-    vlTOPp->mkAscon_engine__DOT__packed_associated_data___05Fh11523[9U] 
+    vlTOPp->mkAscon_engine__DOT__packed_pre_finalized_data___05Fh21335[9U] 
         = (IData)((vlTOPp->mkAscon_engine__DOT__rg_state_0 
                    >> 0x20U));
-    vlTOPp->mkAscon_engine__DOT__x___05Fh22665 = (0xfU 
+    vlTOPp->mkAscon_engine__DOT__x___05Fh26558 = (0xfU 
                                                   & ((IData)(1U) 
                                                      + (IData)(vlTOPp->mkAscon_engine__DOT__counter)));
     vlTOPp->mkAscon_engine__DOT__counter_ULT_12___05F_d4 
@@ -516,267 +532,288 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__4(Vtop__Syms* __restrict vlSymsp) {
         vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_0_2_BITS_63___05FETC___05F_d23 
             = vlTOPp->mkAscon_engine__DOT__rg_state_2;
     }
-    vlTOPp->mkAscon_engine__DOT__x___05Fh13372 = (0xfU 
-                                                  & ((IData)(7U) 
-                                                     - (IData)(vlTOPp->mkAscon_engine__DOT__counter)));
-    vlTOPp->mkAscon_engine__DOT__x___05Fh19320 = (0xfU 
+    vlTOPp->mkAscon_engine__DOT__x___05Fh23227 = (0xfU 
                                                   & ((IData)(0xbU) 
                                                      - (IData)(vlTOPp->mkAscon_engine__DOT__counter)));
+    vlTOPp->mkAscon_engine__DOT__x___05Fh18116 = (0xfU 
+                                                  & ((IData)(7U) 
+                                                     - (IData)(vlTOPp->mkAscon_engine__DOT__counter)));
+    vlTOPp->RDY_ciphertext = vlTOPp->mkAscon_engine__DOT__RDY_ciphertext;
     vlTOPp->RDY_tag = vlTOPp->mkAscon_engine__DOT__RDY_tag;
     vlTOPp->ciphertext[0U] = vlTOPp->mkAscon_engine__DOT__ciphertext[0U];
     vlTOPp->ciphertext[1U] = vlTOPp->mkAscon_engine__DOT__ciphertext[1U];
     vlTOPp->ciphertext[2U] = vlTOPp->mkAscon_engine__DOT__ciphertext[2U];
     vlTOPp->ciphertext[3U] = vlTOPp->mkAscon_engine__DOT__ciphertext[3U];
-    vlTOPp->RDY_ciphertext = vlTOPp->mkAscon_engine__DOT__RDY_ciphertext;
     vlTOPp->tag[0U] = vlTOPp->mkAscon_engine__DOT__tag[0U];
     vlTOPp->tag[1U] = vlTOPp->mkAscon_engine__DOT__tag[1U];
     vlTOPp->tag[2U] = vlTOPp->mkAscon_engine__DOT__tag[2U];
     vlTOPp->tag[3U] = vlTOPp->mkAscon_engine__DOT__tag[3U];
     vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_intialization_state 
         = vlTOPp->mkAscon_engine__DOT__CAN_FIRE_RL_intialization_state;
-    vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_encryption_state 
-        = vlTOPp->mkAscon_engine__DOT__CAN_FIRE_RL_encryption_state;
+    vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_permutate_encrypted_data_state 
+        = vlTOPp->mkAscon_engine__DOT__CAN_FIRE_RL_permutate_encrypted_data_state;
     vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_associated_data_state 
         = vlTOPp->mkAscon_engine__DOT__CAN_FIRE_RL_associated_data_state;
+    vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_encryption_state 
+        = vlTOPp->mkAscon_engine__DOT__CAN_FIRE_RL_encryption_state;
     vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_permutate_associated_data_state 
         = vlTOPp->mkAscon_engine__DOT__CAN_FIRE_RL_permutate_associated_data_state;
     vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_finalization_state 
         = vlTOPp->mkAscon_engine__DOT__CAN_FIRE_RL_finalization_state;
-    vlTOPp->mkAscon_engine__DOT__x___05Fh20631 = (vlTOPp->mkAscon_engine__DOT__x___05Fh20633 
-                                                  ^ vlTOPp->mkAscon_engine__DOT__rg_state_4);
-    vlTOPp->mkAscon_engine__DOT__x___05Fh20178 = (vlTOPp->mkAscon_engine__DOT__x___05Fh20633 
-                                                  ^ vlTOPp->mkAscon_engine__DOT__rg_state_3);
-    vlTOPp->mkAscon_engine__DOT__pre_finalized_state___05Fh17084[0U] 
-        = (IData)(vlTOPp->mkAscon_engine__DOT__rg_state_4);
-    vlTOPp->mkAscon_engine__DOT__pre_finalized_state___05Fh17084[1U] 
-        = (IData)((vlTOPp->mkAscon_engine__DOT__rg_state_4 
-                   >> 0x20U));
-    vlTOPp->mkAscon_engine__DOT__pre_finalized_state___05Fh17084[2U] 
-        = (IData)(vlTOPp->mkAscon_engine__DOT__rg_state_3);
-    vlTOPp->mkAscon_engine__DOT__pre_finalized_state___05Fh17084[3U] 
-        = (IData)((vlTOPp->mkAscon_engine__DOT__rg_state_3 
-                   >> 0x20U));
-    vlTOPp->mkAscon_engine__DOT__pre_finalized_state___05Fh17084[4U] 
-        = (IData)(vlTOPp->mkAscon_engine__DOT__rg_state_2);
-    vlTOPp->mkAscon_engine__DOT__pre_finalized_state___05Fh17084[5U] 
-        = (IData)((vlTOPp->mkAscon_engine__DOT__rg_state_2 
-                   >> 0x20U));
-    vlTOPp->mkAscon_engine__DOT__pre_finalized_state___05Fh17084[6U] 
-        = vlTOPp->mkAscon_engine__DOT__rg_state_0_2_CONCAT_rg_state_1_4_6_XOR_rg_inte_ETC___05F_d235[0U];
-    vlTOPp->mkAscon_engine__DOT__pre_finalized_state___05Fh17084[7U] 
-        = vlTOPp->mkAscon_engine__DOT__rg_state_0_2_CONCAT_rg_state_1_4_6_XOR_rg_inte_ETC___05F_d235[1U];
-    vlTOPp->mkAscon_engine__DOT__pre_finalized_state___05Fh17084[8U] 
-        = vlTOPp->mkAscon_engine__DOT__rg_state_0_2_CONCAT_rg_state_1_4_6_XOR_rg_inte_ETC___05F_d235[2U];
-    vlTOPp->mkAscon_engine__DOT__pre_finalized_state___05Fh17084[9U] 
-        = vlTOPp->mkAscon_engine__DOT__rg_state_0_2_CONCAT_rg_state_1_4_6_XOR_rg_inte_ETC___05F_d235[3U];
     if ((0U == (IData)(vlTOPp->mkAscon_engine__DOT__counter))) {
         vlTOPp->mkAscon_engine__DOT__MUX_rg_state_0_write_1___05FVAL_5 
-            = vlTOPp->mkAscon_engine__DOT__encryption0___05Fh16813;
+            = vlTOPp->mkAscon_engine__DOT__x___05Fh15826;
         vlTOPp->mkAscon_engine__DOT__MUX_rg_state_1_write_1___05FVAL_5 
-            = vlTOPp->mkAscon_engine__DOT__encryption1___05Fh16814;
+            = vlTOPp->mkAscon_engine__DOT__x___05Fh16020;
     } else {
         vlTOPp->mkAscon_engine__DOT__MUX_rg_state_0_write_1___05FVAL_5 
-            = (((QData)((IData)(vlTOPp->mkAscon_engine__DOT__rg_state_0_2_CONCAT_rg_state_1_4_6_XOR_rg_inte_ETC___05F_d235[3U])) 
-                << 0x20U) | (QData)((IData)(vlTOPp->mkAscon_engine__DOT__rg_state_0_2_CONCAT_rg_state_1_4_6_XOR_rg_inte_ETC___05F_d235[2U])));
+            = vlTOPp->mkAscon_engine__DOT__rg_state_0;
         vlTOPp->mkAscon_engine__DOT__MUX_rg_state_1_write_1___05FVAL_5 
-            = (((QData)((IData)(vlTOPp->mkAscon_engine__DOT__rg_state_0_2_CONCAT_rg_state_1_4_6_XOR_rg_inte_ETC___05F_d235[1U])) 
-                << 0x20U) | (QData)((IData)(vlTOPp->mkAscon_engine__DOT__rg_state_0_2_CONCAT_rg_state_1_4_6_XOR_rg_inte_ETC___05F_d235[0U])));
+            = vlTOPp->mkAscon_engine__DOT__rg_state_1;
     }
-    vlTOPp->mkAscon_engine__DOT__x___05Fh20439 = (vlTOPp->mkAscon_engine__DOT__x___05Fh20441 
+    vlTOPp->mkAscon_engine__DOT__rg_encryption_tag_0_D_IN 
+        = vlTOPp->mkAscon_engine__DOT__encryption_tag1___05Fh26647;
+    vlTOPp->mkAscon_engine__DOT__x___05Fh24538 = (vlTOPp->mkAscon_engine__DOT__x___05Fh24540 
                                                   ^ vlTOPp->mkAscon_engine__DOT__rg_state_4);
-    vlTOPp->mkAscon_engine__DOT__x___05Fh20519 = (vlTOPp->mkAscon_engine__DOT__x___05Fh20521 
-                                                  ^ vlTOPp->mkAscon_engine__DOT__y___05Fh20522);
-    vlTOPp->mkAscon_engine__DOT__intialization_output___05Fh6775[0U] 
-        = (vlTOPp->mkAscon_engine__DOT__packed_associated_data___05Fh11523[0U] 
-           ^ vlTOPp->mkAscon_engine__DOT__padded_key___05Fh6735[0U]);
-    vlTOPp->mkAscon_engine__DOT__intialization_output___05Fh6775[1U] 
-        = (vlTOPp->mkAscon_engine__DOT__packed_associated_data___05Fh11523[1U] 
-           ^ vlTOPp->mkAscon_engine__DOT__padded_key___05Fh6735[1U]);
-    vlTOPp->mkAscon_engine__DOT__intialization_output___05Fh6775[2U] 
-        = (vlTOPp->mkAscon_engine__DOT__packed_associated_data___05Fh11523[2U] 
-           ^ vlTOPp->mkAscon_engine__DOT__padded_key___05Fh6735[2U]);
-    vlTOPp->mkAscon_engine__DOT__intialization_output___05Fh6775[3U] 
-        = (vlTOPp->mkAscon_engine__DOT__packed_associated_data___05Fh11523[3U] 
-           ^ vlTOPp->mkAscon_engine__DOT__padded_key___05Fh6735[3U]);
-    vlTOPp->mkAscon_engine__DOT__intialization_output___05Fh6775[4U] 
-        = (vlTOPp->mkAscon_engine__DOT__packed_associated_data___05Fh11523[4U] 
-           ^ vlTOPp->mkAscon_engine__DOT__padded_key___05Fh6735[4U]);
-    vlTOPp->mkAscon_engine__DOT__intialization_output___05Fh6775[5U] 
-        = (vlTOPp->mkAscon_engine__DOT__packed_associated_data___05Fh11523[5U] 
-           ^ vlTOPp->mkAscon_engine__DOT__padded_key___05Fh6735[5U]);
-    vlTOPp->mkAscon_engine__DOT__intialization_output___05Fh6775[6U] 
-        = (vlTOPp->mkAscon_engine__DOT__packed_associated_data___05Fh11523[6U] 
-           ^ vlTOPp->mkAscon_engine__DOT__padded_key___05Fh6735[6U]);
-    vlTOPp->mkAscon_engine__DOT__intialization_output___05Fh6775[7U] 
-        = (vlTOPp->mkAscon_engine__DOT__packed_associated_data___05Fh11523[7U] 
-           ^ vlTOPp->mkAscon_engine__DOT__padded_key___05Fh6735[7U]);
-    vlTOPp->mkAscon_engine__DOT__intialization_output___05Fh6775[8U] 
-        = (vlTOPp->mkAscon_engine__DOT__packed_associated_data___05Fh11523[8U] 
-           ^ vlTOPp->mkAscon_engine__DOT__padded_key___05Fh6735[8U]);
-    vlTOPp->mkAscon_engine__DOT__intialization_output___05Fh6775[9U] 
-        = (vlTOPp->mkAscon_engine__DOT__packed_associated_data___05Fh11523[9U] 
-           ^ vlTOPp->mkAscon_engine__DOT__padded_key___05Fh6735[9U]);
-    vlTOPp->mkAscon_engine__DOT__MUX_counter_write_1___05FVAL_1 
+    vlTOPp->mkAscon_engine__DOT__x___05Fh24085 = (vlTOPp->mkAscon_engine__DOT__x___05Fh24540 
+                                                  ^ vlTOPp->mkAscon_engine__DOT__rg_state_3);
+    vlTOPp->mkAscon_engine__DOT__rg_encryption_tag_1_D_IN 
+        = vlTOPp->mkAscon_engine__DOT__encryption_tag0___05Fh26646;
+    vlTOPp->mkAscon_engine__DOT__x___05Fh24346 = (vlTOPp->mkAscon_engine__DOT__x___05Fh24348 
+                                                  ^ vlTOPp->mkAscon_engine__DOT__rg_state_4);
+    vlTOPp->mkAscon_engine__DOT__x___05Fh24426 = (vlTOPp->mkAscon_engine__DOT__x___05Fh24428 
+                                                  ^ vlTOPp->mkAscon_engine__DOT__y___05Fh24429);
+    vlTOPp->mkAscon_engine__DOT___0b0_CONCAT_rg_interface_0_2_CONCAT_0b0_44_XOR___05FETC___05F_d248[0U] 
+        = (vlTOPp->mkAscon_engine__DOT__lv_finalized_key___05Fh22041[0U] 
+           ^ vlTOPp->mkAscon_engine__DOT__lv_updated_finalized_data___05Fh22007[0U]);
+    vlTOPp->mkAscon_engine__DOT___0b0_CONCAT_rg_interface_0_2_CONCAT_0b0_44_XOR___05FETC___05F_d248[1U] 
+        = (vlTOPp->mkAscon_engine__DOT__lv_finalized_key___05Fh22041[1U] 
+           ^ vlTOPp->mkAscon_engine__DOT__lv_updated_finalized_data___05Fh22007[1U]);
+    vlTOPp->mkAscon_engine__DOT___0b0_CONCAT_rg_interface_0_2_CONCAT_0b0_44_XOR___05FETC___05F_d248[2U] 
+        = (vlTOPp->mkAscon_engine__DOT__lv_finalized_key___05Fh22041[2U] 
+           ^ vlTOPp->mkAscon_engine__DOT__lv_updated_finalized_data___05Fh22007[2U]);
+    vlTOPp->mkAscon_engine__DOT___0b0_CONCAT_rg_interface_0_2_CONCAT_0b0_44_XOR___05FETC___05F_d248[3U] 
+        = (vlTOPp->mkAscon_engine__DOT__lv_finalized_key___05Fh22041[3U] 
+           ^ vlTOPp->mkAscon_engine__DOT__lv_updated_finalized_data___05Fh22007[3U]);
+    vlTOPp->mkAscon_engine__DOT___0b0_CONCAT_rg_interface_0_2_CONCAT_0b0_44_XOR___05FETC___05F_d248[4U] 
+        = (vlTOPp->mkAscon_engine__DOT__lv_finalized_key___05Fh22041[4U] 
+           ^ vlTOPp->mkAscon_engine__DOT__lv_updated_finalized_data___05Fh22007[4U]);
+    vlTOPp->mkAscon_engine__DOT___0b0_CONCAT_rg_interface_0_2_CONCAT_0b0_44_XOR___05FETC___05F_d248[5U] 
+        = (vlTOPp->mkAscon_engine__DOT__lv_finalized_key___05Fh22041[5U] 
+           ^ vlTOPp->mkAscon_engine__DOT__lv_updated_finalized_data___05Fh22007[5U]);
+    vlTOPp->mkAscon_engine__DOT___0b0_CONCAT_rg_interface_0_2_CONCAT_0b0_44_XOR___05FETC___05F_d248[6U] 
+        = (vlTOPp->mkAscon_engine__DOT__lv_finalized_key___05Fh22041[6U] 
+           ^ vlTOPp->mkAscon_engine__DOT__lv_updated_finalized_data___05Fh22007[6U]);
+    vlTOPp->mkAscon_engine__DOT___0b0_CONCAT_rg_interface_0_2_CONCAT_0b0_44_XOR___05FETC___05F_d248[7U] 
+        = (vlTOPp->mkAscon_engine__DOT__lv_finalized_key___05Fh22041[7U] 
+           ^ vlTOPp->mkAscon_engine__DOT__lv_updated_finalized_data___05Fh22007[7U]);
+    vlTOPp->mkAscon_engine__DOT___0b0_CONCAT_rg_interface_0_2_CONCAT_0b0_44_XOR___05FETC___05F_d248[8U] 
+        = (vlTOPp->mkAscon_engine__DOT__lv_finalized_key___05Fh22041[8U] 
+           ^ vlTOPp->mkAscon_engine__DOT__lv_updated_finalized_data___05Fh22007[8U]);
+    vlTOPp->mkAscon_engine__DOT___0b0_CONCAT_rg_interface_0_2_CONCAT_0b0_44_XOR___05FETC___05F_d248[9U] 
+        = (vlTOPp->mkAscon_engine__DOT__lv_finalized_key___05Fh22041[9U] 
+           ^ vlTOPp->mkAscon_engine__DOT__lv_updated_finalized_data___05Fh22007[9U]);
+    vlTOPp->mkAscon_engine__DOT__rg_state_0_2_CONCAT_rg_state_1_4_CONCAT_rg_sta_ETC___05F_d49[0U] 
+        = (vlTOPp->mkAscon_engine__DOT__packed_pre_finalized_data___05Fh21335[0U] 
+           ^ vlTOPp->mkAscon_engine__DOT__padded_key___05Fh1252[0U]);
+    vlTOPp->mkAscon_engine__DOT__rg_state_0_2_CONCAT_rg_state_1_4_CONCAT_rg_sta_ETC___05F_d49[1U] 
+        = (vlTOPp->mkAscon_engine__DOT__packed_pre_finalized_data___05Fh21335[1U] 
+           ^ vlTOPp->mkAscon_engine__DOT__padded_key___05Fh1252[1U]);
+    vlTOPp->mkAscon_engine__DOT__rg_state_0_2_CONCAT_rg_state_1_4_CONCAT_rg_sta_ETC___05F_d49[2U] 
+        = (vlTOPp->mkAscon_engine__DOT__packed_pre_finalized_data___05Fh21335[2U] 
+           ^ vlTOPp->mkAscon_engine__DOT__padded_key___05Fh1252[2U]);
+    vlTOPp->mkAscon_engine__DOT__rg_state_0_2_CONCAT_rg_state_1_4_CONCAT_rg_sta_ETC___05F_d49[3U] 
+        = (vlTOPp->mkAscon_engine__DOT__packed_pre_finalized_data___05Fh21335[3U] 
+           ^ vlTOPp->mkAscon_engine__DOT__padded_key___05Fh1252[3U]);
+    vlTOPp->mkAscon_engine__DOT__rg_state_0_2_CONCAT_rg_state_1_4_CONCAT_rg_sta_ETC___05F_d49[4U] 
+        = (vlTOPp->mkAscon_engine__DOT__packed_pre_finalized_data___05Fh21335[4U] 
+           ^ vlTOPp->mkAscon_engine__DOT__padded_key___05Fh1252[4U]);
+    vlTOPp->mkAscon_engine__DOT__rg_state_0_2_CONCAT_rg_state_1_4_CONCAT_rg_sta_ETC___05F_d49[5U] 
+        = (vlTOPp->mkAscon_engine__DOT__packed_pre_finalized_data___05Fh21335[5U] 
+           ^ vlTOPp->mkAscon_engine__DOT__padded_key___05Fh1252[5U]);
+    vlTOPp->mkAscon_engine__DOT__rg_state_0_2_CONCAT_rg_state_1_4_CONCAT_rg_sta_ETC___05F_d49[6U] 
+        = (vlTOPp->mkAscon_engine__DOT__packed_pre_finalized_data___05Fh21335[6U] 
+           ^ vlTOPp->mkAscon_engine__DOT__padded_key___05Fh1252[6U]);
+    vlTOPp->mkAscon_engine__DOT__rg_state_0_2_CONCAT_rg_state_1_4_CONCAT_rg_sta_ETC___05F_d49[7U] 
+        = (vlTOPp->mkAscon_engine__DOT__packed_pre_finalized_data___05Fh21335[7U] 
+           ^ vlTOPp->mkAscon_engine__DOT__padded_key___05Fh1252[7U]);
+    vlTOPp->mkAscon_engine__DOT__rg_state_0_2_CONCAT_rg_state_1_4_CONCAT_rg_sta_ETC___05F_d49[8U] 
+        = (vlTOPp->mkAscon_engine__DOT__packed_pre_finalized_data___05Fh21335[8U] 
+           ^ vlTOPp->mkAscon_engine__DOT__padded_key___05Fh1252[8U]);
+    vlTOPp->mkAscon_engine__DOT__rg_state_0_2_CONCAT_rg_state_1_4_CONCAT_rg_sta_ETC___05F_d49[9U] 
+        = (vlTOPp->mkAscon_engine__DOT__packed_pre_finalized_data___05Fh21335[9U] 
+           ^ vlTOPp->mkAscon_engine__DOT__padded_key___05Fh1252[9U]);
+    vlTOPp->mkAscon_engine__DOT__MUX_counter_write_1___05FVAL_2 
         = ((8U == (IData)(vlTOPp->mkAscon_engine__DOT__counter))
-            ? 0U : (IData)(vlTOPp->mkAscon_engine__DOT__x___05Fh22665));
+            ? 0U : (IData)(vlTOPp->mkAscon_engine__DOT__x___05Fh26558));
     vlTOPp->mkAscon_engine__DOT__MUX_counter_write_1___05FVAL_5 
         = ((0U == (IData)(vlTOPp->mkAscon_engine__DOT__counter))
-            ? (IData)(vlTOPp->mkAscon_engine__DOT__x___05Fh22665)
+            ? (IData)(vlTOPp->mkAscon_engine__DOT__x___05Fh26558)
             : 0U);
     vlTOPp->mkAscon_engine__DOT__MUX_counter_write_1___05FVAL_4 
         = ((IData)(vlTOPp->mkAscon_engine__DOT__counter_ULT_12___05F_d4)
-            ? (IData)(vlTOPp->mkAscon_engine__DOT__x___05Fh22665)
+            ? (IData)(vlTOPp->mkAscon_engine__DOT__x___05Fh26558)
             : 0U);
-    vlTOPp->mkAscon_engine__DOT__y___05Fh3985 = (vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_0_2_BITS_127_ETC___05F_d15 
+    vlTOPp->mkAscon_engine__DOT__y___05Fh4179 = (vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_0_2_BITS_127_ETC___05F_d15 
                                                  & vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_iv_constant_1_ELSE_rg_sta_ETC___05F_d33);
-    vlTOPp->mkAscon_engine__DOT__x___05Fh4331 = (vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_3_BITS_63_TO_ETC___05F_d11 
+    vlTOPp->mkAscon_engine__DOT__x___05Fh4525 = (vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_3_BITS_63_TO_ETC___05F_d11 
                                                  & vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_iv_constant_1_ELSE_rg_sta_ETC___05F_d33);
-    vlTOPp->mkAscon_engine__DOT__x___05Fh3990 = (vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_3_BITS_63_TO_ETC___05F_d11 
+    vlTOPp->mkAscon_engine__DOT__x___05Fh4184 = (vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_3_BITS_63_TO_ETC___05F_d11 
                                                  & vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_0_2_BITS_127_ETC___05F_d15);
-    vlTOPp->mkAscon_engine__DOT__x___05Fh4251 = (vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_3_BITS_63_TO_ETC___05F_d11 
+    vlTOPp->mkAscon_engine__DOT__x___05Fh4445 = (vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_3_BITS_63_TO_ETC___05F_d11 
                                                  & vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_3_BITS_127_T_ETC___05F_d19);
-    vlTOPp->mkAscon_engine__DOT__y___05Fh4116 = (vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_3_BITS_127_T_ETC___05F_d19 
+    vlTOPp->mkAscon_engine__DOT__y___05Fh4310 = (vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_3_BITS_127_T_ETC___05F_d19 
                                                  & vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_0_2_BITS_127_ETC___05F_d15);
-    vlTOPp->mkAscon_engine__DOT__y___05Fh4332 = (vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_3_BITS_127_T_ETC___05F_d19 
+    vlTOPp->mkAscon_engine__DOT__y___05Fh4526 = (vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_3_BITS_127_T_ETC___05F_d19 
                                                  & vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_iv_constant_1_ELSE_rg_sta_ETC___05F_d33);
-    vlTOPp->__Vtableidx2 = vlTOPp->mkAscon_engine__DOT__x___05Fh13372;
-    vlTOPp->mkAscon_engine__DOT__y___05Fh13356 = vlTOPp->__Vtable2_mkAscon_engine__DOT__y___05Fh13356
+    vlTOPp->__Vtableidx2 = vlTOPp->mkAscon_engine__DOT__x___05Fh23227;
+    vlTOPp->mkAscon_engine__DOT__y___05Fh23211 = vlTOPp->__Vtable2_mkAscon_engine__DOT__y___05Fh23211
         [vlTOPp->__Vtableidx2];
-    vlTOPp->__Vtableidx1 = vlTOPp->mkAscon_engine__DOT__x___05Fh19320;
-    vlTOPp->mkAscon_engine__DOT__y___05Fh19304 = vlTOPp->__Vtable1_mkAscon_engine__DOT__y___05Fh19304
-        [vlTOPp->__Vtableidx1];
-    vlTOPp->mkAscon_engine__DOT__MUX_fsm_state_write_1___05FSEL_6 
+    vlTOPp->__Vtableidx3 = vlTOPp->mkAscon_engine__DOT__x___05Fh18116;
+    vlTOPp->mkAscon_engine__DOT__y___05Fh18100 = vlTOPp->__Vtable3_mkAscon_engine__DOT__y___05Fh18100
+        [vlTOPp->__Vtableidx3];
+    vlTOPp->mkAscon_engine__DOT__MUX_fsm_state_write_1___05FSEL_7 
         = ((IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_intialization_state) 
            & (~ (IData)(vlTOPp->mkAscon_engine__DOT__counter_ULT_12___05F_d4)));
-    vlTOPp->mkAscon_engine__DOT__ready_ciphertext_EN 
-        = ((IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_encryption_state) 
-           & (0U == (IData)(vlTOPp->mkAscon_engine__DOT__counter)));
     vlTOPp->mkAscon_engine__DOT__MUX_fsm_state_write_1___05FSEL_3 
-        = ((IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_encryption_state) 
-           & (0U != (IData)(vlTOPp->mkAscon_engine__DOT__counter)));
+        = ((IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_permutate_encrypted_data_state) 
+           & (8U == (IData)(vlTOPp->mkAscon_engine__DOT__counter)));
     vlTOPp->mkAscon_engine__DOT__req_associated_data_EN 
         = ((IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_associated_data_state) 
            & (IData)(vlTOPp->mkAscon_engine__DOT__req_associated_data));
-    vlTOPp->mkAscon_engine__DOT__MUX_fsm_state_write_1___05FSEL_5 
+    vlTOPp->mkAscon_engine__DOT__MUX_fsm_state_write_1___05FSEL_6 
         = (((IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_associated_data_state) 
             & (~ (IData)(vlTOPp->mkAscon_engine__DOT__req_associated_data))) 
            & (8U == (IData)(vlTOPp->mkAscon_engine__DOT__counter)));
-    vlTOPp->mkAscon_engine__DOT__MUX_counter_write_1___05FSEL_1 
+    vlTOPp->mkAscon_engine__DOT__MUX_counter_write_1___05FSEL_2 
         = ((IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_associated_data_state) 
            & (~ (IData)(vlTOPp->mkAscon_engine__DOT__req_associated_data)));
     vlTOPp->mkAscon_engine__DOT__MUX_fsm_state_write_1___05FSEL_4 
+        = ((IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_encryption_state) 
+           & (0U != (IData)(vlTOPp->mkAscon_engine__DOT__counter)));
+    vlTOPp->mkAscon_engine__DOT__MUX_counter_write_1___05FSEL_3 
+        = ((IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_permutate_encrypted_data_state) 
+           | (IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_permutate_associated_data_state));
+    vlTOPp->mkAscon_engine__DOT__MUX_fsm_state_write_1___05FSEL_5 
         = ((IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_permutate_associated_data_state) 
            & (8U == (IData)(vlTOPp->mkAscon_engine__DOT__counter)));
-    vlTOPp->mkAscon_engine__DOT__MUX_rg_state_0_write_1___05FSEL_1 
+    vlTOPp->mkAscon_engine__DOT__MUX_rg_state_0_write_1___05FSEL_2 
         = ((IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_permutate_associated_data_state) 
            & (8U != (IData)(vlTOPp->mkAscon_engine__DOT__counter)));
-    vlTOPp->mkAscon_engine__DOT__rg_state_0_EN = ((
-                                                   ((((IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_permutate_associated_data_state) 
-                                                      & (8U 
-                                                         != (IData)(vlTOPp->mkAscon_engine__DOT__counter))) 
-                                                     | ((IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_finalization_state) 
-                                                        & (0xcU 
-                                                           != (IData)(vlTOPp->mkAscon_engine__DOT__counter)))) 
-                                                    | (IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_intialization_state)) 
-                                                   | (IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_associated_data_state)) 
-                                                  | (IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_encryption_state));
-    vlTOPp->mkAscon_engine__DOT__rg_state_1_EN = ((
-                                                   ((((IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_permutate_associated_data_state) 
-                                                      & (8U 
-                                                         != (IData)(vlTOPp->mkAscon_engine__DOT__counter))) 
-                                                     | ((IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_finalization_state) 
-                                                        & (0xcU 
-                                                           != (IData)(vlTOPp->mkAscon_engine__DOT__counter)))) 
-                                                    | (IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_intialization_state)) 
-                                                   | (IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_associated_data_state)) 
-                                                  | (IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_encryption_state));
-    vlTOPp->mkAscon_engine__DOT__counter_EN = ((((((IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_associated_data_state) 
-                                                   & (~ (IData)(vlTOPp->mkAscon_engine__DOT__req_associated_data))) 
-                                                  | ((IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_finalization_state) 
-                                                     & (0xcU 
-                                                        != (IData)(vlTOPp->mkAscon_engine__DOT__counter)))) 
+    vlTOPp->mkAscon_engine__DOT__counter_EN = (((((
+                                                   ((IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_finalization_state) 
+                                                    & (IData)(vlTOPp->mkAscon_engine__DOT__counter_ULT_12___05F_d4)) 
+                                                   | ((IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_associated_data_state) 
+                                                      & (~ (IData)(vlTOPp->mkAscon_engine__DOT__req_associated_data)))) 
+                                                  | (IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_permutate_encrypted_data_state)) 
                                                  | (IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_permutate_associated_data_state)) 
                                                 | (IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_intialization_state)) 
                                                | (IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_encryption_state));
+    vlTOPp->mkAscon_engine__DOT__rg_state_0_EN = ((
+                                                   (((((IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_finalization_state) 
+                                                       & (IData)(vlTOPp->mkAscon_engine__DOT__counter_ULT_12___05F_d4)) 
+                                                      | ((IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_permutate_associated_data_state) 
+                                                         & (8U 
+                                                            != (IData)(vlTOPp->mkAscon_engine__DOT__counter)))) 
+                                                     | (IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_intialization_state)) 
+                                                    | (IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_associated_data_state)) 
+                                                   | (IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_encryption_state)) 
+                                                  | (IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_permutate_encrypted_data_state));
+    vlTOPp->mkAscon_engine__DOT__rg_state_1_EN = ((
+                                                   (((((IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_finalization_state) 
+                                                       & (IData)(vlTOPp->mkAscon_engine__DOT__counter_ULT_12___05F_d4)) 
+                                                      | ((IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_permutate_associated_data_state) 
+                                                         & (8U 
+                                                            != (IData)(vlTOPp->mkAscon_engine__DOT__counter)))) 
+                                                     | (IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_intialization_state)) 
+                                                    | (IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_associated_data_state)) 
+                                                   | (IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_encryption_state)) 
+                                                  | (IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_permutate_encrypted_data_state));
     vlTOPp->mkAscon_engine__DOT__rg_state_2_EN = ((
-                                                   ((((IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_encryption_state) 
-                                                      & (0U 
-                                                         != (IData)(vlTOPp->mkAscon_engine__DOT__counter))) 
-                                                     | ((IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_associated_data_state) 
-                                                        & (~ (IData)(vlTOPp->mkAscon_engine__DOT__req_associated_data)))) 
-                                                    | ((IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_permutate_associated_data_state) 
-                                                       & (8U 
+                                                   (((((IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_finalization_state) 
+                                                       & (IData)(vlTOPp->mkAscon_engine__DOT__counter_ULT_12___05F_d4)) 
+                                                      | ((IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_associated_data_state) 
+                                                         & (~ (IData)(vlTOPp->mkAscon_engine__DOT__req_associated_data)))) 
+                                                     | ((IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_permutate_associated_data_state) 
+                                                        & (8U 
+                                                           != (IData)(vlTOPp->mkAscon_engine__DOT__counter)))) 
+                                                    | ((IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_encryption_state) 
+                                                       & (0U 
                                                           != (IData)(vlTOPp->mkAscon_engine__DOT__counter)))) 
-                                                   | ((IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_finalization_state) 
-                                                      & (0xcU 
-                                                         != (IData)(vlTOPp->mkAscon_engine__DOT__counter)))) 
-                                                  | (IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_intialization_state));
+                                                   | (IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_intialization_state)) 
+                                                  | (IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_permutate_encrypted_data_state));
     vlTOPp->mkAscon_engine__DOT__rg_state_3_EN = ((
-                                                   ((((IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_encryption_state) 
-                                                      & (0U 
-                                                         != (IData)(vlTOPp->mkAscon_engine__DOT__counter))) 
-                                                     | ((IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_associated_data_state) 
-                                                        & (~ (IData)(vlTOPp->mkAscon_engine__DOT__req_associated_data)))) 
-                                                    | ((IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_permutate_associated_data_state) 
-                                                       & (8U 
+                                                   (((((IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_finalization_state) 
+                                                       & (IData)(vlTOPp->mkAscon_engine__DOT__counter_ULT_12___05F_d4)) 
+                                                      | ((IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_associated_data_state) 
+                                                         & (~ (IData)(vlTOPp->mkAscon_engine__DOT__req_associated_data)))) 
+                                                     | ((IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_permutate_associated_data_state) 
+                                                        & (8U 
+                                                           != (IData)(vlTOPp->mkAscon_engine__DOT__counter)))) 
+                                                    | ((IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_encryption_state) 
+                                                       & (0U 
                                                           != (IData)(vlTOPp->mkAscon_engine__DOT__counter)))) 
-                                                   | ((IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_finalization_state) 
-                                                      & (0xcU 
-                                                         != (IData)(vlTOPp->mkAscon_engine__DOT__counter)))) 
-                                                  | (IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_intialization_state));
+                                                   | (IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_intialization_state)) 
+                                                  | (IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_permutate_encrypted_data_state));
     vlTOPp->mkAscon_engine__DOT__rg_state_4_EN = ((
-                                                   ((((IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_encryption_state) 
-                                                      & (0U 
-                                                         != (IData)(vlTOPp->mkAscon_engine__DOT__counter))) 
-                                                     | ((IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_associated_data_state) 
-                                                        & (~ (IData)(vlTOPp->mkAscon_engine__DOT__req_associated_data)))) 
-                                                    | ((IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_permutate_associated_data_state) 
-                                                       & (8U 
+                                                   (((((IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_finalization_state) 
+                                                       & (IData)(vlTOPp->mkAscon_engine__DOT__counter_ULT_12___05F_d4)) 
+                                                      | ((IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_associated_data_state) 
+                                                         & (~ (IData)(vlTOPp->mkAscon_engine__DOT__req_associated_data)))) 
+                                                     | ((IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_permutate_associated_data_state) 
+                                                        & (8U 
+                                                           != (IData)(vlTOPp->mkAscon_engine__DOT__counter)))) 
+                                                    | ((IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_encryption_state) 
+                                                       & (0U 
                                                           != (IData)(vlTOPp->mkAscon_engine__DOT__counter)))) 
-                                                   | ((IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_finalization_state) 
-                                                      & (0xcU 
-                                                         != (IData)(vlTOPp->mkAscon_engine__DOT__counter)))) 
-                                                  | (IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_intialization_state));
+                                                   | (IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_intialization_state)) 
+                                                  | (IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_permutate_encrypted_data_state));
     vlTOPp->mkAscon_engine__DOT__MUX_fsm_state_write_1___05FSEL_2 
         = ((IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_finalization_state) 
-           & (0xcU == (IData)(vlTOPp->mkAscon_engine__DOT__counter)));
-    vlTOPp->mkAscon_engine__DOT__MUX_counter_write_1___05FSEL_2 
+           & (~ (IData)(vlTOPp->mkAscon_engine__DOT__counter_ULT_12___05F_d4)));
+    vlTOPp->mkAscon_engine__DOT__MUX_counter_write_1___05FSEL_1 
         = ((IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_finalization_state) 
-           & (0xcU != (IData)(vlTOPp->mkAscon_engine__DOT__counter)));
-    vlTOPp->mkAscon_engine__DOT__x___05Fh20629 = (vlTOPp->mkAscon_engine__DOT__x___05Fh20631 
+           & (IData)(vlTOPp->mkAscon_engine__DOT__counter_ULT_12___05F_d4));
+    vlTOPp->mkAscon_engine__DOT__x___05Fh24536 = (vlTOPp->mkAscon_engine__DOT__x___05Fh24538 
                                                   ^ vlTOPp->mkAscon_engine__DOT__rg_state_3);
-    vlTOPp->mkAscon_engine__DOT__x___05Fh20517 = (vlTOPp->mkAscon_engine__DOT__x___05Fh20519 
+    vlTOPp->mkAscon_engine__DOT__x___05Fh24424 = (vlTOPp->mkAscon_engine__DOT__x___05Fh24426 
                                                   ^ vlTOPp->mkAscon_engine__DOT__rg_state_4);
-    vlTOPp->mkAscon_engine__DOT__x___05Fh4441 = (vlTOPp->mkAscon_engine__DOT__x___05Fh3990 
+    vlTOPp->mkAscon_engine__DOT__x___05Fh4635 = (vlTOPp->mkAscon_engine__DOT__x___05Fh4184 
                                                  ^ vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_3_BITS_63_TO_ETC___05F_d11);
-    vlTOPp->mkAscon_engine__DOT__x___05Fh3988 = (vlTOPp->mkAscon_engine__DOT__x___05Fh3990 
+    vlTOPp->mkAscon_engine__DOT__x___05Fh4182 = (vlTOPp->mkAscon_engine__DOT__x___05Fh4184 
                                                  ^ vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_3_BITS_127_T_ETC___05F_d19);
-    vlTOPp->mkAscon_engine__DOT__x___05Fh4249 = (vlTOPp->mkAscon_engine__DOT__x___05Fh4251 
+    vlTOPp->mkAscon_engine__DOT__x___05Fh4443 = (vlTOPp->mkAscon_engine__DOT__x___05Fh4445 
                                                  ^ vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_3_BITS_63_TO_ETC___05F_d11);
-    vlTOPp->mkAscon_engine__DOT__x___05Fh4329 = (vlTOPp->mkAscon_engine__DOT__x___05Fh4331 
-                                                 ^ vlTOPp->mkAscon_engine__DOT__y___05Fh4332);
-    vlTOPp->mkAscon_engine__DOT__rg_state_2_2_XOR_SEL_ARR_75_90_105_120_135_150_ETC___05F_d138 
+    vlTOPp->mkAscon_engine__DOT__x___05Fh4523 = (vlTOPp->mkAscon_engine__DOT__x___05Fh4525 
+                                                 ^ vlTOPp->mkAscon_engine__DOT__y___05Fh4526);
+    vlTOPp->mkAscon_engine__DOT__rg_state_2_2_XOR_SEL_ARR_75_90_105_120_135_150_ETC___05F_d260 
         = (vlTOPp->mkAscon_engine__DOT__rg_state_2 
-           ^ vlTOPp->mkAscon_engine__DOT__y___05Fh13356);
-    vlTOPp->mkAscon_engine__DOT__rg_state_2_2_XOR_SEL_ARR_75_90_105_120_135_150_ETC___05F_d251 
-        = (vlTOPp->mkAscon_engine__DOT__rg_state_2 
-           ^ vlTOPp->mkAscon_engine__DOT__y___05Fh19304);
+           ^ vlTOPp->mkAscon_engine__DOT__y___05Fh23211);
     vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_0_2_BITS_63___05FETC___05F_d27 
         = (vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_0_2_BITS_63___05FETC___05F_d23 
-           ^ vlTOPp->mkAscon_engine__DOT__y___05Fh19304);
+           ^ vlTOPp->mkAscon_engine__DOT__y___05Fh23211);
+    vlTOPp->mkAscon_engine__DOT__rg_state_2_2_XOR_SEL_ARR_75_90_105_120_135_150_ETC___05F_d136 
+        = (vlTOPp->mkAscon_engine__DOT__rg_state_2 
+           ^ vlTOPp->mkAscon_engine__DOT__y___05Fh18100);
+    vlTOPp->mkAscon_engine__DOT__ready_ciphertext_EN 
+        = vlTOPp->mkAscon_engine__DOT__MUX_fsm_state_write_1___05FSEL_4;
+    vlTOPp->mkAscon_engine__DOT__rg_encrypted_data_0_EN 
+        = vlTOPp->mkAscon_engine__DOT__MUX_fsm_state_write_1___05FSEL_4;
+    vlTOPp->mkAscon_engine__DOT__rg_encrypted_data_1_EN 
+        = vlTOPp->mkAscon_engine__DOT__MUX_fsm_state_write_1___05FSEL_4;
     vlTOPp->mkAscon_engine__DOT__ready_tag_EN = vlTOPp->mkAscon_engine__DOT__MUX_fsm_state_write_1___05FSEL_2;
     vlTOPp->mkAscon_engine__DOT__rg_encryption_tag_0_EN 
         = vlTOPp->mkAscon_engine__DOT__MUX_fsm_state_write_1___05FSEL_2;
     vlTOPp->mkAscon_engine__DOT__rg_encryption_tag_1_EN 
         = vlTOPp->mkAscon_engine__DOT__MUX_fsm_state_write_1___05FSEL_2;
     vlTOPp->mkAscon_engine__DOT__counter_D_IN = ((IData)(vlTOPp->mkAscon_engine__DOT__MUX_counter_write_1___05FSEL_1)
-                                                  ? (IData)(vlTOPp->mkAscon_engine__DOT__MUX_counter_write_1___05FVAL_1)
+                                                  ? (IData)(vlTOPp->mkAscon_engine__DOT__x___05Fh26558)
                                                   : 
                                                  ((IData)(vlTOPp->mkAscon_engine__DOT__MUX_counter_write_1___05FSEL_2)
-                                                   ? (IData)(vlTOPp->mkAscon_engine__DOT__x___05Fh22665)
+                                                   ? (IData)(vlTOPp->mkAscon_engine__DOT__MUX_counter_write_1___05FVAL_2)
                                                    : 
-                                                  ((IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_permutate_associated_data_state)
-                                                    ? (IData)(vlTOPp->mkAscon_engine__DOT__MUX_counter_write_1___05FVAL_1)
+                                                  ((IData)(vlTOPp->mkAscon_engine__DOT__MUX_counter_write_1___05FSEL_3)
+                                                    ? (IData)(vlTOPp->mkAscon_engine__DOT__MUX_counter_write_1___05FVAL_2)
                                                     : 
                                                    ((IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_intialization_state)
                                                      ? (IData)(vlTOPp->mkAscon_engine__DOT__MUX_counter_write_1___05FVAL_4)
@@ -784,566 +821,588 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__4(Vtop__Syms* __restrict vlSymsp) {
                                                     ((IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_encryption_state)
                                                       ? (IData)(vlTOPp->mkAscon_engine__DOT__MUX_counter_write_1___05FVAL_5)
                                                       : 0U)))));
-    vlTOPp->mkAscon_engine__DOT__x___05Fh20627 = (vlTOPp->mkAscon_engine__DOT__x___05Fh20629 
-                                                  ^ vlTOPp->mkAscon_engine__DOT__y___05Fh20630);
-    vlTOPp->mkAscon_engine__DOT__x___05Fh20515 = (vlTOPp->mkAscon_engine__DOT__x___05Fh20517 
+    vlTOPp->mkAscon_engine__DOT__x___05Fh24534 = (vlTOPp->mkAscon_engine__DOT__x___05Fh24536 
+                                                  ^ vlTOPp->mkAscon_engine__DOT__y___05Fh24537);
+    vlTOPp->mkAscon_engine__DOT__x___05Fh24422 = (vlTOPp->mkAscon_engine__DOT__x___05Fh24424 
                                                   ^ vlTOPp->mkAscon_engine__DOT__rg_state_3);
-    vlTOPp->mkAscon_engine__DOT__x___05Fh4439 = (vlTOPp->mkAscon_engine__DOT__x___05Fh4441 
+    vlTOPp->mkAscon_engine__DOT__x___05Fh4633 = (vlTOPp->mkAscon_engine__DOT__x___05Fh4635 
                                                  ^ vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_3_BITS_127_T_ETC___05F_d19);
-    vlTOPp->mkAscon_engine__DOT__x___05Fh4327 = (vlTOPp->mkAscon_engine__DOT__x___05Fh4329 
+    vlTOPp->mkAscon_engine__DOT__x___05Fh4521 = (vlTOPp->mkAscon_engine__DOT__x___05Fh4523 
                                                  ^ vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_3_BITS_63_TO_ETC___05F_d11);
-    vlTOPp->mkAscon_engine__DOT__x___05Fh14489 = (vlTOPp->mkAscon_engine__DOT__x___05Fh20439 
-                                                  ^ vlTOPp->mkAscon_engine__DOT__rg_state_2_2_XOR_SEL_ARR_75_90_105_120_135_150_ETC___05F_d138);
-    vlTOPp->mkAscon_engine__DOT__y___05Fh14354 = (vlTOPp->mkAscon_engine__DOT__rg_state_1 
-                                                  & vlTOPp->mkAscon_engine__DOT__rg_state_2_2_XOR_SEL_ARR_75_90_105_120_135_150_ETC___05F_d138);
-    vlTOPp->mkAscon_engine__DOT__y___05Fh14231 = (vlTOPp->mkAscon_engine__DOT__rg_state_2_2_XOR_SEL_ARR_75_90_105_120_135_150_ETC___05F_d138 
+    vlTOPp->mkAscon_engine__DOT__x___05Fh24344 = (vlTOPp->mkAscon_engine__DOT__x___05Fh24346 
+                                                  ^ vlTOPp->mkAscon_engine__DOT__rg_state_2_2_XOR_SEL_ARR_75_90_105_120_135_150_ETC___05F_d260);
+    vlTOPp->mkAscon_engine__DOT__y___05Fh24209 = (vlTOPp->mkAscon_engine__DOT__rg_state_1 
+                                                  & vlTOPp->mkAscon_engine__DOT__rg_state_2_2_XOR_SEL_ARR_75_90_105_120_135_150_ETC___05F_d260);
+    vlTOPp->mkAscon_engine__DOT__y___05Fh24086 = (vlTOPp->mkAscon_engine__DOT__rg_state_2_2_XOR_SEL_ARR_75_90_105_120_135_150_ETC___05F_d260 
                                                   & vlTOPp->mkAscon_engine__DOT__rg_state_1);
-    vlTOPp->mkAscon_engine__DOT__y___05Fh14362 = (vlTOPp->mkAscon_engine__DOT__rg_state_2_2_XOR_SEL_ARR_75_90_105_120_135_150_ETC___05F_d138 
+    vlTOPp->mkAscon_engine__DOT__y___05Fh24217 = (vlTOPp->mkAscon_engine__DOT__rg_state_2_2_XOR_SEL_ARR_75_90_105_120_135_150_ETC___05F_d260 
                                                   & vlTOPp->mkAscon_engine__DOT__rg_state_3);
-    vlTOPp->mkAscon_engine__DOT__x___05Fh20437 = (vlTOPp->mkAscon_engine__DOT__x___05Fh20439 
-                                                  ^ vlTOPp->mkAscon_engine__DOT__rg_state_2_2_XOR_SEL_ARR_75_90_105_120_135_150_ETC___05F_d251);
-    vlTOPp->mkAscon_engine__DOT__y___05Fh20302 = (vlTOPp->mkAscon_engine__DOT__rg_state_1 
-                                                  & vlTOPp->mkAscon_engine__DOT__rg_state_2_2_XOR_SEL_ARR_75_90_105_120_135_150_ETC___05F_d251);
-    vlTOPp->mkAscon_engine__DOT__y___05Fh20179 = (vlTOPp->mkAscon_engine__DOT__rg_state_2_2_XOR_SEL_ARR_75_90_105_120_135_150_ETC___05F_d251 
-                                                  & vlTOPp->mkAscon_engine__DOT__rg_state_1);
-    vlTOPp->mkAscon_engine__DOT__y___05Fh20310 = (vlTOPp->mkAscon_engine__DOT__rg_state_2_2_XOR_SEL_ARR_75_90_105_120_135_150_ETC___05F_d251 
-                                                  & vlTOPp->mkAscon_engine__DOT__rg_state_3);
-    vlTOPp->mkAscon_engine__DOT__x___05Fh4247 = (vlTOPp->mkAscon_engine__DOT__x___05Fh4249 
+    vlTOPp->mkAscon_engine__DOT__x___05Fh4441 = (vlTOPp->mkAscon_engine__DOT__x___05Fh4443 
                                                  ^ vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_0_2_BITS_63___05FETC___05F_d27);
-    vlTOPp->mkAscon_engine__DOT__y___05Fh4112 = (vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_0_2_BITS_127_ETC___05F_d15 
+    vlTOPp->mkAscon_engine__DOT__y___05Fh4306 = (vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_0_2_BITS_127_ETC___05F_d15 
                                                  & vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_0_2_BITS_63___05FETC___05F_d27);
-    vlTOPp->mkAscon_engine__DOT__y___05Fh3989 = (vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_0_2_BITS_63___05FETC___05F_d27 
+    vlTOPp->mkAscon_engine__DOT__y___05Fh4183 = (vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_0_2_BITS_63___05FETC___05F_d27 
                                                  & vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_0_2_BITS_127_ETC___05F_d15);
-    vlTOPp->mkAscon_engine__DOT__y___05Fh4120 = (vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_0_2_BITS_63___05FETC___05F_d27 
+    vlTOPp->mkAscon_engine__DOT__y___05Fh4314 = (vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_0_2_BITS_63___05FETC___05F_d27 
                                                  & vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_3_BITS_127_T_ETC___05F_d19);
-    vlTOPp->mkAscon_engine__DOT__x___05Fh21813 = (vlTOPp->mkAscon_engine__DOT__x___05Fh20627 
+    vlTOPp->mkAscon_engine__DOT__x___05Fh19233 = (vlTOPp->mkAscon_engine__DOT__x___05Fh24346 
+                                                  ^ vlTOPp->mkAscon_engine__DOT__rg_state_2_2_XOR_SEL_ARR_75_90_105_120_135_150_ETC___05F_d136);
+    vlTOPp->mkAscon_engine__DOT__y___05Fh19098 = (vlTOPp->mkAscon_engine__DOT__rg_state_1 
+                                                  & vlTOPp->mkAscon_engine__DOT__rg_state_2_2_XOR_SEL_ARR_75_90_105_120_135_150_ETC___05F_d136);
+    vlTOPp->mkAscon_engine__DOT__y___05Fh18975 = (vlTOPp->mkAscon_engine__DOT__rg_state_2_2_XOR_SEL_ARR_75_90_105_120_135_150_ETC___05F_d136 
+                                                  & vlTOPp->mkAscon_engine__DOT__rg_state_1);
+    vlTOPp->mkAscon_engine__DOT__y___05Fh19106 = (vlTOPp->mkAscon_engine__DOT__rg_state_2_2_XOR_SEL_ARR_75_90_105_120_135_150_ETC___05F_d136 
+                                                  & vlTOPp->mkAscon_engine__DOT__rg_state_3);
+    vlTOPp->mkAscon_engine__DOT__x___05Fh25720 = (vlTOPp->mkAscon_engine__DOT__x___05Fh24534 
                                                   ^ vlTOPp->mkAscon_engine__DOT__rg_state_1);
-    vlTOPp->mkAscon_engine__DOT__x___05Fh20513 = (vlTOPp->mkAscon_engine__DOT__x___05Fh20515 
-                                                  ^ vlTOPp->mkAscon_engine__DOT__rg_state_2_2_XOR_SEL_ARR_75_90_105_120_135_150_ETC___05F_d251);
-    vlTOPp->mkAscon_engine__DOT__x___05Fh14565 = (vlTOPp->mkAscon_engine__DOT__x___05Fh20515 
-                                                  ^ vlTOPp->mkAscon_engine__DOT__rg_state_2_2_XOR_SEL_ARR_75_90_105_120_135_150_ETC___05F_d138);
-    vlTOPp->mkAscon_engine__DOT__x___05Fh4437 = (vlTOPp->mkAscon_engine__DOT__x___05Fh4439 
-                                                 ^ vlTOPp->mkAscon_engine__DOT__y___05Fh3985);
-    vlTOPp->mkAscon_engine__DOT__x___05Fh4325 = (vlTOPp->mkAscon_engine__DOT__x___05Fh4327 
+    vlTOPp->mkAscon_engine__DOT__x___05Fh24420 = (vlTOPp->mkAscon_engine__DOT__x___05Fh24422 
+                                                  ^ vlTOPp->mkAscon_engine__DOT__rg_state_2_2_XOR_SEL_ARR_75_90_105_120_135_150_ETC___05F_d260);
+    vlTOPp->mkAscon_engine__DOT__x___05Fh19309 = (vlTOPp->mkAscon_engine__DOT__x___05Fh24422 
+                                                  ^ vlTOPp->mkAscon_engine__DOT__rg_state_2_2_XOR_SEL_ARR_75_90_105_120_135_150_ETC___05F_d136);
+    vlTOPp->mkAscon_engine__DOT__x___05Fh4631 = (vlTOPp->mkAscon_engine__DOT__x___05Fh4633 
+                                                 ^ vlTOPp->mkAscon_engine__DOT__y___05Fh4179);
+    vlTOPp->mkAscon_engine__DOT__x___05Fh4519 = (vlTOPp->mkAscon_engine__DOT__x___05Fh4521 
                                                  ^ vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_3_BITS_127_T_ETC___05F_d19);
-    vlTOPp->mkAscon_engine__DOT__INV_rg_state_4_0_AND_rg_state_3_8_79_XOR_rg_st_ETC___05F_d183 
-        = (~ (vlTOPp->mkAscon_engine__DOT__x___05Fh14489 
+    vlTOPp->mkAscon_engine__DOT__INV_rg_state_4_0_AND_rg_state_3_8_77_XOR_rg_st_ETC___05F_d278 
+        = (~ (vlTOPp->mkAscon_engine__DOT__x___05Fh24344 
               ^ vlTOPp->mkAscon_engine__DOT__rg_state_1));
-    vlTOPp->mkAscon_engine__DOT__x___05Fh14228 = (vlTOPp->mkAscon_engine__DOT__x___05Fh20178 
-                                                  ^ vlTOPp->mkAscon_engine__DOT__y___05Fh14231);
-    vlTOPp->mkAscon_engine__DOT__x___05Fh14359 = (vlTOPp->mkAscon_engine__DOT__rg_state_4 
-                                                  ^ vlTOPp->mkAscon_engine__DOT__y___05Fh14362);
-    vlTOPp->mkAscon_engine__DOT__INV_rg_state_4_0_AND_rg_state_3_8_79_XOR_rg_st_ETC___05F_d269 
-        = (~ (vlTOPp->mkAscon_engine__DOT__x___05Fh20437 
-              ^ vlTOPp->mkAscon_engine__DOT__rg_state_1));
-    vlTOPp->mkAscon_engine__DOT__x___05Fh20176 = (vlTOPp->mkAscon_engine__DOT__x___05Fh20178 
-                                                  ^ vlTOPp->mkAscon_engine__DOT__y___05Fh20179);
-    vlTOPp->mkAscon_engine__DOT__x___05Fh20307 = (vlTOPp->mkAscon_engine__DOT__rg_state_4 
-                                                  ^ vlTOPp->mkAscon_engine__DOT__y___05Fh20310);
-    vlTOPp->mkAscon_engine__DOT__INV_IF_counter_EQ_0_THEN_rg_interface_3_BITS_6_ETC___05F_d77 
-        = (~ (vlTOPp->mkAscon_engine__DOT__x___05Fh4247 
+    vlTOPp->mkAscon_engine__DOT__x___05Fh24083 = (vlTOPp->mkAscon_engine__DOT__x___05Fh24085 
+                                                  ^ vlTOPp->mkAscon_engine__DOT__y___05Fh24086);
+    vlTOPp->mkAscon_engine__DOT__x___05Fh24214 = (vlTOPp->mkAscon_engine__DOT__rg_state_4 
+                                                  ^ vlTOPp->mkAscon_engine__DOT__y___05Fh24217);
+    vlTOPp->mkAscon_engine__DOT__INV_IF_counter_EQ_0_THEN_rg_interface_3_BITS_6_ETC___05F_d76 
+        = (~ (vlTOPp->mkAscon_engine__DOT__x___05Fh4441 
               ^ vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_0_2_BITS_127_ETC___05F_d15));
-    vlTOPp->mkAscon_engine__DOT__x___05Fh3986 = (vlTOPp->mkAscon_engine__DOT__x___05Fh3988 
-                                                 ^ vlTOPp->mkAscon_engine__DOT__y___05Fh3989);
-    vlTOPp->mkAscon_engine__DOT__x___05Fh4117 = (vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_3_BITS_63_TO_ETC___05F_d11 
-                                                 ^ vlTOPp->mkAscon_engine__DOT__y___05Fh4120);
-    vlTOPp->mkAscon_engine__DOT__y___05Fh21812 = ((0xffffffffff800000ULL 
-                                                   & (vlTOPp->mkAscon_engine__DOT__x___05Fh21813 
+    vlTOPp->mkAscon_engine__DOT__x___05Fh4180 = (vlTOPp->mkAscon_engine__DOT__x___05Fh4182 
+                                                 ^ vlTOPp->mkAscon_engine__DOT__y___05Fh4183);
+    vlTOPp->mkAscon_engine__DOT__x___05Fh4311 = (vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_3_BITS_63_TO_ETC___05F_d11 
+                                                 ^ vlTOPp->mkAscon_engine__DOT__y___05Fh4314);
+    vlTOPp->mkAscon_engine__DOT__INV_rg_state_4_0_AND_rg_state_3_8_77_XOR_rg_st_ETC___05F_d181 
+        = (~ (vlTOPp->mkAscon_engine__DOT__x___05Fh19233 
+              ^ vlTOPp->mkAscon_engine__DOT__rg_state_1));
+    vlTOPp->mkAscon_engine__DOT__x___05Fh18972 = (vlTOPp->mkAscon_engine__DOT__x___05Fh24085 
+                                                  ^ vlTOPp->mkAscon_engine__DOT__y___05Fh18975);
+    vlTOPp->mkAscon_engine__DOT__x___05Fh19103 = (vlTOPp->mkAscon_engine__DOT__rg_state_4 
+                                                  ^ vlTOPp->mkAscon_engine__DOT__y___05Fh19106);
+    vlTOPp->mkAscon_engine__DOT__y___05Fh25719 = ((0xffffffffff800000ULL 
+                                                   & (vlTOPp->mkAscon_engine__DOT__x___05Fh25720 
                                                       << 0x17U)) 
                                                   | (QData)((IData)(
                                                                     (0x7fffffU 
                                                                      & (IData)(
-                                                                               (vlTOPp->mkAscon_engine__DOT__x___05Fh21813 
+                                                                               (vlTOPp->mkAscon_engine__DOT__x___05Fh25720 
                                                                                 >> 0x29U))))));
-    vlTOPp->mkAscon_engine__DOT__y___05Fh21814 = (((QData)((IData)(
+    vlTOPp->mkAscon_engine__DOT__y___05Fh25721 = (((QData)((IData)(
                                                                    (0x7fU 
-                                                                    & (IData)(vlTOPp->mkAscon_engine__DOT__x___05Fh21813)))) 
+                                                                    & (IData)(vlTOPp->mkAscon_engine__DOT__x___05Fh25720)))) 
                                                    << 0x39U) 
                                                   | (0x1ffffffffffffffULL 
-                                                     & (vlTOPp->mkAscon_engine__DOT__x___05Fh21813 
+                                                     & (vlTOPp->mkAscon_engine__DOT__x___05Fh25720 
                                                         >> 7U)));
-    vlTOPp->mkAscon_engine__DOT__x___05Fh20511 = (vlTOPp->mkAscon_engine__DOT__x___05Fh20513 
+    vlTOPp->mkAscon_engine__DOT__x___05Fh24418 = (vlTOPp->mkAscon_engine__DOT__x___05Fh24420 
                                                   ^ vlTOPp->mkAscon_engine__DOT__rg_state_1);
-    vlTOPp->mkAscon_engine__DOT__x___05Fh14563 = (vlTOPp->mkAscon_engine__DOT__x___05Fh14565 
+    vlTOPp->mkAscon_engine__DOT__x___05Fh19307 = (vlTOPp->mkAscon_engine__DOT__x___05Fh19309 
                                                   ^ vlTOPp->mkAscon_engine__DOT__rg_state_1);
-    vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_3_BITS_63_TO_ETC___05F_d109 
-        = (vlTOPp->mkAscon_engine__DOT__x___05Fh4437 
+    vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_3_BITS_63_TO_ETC___05F_d108 
+        = (vlTOPp->mkAscon_engine__DOT__x___05Fh4631 
            ^ vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_0_2_BITS_127_ETC___05F_d15);
-    vlTOPp->mkAscon_engine__DOT__x___05Fh4323 = (vlTOPp->mkAscon_engine__DOT__x___05Fh4325 
+    vlTOPp->mkAscon_engine__DOT__x___05Fh4517 = (vlTOPp->mkAscon_engine__DOT__x___05Fh4519 
                                                  ^ vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_0_2_BITS_63___05FETC___05F_d27);
-    vlTOPp->mkAscon_engine__DOT__y___05Fh15382 = (((QData)((IData)(
+    vlTOPp->mkAscon_engine__DOT__y___05Fh25237 = (((QData)((IData)(
                                                                    (0x3fU 
-                                                                    & (IData)(vlTOPp->mkAscon_engine__DOT__INV_rg_state_4_0_AND_rg_state_3_8_79_XOR_rg_st_ETC___05F_d183)))) 
+                                                                    & (IData)(vlTOPp->mkAscon_engine__DOT__INV_rg_state_4_0_AND_rg_state_3_8_77_XOR_rg_st_ETC___05F_d278)))) 
                                                    << 0x3aU) 
                                                   | (0x3ffffffffffffffULL 
-                                                     & (vlTOPp->mkAscon_engine__DOT__INV_rg_state_4_0_AND_rg_state_3_8_79_XOR_rg_st_ETC___05F_d183 
+                                                     & (vlTOPp->mkAscon_engine__DOT__INV_rg_state_4_0_AND_rg_state_3_8_77_XOR_rg_st_ETC___05F_d278 
                                                         >> 6U)));
-    vlTOPp->mkAscon_engine__DOT__y___05Fh15384 = (((QData)((IData)(
+    vlTOPp->mkAscon_engine__DOT__y___05Fh25239 = (((QData)((IData)(
                                                                    (1U 
-                                                                    & (IData)(vlTOPp->mkAscon_engine__DOT__INV_rg_state_4_0_AND_rg_state_3_8_79_XOR_rg_st_ETC___05F_d183)))) 
+                                                                    & (IData)(vlTOPp->mkAscon_engine__DOT__INV_rg_state_4_0_AND_rg_state_3_8_77_XOR_rg_st_ETC___05F_d278)))) 
                                                    << 0x3fU) 
                                                   | (0x7fffffffffffffffULL 
-                                                     & (vlTOPp->mkAscon_engine__DOT__INV_rg_state_4_0_AND_rg_state_3_8_79_XOR_rg_st_ETC___05F_d183 
+                                                     & (vlTOPp->mkAscon_engine__DOT__INV_rg_state_4_0_AND_rg_state_3_8_77_XOR_rg_st_ETC___05F_d278 
                                                         >> 1U)));
-    vlTOPp->mkAscon_engine__DOT__x___05Fh14226 = (vlTOPp->mkAscon_engine__DOT__x___05Fh14228 
-                                                  ^ vlTOPp->mkAscon_engine__DOT__rg_state_2_2_XOR_SEL_ARR_75_90_105_120_135_150_ETC___05F_d138);
-    vlTOPp->mkAscon_engine__DOT__x___05Fh14357 = (vlTOPp->mkAscon_engine__DOT__x___05Fh14359 
+    vlTOPp->mkAscon_engine__DOT__x___05Fh24081 = (vlTOPp->mkAscon_engine__DOT__x___05Fh24083 
+                                                  ^ vlTOPp->mkAscon_engine__DOT__rg_state_2_2_XOR_SEL_ARR_75_90_105_120_135_150_ETC___05F_d260);
+    vlTOPp->mkAscon_engine__DOT__x___05Fh24212 = (vlTOPp->mkAscon_engine__DOT__x___05Fh24214 
                                                   ^ vlTOPp->mkAscon_engine__DOT__rg_state_3);
-    vlTOPp->mkAscon_engine__DOT__y___05Fh21330 = (((QData)((IData)(
-                                                                   (0x3fU 
-                                                                    & (IData)(vlTOPp->mkAscon_engine__DOT__INV_rg_state_4_0_AND_rg_state_3_8_79_XOR_rg_st_ETC___05F_d269)))) 
-                                                   << 0x3aU) 
-                                                  | (0x3ffffffffffffffULL 
-                                                     & (vlTOPp->mkAscon_engine__DOT__INV_rg_state_4_0_AND_rg_state_3_8_79_XOR_rg_st_ETC___05F_d269 
-                                                        >> 6U)));
-    vlTOPp->mkAscon_engine__DOT__y___05Fh21332 = (((QData)((IData)(
-                                                                   (1U 
-                                                                    & (IData)(vlTOPp->mkAscon_engine__DOT__INV_rg_state_4_0_AND_rg_state_3_8_79_XOR_rg_st_ETC___05F_d269)))) 
-                                                   << 0x3fU) 
-                                                  | (0x7fffffffffffffffULL 
-                                                     & (vlTOPp->mkAscon_engine__DOT__INV_rg_state_4_0_AND_rg_state_3_8_79_XOR_rg_st_ETC___05F_d269 
-                                                        >> 1U)));
-    vlTOPp->mkAscon_engine__DOT__x___05Fh20174 = (vlTOPp->mkAscon_engine__DOT__x___05Fh20176 
-                                                  ^ vlTOPp->mkAscon_engine__DOT__rg_state_2_2_XOR_SEL_ARR_75_90_105_120_135_150_ETC___05F_d251);
-    vlTOPp->mkAscon_engine__DOT__x___05Fh20305 = (vlTOPp->mkAscon_engine__DOT__x___05Fh20307 
-                                                  ^ vlTOPp->mkAscon_engine__DOT__rg_state_3);
-    vlTOPp->mkAscon_engine__DOT__y___05Fh5140 = (((QData)((IData)(
+    vlTOPp->mkAscon_engine__DOT__y___05Fh5334 = (((QData)((IData)(
                                                                   (0x3fU 
-                                                                   & (IData)(vlTOPp->mkAscon_engine__DOT__INV_IF_counter_EQ_0_THEN_rg_interface_3_BITS_6_ETC___05F_d77)))) 
+                                                                   & (IData)(vlTOPp->mkAscon_engine__DOT__INV_IF_counter_EQ_0_THEN_rg_interface_3_BITS_6_ETC___05F_d76)))) 
                                                   << 0x3aU) 
                                                  | (0x3ffffffffffffffULL 
-                                                    & (vlTOPp->mkAscon_engine__DOT__INV_IF_counter_EQ_0_THEN_rg_interface_3_BITS_6_ETC___05F_d77 
+                                                    & (vlTOPp->mkAscon_engine__DOT__INV_IF_counter_EQ_0_THEN_rg_interface_3_BITS_6_ETC___05F_d76 
                                                        >> 6U)));
-    vlTOPp->mkAscon_engine__DOT__y___05Fh5142 = (((QData)((IData)(
+    vlTOPp->mkAscon_engine__DOT__y___05Fh5336 = (((QData)((IData)(
                                                                   (1U 
-                                                                   & (IData)(vlTOPp->mkAscon_engine__DOT__INV_IF_counter_EQ_0_THEN_rg_interface_3_BITS_6_ETC___05F_d77)))) 
+                                                                   & (IData)(vlTOPp->mkAscon_engine__DOT__INV_IF_counter_EQ_0_THEN_rg_interface_3_BITS_6_ETC___05F_d76)))) 
                                                   << 0x3fU) 
                                                  | (0x7fffffffffffffffULL 
-                                                    & (vlTOPp->mkAscon_engine__DOT__INV_IF_counter_EQ_0_THEN_rg_interface_3_BITS_6_ETC___05F_d77 
+                                                    & (vlTOPp->mkAscon_engine__DOT__INV_IF_counter_EQ_0_THEN_rg_interface_3_BITS_6_ETC___05F_d76 
                                                        >> 1U)));
-    vlTOPp->mkAscon_engine__DOT__x___05Fh3984 = (vlTOPp->mkAscon_engine__DOT__x___05Fh3986 
+    vlTOPp->mkAscon_engine__DOT__x___05Fh4178 = (vlTOPp->mkAscon_engine__DOT__x___05Fh4180 
                                                  ^ vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_0_2_BITS_63___05FETC___05F_d27);
-    vlTOPp->mkAscon_engine__DOT__x___05Fh4115 = (vlTOPp->mkAscon_engine__DOT__x___05Fh4117 
+    vlTOPp->mkAscon_engine__DOT__x___05Fh4309 = (vlTOPp->mkAscon_engine__DOT__x___05Fh4311 
                                                  ^ vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_3_BITS_127_T_ETC___05F_d19);
-    vlTOPp->mkAscon_engine__DOT__x___05Fh21811 = (vlTOPp->mkAscon_engine__DOT__x___05Fh21813 
-                                                  ^ vlTOPp->mkAscon_engine__DOT__y___05Fh21814);
-    vlTOPp->mkAscon_engine__DOT__rg_state_4_0_AND_rg_state_0_2_93_XOR_rg_state___05FETC___05F_d272 
-        = (vlTOPp->mkAscon_engine__DOT__x___05Fh20511 
+    vlTOPp->mkAscon_engine__DOT__y___05Fh20126 = (((QData)((IData)(
+                                                                   (0x3fU 
+                                                                    & (IData)(vlTOPp->mkAscon_engine__DOT__INV_rg_state_4_0_AND_rg_state_3_8_77_XOR_rg_st_ETC___05F_d181)))) 
+                                                   << 0x3aU) 
+                                                  | (0x3ffffffffffffffULL 
+                                                     & (vlTOPp->mkAscon_engine__DOT__INV_rg_state_4_0_AND_rg_state_3_8_77_XOR_rg_st_ETC___05F_d181 
+                                                        >> 6U)));
+    vlTOPp->mkAscon_engine__DOT__y___05Fh20128 = (((QData)((IData)(
+                                                                   (1U 
+                                                                    & (IData)(vlTOPp->mkAscon_engine__DOT__INV_rg_state_4_0_AND_rg_state_3_8_77_XOR_rg_st_ETC___05F_d181)))) 
+                                                   << 0x3fU) 
+                                                  | (0x7fffffffffffffffULL 
+                                                     & (vlTOPp->mkAscon_engine__DOT__INV_rg_state_4_0_AND_rg_state_3_8_77_XOR_rg_st_ETC___05F_d181 
+                                                        >> 1U)));
+    vlTOPp->mkAscon_engine__DOT__x___05Fh18970 = (vlTOPp->mkAscon_engine__DOT__x___05Fh18972 
+                                                  ^ vlTOPp->mkAscon_engine__DOT__rg_state_2_2_XOR_SEL_ARR_75_90_105_120_135_150_ETC___05F_d136);
+    vlTOPp->mkAscon_engine__DOT__x___05Fh19101 = (vlTOPp->mkAscon_engine__DOT__x___05Fh19103 
+                                                  ^ vlTOPp->mkAscon_engine__DOT__rg_state_3);
+    vlTOPp->mkAscon_engine__DOT__x___05Fh25718 = (vlTOPp->mkAscon_engine__DOT__x___05Fh25720 
+                                                  ^ vlTOPp->mkAscon_engine__DOT__y___05Fh25721);
+    vlTOPp->mkAscon_engine__DOT__rg_state_4_0_AND_rg_state_0_2_91_XOR_rg_state___05FETC___05F_d281 
+        = (vlTOPp->mkAscon_engine__DOT__x___05Fh24418 
            ^ vlTOPp->mkAscon_engine__DOT__rg_state_0);
-    vlTOPp->mkAscon_engine__DOT__rg_state_4_0_AND_rg_state_0_2_93_XOR_rg_state___05FETC___05F_d200 
-        = (vlTOPp->mkAscon_engine__DOT__x___05Fh14563 
+    vlTOPp->mkAscon_engine__DOT__rg_state_4_0_AND_rg_state_0_2_91_XOR_rg_state___05FETC___05F_d198 
+        = (vlTOPp->mkAscon_engine__DOT__x___05Fh19307 
            ^ vlTOPp->mkAscon_engine__DOT__rg_state_0);
-    vlTOPp->mkAscon_engine__DOT__y___05Fh5622 = ((0xffffffffff800000ULL 
-                                                  & (vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_3_BITS_63_TO_ETC___05F_d109 
+    vlTOPp->mkAscon_engine__DOT__y___05Fh5816 = ((0xffffffffff800000ULL 
+                                                  & (vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_3_BITS_63_TO_ETC___05F_d108 
                                                      << 0x17U)) 
                                                  | (QData)((IData)(
                                                                    (0x7fffffU 
                                                                     & (IData)(
-                                                                              (vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_3_BITS_63_TO_ETC___05F_d109 
+                                                                              (vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_3_BITS_63_TO_ETC___05F_d108 
                                                                                >> 0x29U))))));
-    vlTOPp->mkAscon_engine__DOT__y___05Fh5624 = (((QData)((IData)(
+    vlTOPp->mkAscon_engine__DOT__y___05Fh5818 = (((QData)((IData)(
                                                                   (0x7fU 
-                                                                   & (IData)(vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_3_BITS_63_TO_ETC___05F_d109)))) 
+                                                                   & (IData)(vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_3_BITS_63_TO_ETC___05F_d108)))) 
                                                   << 0x39U) 
                                                  | (0x1ffffffffffffffULL 
-                                                    & (vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_3_BITS_63_TO_ETC___05F_d109 
+                                                    & (vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_3_BITS_63_TO_ETC___05F_d108 
                                                        >> 7U)));
-    vlTOPp->mkAscon_engine__DOT__x___05Fh4321 = (vlTOPp->mkAscon_engine__DOT__x___05Fh4323 
+    vlTOPp->mkAscon_engine__DOT__x___05Fh4515 = (vlTOPp->mkAscon_engine__DOT__x___05Fh4517 
                                                  ^ vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_0_2_BITS_127_ETC___05F_d15);
-    vlTOPp->mkAscon_engine__DOT__x___05Fh15381 = (vlTOPp->mkAscon_engine__DOT__INV_rg_state_4_0_AND_rg_state_3_8_79_XOR_rg_st_ETC___05F_d183 
-                                                  ^ vlTOPp->mkAscon_engine__DOT__y___05Fh15384);
-    vlTOPp->mkAscon_engine__DOT__x___05Fh14224 = (vlTOPp->mkAscon_engine__DOT__x___05Fh14226 
-                                                  ^ vlTOPp->mkAscon_engine__DOT__y___05Fh20630);
-    vlTOPp->mkAscon_engine__DOT__x___05Fh14355 = (vlTOPp->mkAscon_engine__DOT__x___05Fh14357 
-                                                  ^ vlTOPp->mkAscon_engine__DOT__y___05Fh20306);
-    vlTOPp->mkAscon_engine__DOT__x___05Fh21329 = (vlTOPp->mkAscon_engine__DOT__INV_rg_state_4_0_AND_rg_state_3_8_79_XOR_rg_st_ETC___05F_d269 
-                                                  ^ vlTOPp->mkAscon_engine__DOT__y___05Fh21332);
-    vlTOPp->mkAscon_engine__DOT__x___05Fh20172 = (vlTOPp->mkAscon_engine__DOT__x___05Fh20174 
-                                                  ^ vlTOPp->mkAscon_engine__DOT__y___05Fh20630);
-    vlTOPp->mkAscon_engine__DOT__x___05Fh20303 = (vlTOPp->mkAscon_engine__DOT__x___05Fh20305 
-                                                  ^ vlTOPp->mkAscon_engine__DOT__y___05Fh20306);
-    vlTOPp->mkAscon_engine__DOT__x___05Fh5139 = (vlTOPp->mkAscon_engine__DOT__INV_IF_counter_EQ_0_THEN_rg_interface_3_BITS_6_ETC___05F_d77 
-                                                 ^ vlTOPp->mkAscon_engine__DOT__y___05Fh5142);
-    vlTOPp->mkAscon_engine__DOT__x___05Fh3982 = (vlTOPp->mkAscon_engine__DOT__x___05Fh3984 
-                                                 ^ vlTOPp->mkAscon_engine__DOT__y___05Fh3985);
-    vlTOPp->mkAscon_engine__DOT__x___05Fh4113 = (vlTOPp->mkAscon_engine__DOT__x___05Fh4115 
-                                                 ^ vlTOPp->mkAscon_engine__DOT__y___05Fh4116);
-    vlTOPp->mkAscon_engine__DOT__rg_state_4_0_AND_rg_state_1_4_34_XOR_rg_state___05FETC___05F_d221 
-        = (vlTOPp->mkAscon_engine__DOT__x___05Fh21811 
-           ^ vlTOPp->mkAscon_engine__DOT__y___05Fh21812);
-    vlTOPp->mkAscon_engine__DOT__y___05Fh21571 = (((QData)((IData)(
+    vlTOPp->mkAscon_engine__DOT__x___05Fh25236 = (vlTOPp->mkAscon_engine__DOT__INV_rg_state_4_0_AND_rg_state_3_8_77_XOR_rg_st_ETC___05F_d278 
+                                                  ^ vlTOPp->mkAscon_engine__DOT__y___05Fh25239);
+    vlTOPp->mkAscon_engine__DOT__x___05Fh24079 = (vlTOPp->mkAscon_engine__DOT__x___05Fh24081 
+                                                  ^ vlTOPp->mkAscon_engine__DOT__y___05Fh24537);
+    vlTOPp->mkAscon_engine__DOT__x___05Fh24210 = (vlTOPp->mkAscon_engine__DOT__x___05Fh24212 
+                                                  ^ vlTOPp->mkAscon_engine__DOT__y___05Fh24213);
+    vlTOPp->mkAscon_engine__DOT__x___05Fh5333 = (vlTOPp->mkAscon_engine__DOT__INV_IF_counter_EQ_0_THEN_rg_interface_3_BITS_6_ETC___05F_d76 
+                                                 ^ vlTOPp->mkAscon_engine__DOT__y___05Fh5336);
+    vlTOPp->mkAscon_engine__DOT__x___05Fh4176 = (vlTOPp->mkAscon_engine__DOT__x___05Fh4178 
+                                                 ^ vlTOPp->mkAscon_engine__DOT__y___05Fh4179);
+    vlTOPp->mkAscon_engine__DOT__x___05Fh4307 = (vlTOPp->mkAscon_engine__DOT__x___05Fh4309 
+                                                 ^ vlTOPp->mkAscon_engine__DOT__y___05Fh4310);
+    vlTOPp->mkAscon_engine__DOT__x___05Fh20125 = (vlTOPp->mkAscon_engine__DOT__INV_rg_state_4_0_AND_rg_state_3_8_77_XOR_rg_st_ETC___05F_d181 
+                                                  ^ vlTOPp->mkAscon_engine__DOT__y___05Fh20128);
+    vlTOPp->mkAscon_engine__DOT__x___05Fh18968 = (vlTOPp->mkAscon_engine__DOT__x___05Fh18970 
+                                                  ^ vlTOPp->mkAscon_engine__DOT__y___05Fh24537);
+    vlTOPp->mkAscon_engine__DOT__x___05Fh19099 = (vlTOPp->mkAscon_engine__DOT__x___05Fh19101 
+                                                  ^ vlTOPp->mkAscon_engine__DOT__y___05Fh24213);
+    vlTOPp->mkAscon_engine__DOT__rg_state_4_0_AND_rg_state_1_4_32_XOR_rg_state___05FETC___05F_d219 
+        = (vlTOPp->mkAscon_engine__DOT__x___05Fh25718 
+           ^ vlTOPp->mkAscon_engine__DOT__y___05Fh25719);
+    vlTOPp->mkAscon_engine__DOT__y___05Fh25478 = (((QData)((IData)(
                                                                    (0x1ffffU 
-                                                                    & (IData)(vlTOPp->mkAscon_engine__DOT__rg_state_4_0_AND_rg_state_0_2_93_XOR_rg_state___05FETC___05F_d272)))) 
+                                                                    & (IData)(vlTOPp->mkAscon_engine__DOT__rg_state_4_0_AND_rg_state_0_2_91_XOR_rg_state___05FETC___05F_d281)))) 
                                                    << 0x2fU) 
                                                   | (0x7fffffffffffULL 
-                                                     & (vlTOPp->mkAscon_engine__DOT__rg_state_4_0_AND_rg_state_0_2_93_XOR_rg_state___05FETC___05F_d272 
+                                                     & (vlTOPp->mkAscon_engine__DOT__rg_state_4_0_AND_rg_state_0_2_91_XOR_rg_state___05FETC___05F_d281 
                                                         >> 0x11U)));
-    vlTOPp->mkAscon_engine__DOT__y___05Fh21573 = (((QData)((IData)(
+    vlTOPp->mkAscon_engine__DOT__y___05Fh25480 = (((QData)((IData)(
                                                                    (0x3ffU 
-                                                                    & (IData)(vlTOPp->mkAscon_engine__DOT__rg_state_4_0_AND_rg_state_0_2_93_XOR_rg_state___05FETC___05F_d272)))) 
+                                                                    & (IData)(vlTOPp->mkAscon_engine__DOT__rg_state_4_0_AND_rg_state_0_2_91_XOR_rg_state___05FETC___05F_d281)))) 
                                                    << 0x36U) 
                                                   | (0x3fffffffffffffULL 
-                                                     & (vlTOPp->mkAscon_engine__DOT__rg_state_4_0_AND_rg_state_0_2_93_XOR_rg_state___05FETC___05F_d272 
+                                                     & (vlTOPp->mkAscon_engine__DOT__rg_state_4_0_AND_rg_state_0_2_91_XOR_rg_state___05FETC___05F_d281 
                                                         >> 0xaU)));
-    vlTOPp->mkAscon_engine__DOT__y___05Fh15623 = (((QData)((IData)(
+    vlTOPp->mkAscon_engine__DOT__y___05Fh20367 = (((QData)((IData)(
                                                                    (0x1ffffU 
-                                                                    & (IData)(vlTOPp->mkAscon_engine__DOT__rg_state_4_0_AND_rg_state_0_2_93_XOR_rg_state___05FETC___05F_d200)))) 
+                                                                    & (IData)(vlTOPp->mkAscon_engine__DOT__rg_state_4_0_AND_rg_state_0_2_91_XOR_rg_state___05FETC___05F_d198)))) 
                                                    << 0x2fU) 
                                                   | (0x7fffffffffffULL 
-                                                     & (vlTOPp->mkAscon_engine__DOT__rg_state_4_0_AND_rg_state_0_2_93_XOR_rg_state___05FETC___05F_d200 
+                                                     & (vlTOPp->mkAscon_engine__DOT__rg_state_4_0_AND_rg_state_0_2_91_XOR_rg_state___05FETC___05F_d198 
                                                         >> 0x11U)));
-    vlTOPp->mkAscon_engine__DOT__y___05Fh15625 = (((QData)((IData)(
+    vlTOPp->mkAscon_engine__DOT__y___05Fh20369 = (((QData)((IData)(
                                                                    (0x3ffU 
-                                                                    & (IData)(vlTOPp->mkAscon_engine__DOT__rg_state_4_0_AND_rg_state_0_2_93_XOR_rg_state___05FETC___05F_d200)))) 
+                                                                    & (IData)(vlTOPp->mkAscon_engine__DOT__rg_state_4_0_AND_rg_state_0_2_91_XOR_rg_state___05FETC___05F_d198)))) 
                                                    << 0x36U) 
                                                   | (0x3fffffffffffffULL 
-                                                     & (vlTOPp->mkAscon_engine__DOT__rg_state_4_0_AND_rg_state_0_2_93_XOR_rg_state___05FETC___05F_d200 
+                                                     & (vlTOPp->mkAscon_engine__DOT__rg_state_4_0_AND_rg_state_0_2_91_XOR_rg_state___05FETC___05F_d198 
                                                         >> 0xaU)));
-    vlTOPp->mkAscon_engine__DOT__x___05Fh5621 = (vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_3_BITS_63_TO_ETC___05F_d109 
-                                                 ^ vlTOPp->mkAscon_engine__DOT__y___05Fh5624);
-    vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_3_BITS_63_TO_ETC___05F_d95 
-        = (vlTOPp->mkAscon_engine__DOT__x___05Fh4321 
+    vlTOPp->mkAscon_engine__DOT__x___05Fh5815 = (vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_3_BITS_63_TO_ETC___05F_d108 
+                                                 ^ vlTOPp->mkAscon_engine__DOT__y___05Fh5818);
+    vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_3_BITS_63_TO_ETC___05F_d94 
+        = (vlTOPp->mkAscon_engine__DOT__x___05Fh4515 
            ^ vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_iv_constant_1_ELSE_rg_sta_ETC___05F_d33);
-    vlTOPp->mkAscon_engine__DOT__INV_rg_state_4_0_AND_rg_state_3_8_79_XOR_rg_st_ETC___05F_d191 
-        = (vlTOPp->mkAscon_engine__DOT__x___05Fh15381 
-           ^ vlTOPp->mkAscon_engine__DOT__y___05Fh15382);
-    vlTOPp->mkAscon_engine__DOT__x___05Fh14222 = (vlTOPp->mkAscon_engine__DOT__x___05Fh14224 
+    vlTOPp->mkAscon_engine__DOT__MUX_rg_state_2_write_1___05FVAL_1 
+        = (vlTOPp->mkAscon_engine__DOT__x___05Fh25236 
+           ^ vlTOPp->mkAscon_engine__DOT__y___05Fh25237);
+    vlTOPp->mkAscon_engine__DOT__x___05Fh24077 = (vlTOPp->mkAscon_engine__DOT__x___05Fh24079 
                                                   ^ vlTOPp->mkAscon_engine__DOT__rg_state_1);
-    vlTOPp->mkAscon_engine__DOT__x___05Fh14353 = (vlTOPp->mkAscon_engine__DOT__x___05Fh14355 
-                                                  ^ vlTOPp->mkAscon_engine__DOT__rg_state_2_2_XOR_SEL_ARR_75_90_105_120_135_150_ETC___05F_d138);
-    vlTOPp->mkAscon_engine__DOT__MUX_rg_state_2_write_1___05FVAL_4 
-        = (vlTOPp->mkAscon_engine__DOT__x___05Fh21329 
-           ^ vlTOPp->mkAscon_engine__DOT__y___05Fh21330);
-    vlTOPp->mkAscon_engine__DOT__x___05Fh20170 = (vlTOPp->mkAscon_engine__DOT__x___05Fh20172 
-                                                  ^ vlTOPp->mkAscon_engine__DOT__rg_state_1);
-    vlTOPp->mkAscon_engine__DOT__x___05Fh20301 = (vlTOPp->mkAscon_engine__DOT__x___05Fh20303 
-                                                  ^ vlTOPp->mkAscon_engine__DOT__rg_state_2_2_XOR_SEL_ARR_75_90_105_120_135_150_ETC___05F_d251);
-    vlTOPp->mkAscon_engine__DOT__INV_IF_counter_EQ_0_THEN_rg_interface_3_BITS_6_ETC___05F_d85 
-        = (vlTOPp->mkAscon_engine__DOT__x___05Fh5139 
-           ^ vlTOPp->mkAscon_engine__DOT__y___05Fh5140);
-    vlTOPp->mkAscon_engine__DOT__x___05Fh3980 = (vlTOPp->mkAscon_engine__DOT__x___05Fh3982 
+    vlTOPp->mkAscon_engine__DOT__x___05Fh24208 = (vlTOPp->mkAscon_engine__DOT__x___05Fh24210 
+                                                  ^ vlTOPp->mkAscon_engine__DOT__rg_state_2_2_XOR_SEL_ARR_75_90_105_120_135_150_ETC___05F_d260);
+    vlTOPp->mkAscon_engine__DOT__INV_IF_counter_EQ_0_THEN_rg_interface_3_BITS_6_ETC___05F_d84 
+        = (vlTOPp->mkAscon_engine__DOT__x___05Fh5333 
+           ^ vlTOPp->mkAscon_engine__DOT__y___05Fh5334);
+    vlTOPp->mkAscon_engine__DOT__x___05Fh4174 = (vlTOPp->mkAscon_engine__DOT__x___05Fh4176 
                                                  ^ vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_0_2_BITS_127_ETC___05F_d15);
-    vlTOPp->mkAscon_engine__DOT__x___05Fh4111 = (vlTOPp->mkAscon_engine__DOT__x___05Fh4113 
+    vlTOPp->mkAscon_engine__DOT__x___05Fh4305 = (vlTOPp->mkAscon_engine__DOT__x___05Fh4307 
                                                  ^ vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_0_2_BITS_63___05FETC___05F_d27);
-    vlTOPp->mkAscon_engine__DOT__MUX_rg_state_4_write_1___05FVAL_2 
-        = ((8U == (IData)(vlTOPp->mkAscon_engine__DOT__counter))
-            ? vlTOPp->mkAscon_engine__DOT__rg_state_4
-            : vlTOPp->mkAscon_engine__DOT__rg_state_4_0_AND_rg_state_1_4_34_XOR_rg_state___05FETC___05F_d221);
-    vlTOPp->mkAscon_engine__DOT__x___05Fh21570 = (vlTOPp->mkAscon_engine__DOT__rg_state_4_0_AND_rg_state_0_2_93_XOR_rg_state___05FETC___05F_d272 
-                                                  ^ vlTOPp->mkAscon_engine__DOT__y___05Fh21573);
-    vlTOPp->mkAscon_engine__DOT__x___05Fh15622 = (vlTOPp->mkAscon_engine__DOT__rg_state_4_0_AND_rg_state_0_2_93_XOR_rg_state___05FETC___05F_d200 
-                                                  ^ vlTOPp->mkAscon_engine__DOT__y___05Fh15625);
-    vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_3_BITS_63_TO_ETC___05F_d117 
-        = (vlTOPp->mkAscon_engine__DOT__x___05Fh5621 
-           ^ vlTOPp->mkAscon_engine__DOT__y___05Fh5622);
-    vlTOPp->mkAscon_engine__DOT__y___05Fh5381 = (((QData)((IData)(
+    vlTOPp->mkAscon_engine__DOT__INV_rg_state_4_0_AND_rg_state_3_8_77_XOR_rg_st_ETC___05F_d189 
+        = (vlTOPp->mkAscon_engine__DOT__x___05Fh20125 
+           ^ vlTOPp->mkAscon_engine__DOT__y___05Fh20126);
+    vlTOPp->mkAscon_engine__DOT__x___05Fh18966 = (vlTOPp->mkAscon_engine__DOT__x___05Fh18968 
+                                                  ^ vlTOPp->mkAscon_engine__DOT__rg_state_1);
+    vlTOPp->mkAscon_engine__DOT__x___05Fh19097 = (vlTOPp->mkAscon_engine__DOT__x___05Fh19099 
+                                                  ^ vlTOPp->mkAscon_engine__DOT__rg_state_2_2_XOR_SEL_ARR_75_90_105_120_135_150_ETC___05F_d136);
+    if ((8U == (IData)(vlTOPp->mkAscon_engine__DOT__counter))) {
+        vlTOPp->mkAscon_engine__DOT__MUX_rg_state_4_write_1___05FVAL_2 
+            = vlTOPp->mkAscon_engine__DOT__rg_state_4;
+        vlTOPp->mkAscon_engine__DOT__MUX_rg_state_4_write_1___05FVAL_6 
+            = (((QData)((IData)(vlTOPp->mkAscon_engine__DOT___0b0_CONCAT_rg_interface_0_2_CONCAT_0b0_44_XOR___05FETC___05F_d248[1U])) 
+                << 0x20U) | (QData)((IData)(vlTOPp->mkAscon_engine__DOT___0b0_CONCAT_rg_interface_0_2_CONCAT_0b0_44_XOR___05FETC___05F_d248[0U])));
+    } else {
+        vlTOPp->mkAscon_engine__DOT__MUX_rg_state_4_write_1___05FVAL_2 
+            = vlTOPp->mkAscon_engine__DOT__rg_state_4_0_AND_rg_state_1_4_32_XOR_rg_state___05FETC___05F_d219;
+        vlTOPp->mkAscon_engine__DOT__MUX_rg_state_4_write_1___05FVAL_6 
+            = vlTOPp->mkAscon_engine__DOT__rg_state_4_0_AND_rg_state_1_4_32_XOR_rg_state___05FETC___05F_d219;
+    }
+    vlTOPp->mkAscon_engine__DOT__x___05Fh25477 = (vlTOPp->mkAscon_engine__DOT__rg_state_4_0_AND_rg_state_0_2_91_XOR_rg_state___05FETC___05F_d281 
+                                                  ^ vlTOPp->mkAscon_engine__DOT__y___05Fh25480);
+    vlTOPp->mkAscon_engine__DOT__x___05Fh20366 = (vlTOPp->mkAscon_engine__DOT__rg_state_4_0_AND_rg_state_0_2_91_XOR_rg_state___05FETC___05F_d198 
+                                                  ^ vlTOPp->mkAscon_engine__DOT__y___05Fh20369);
+    vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_3_BITS_63_TO_ETC___05F_d116 
+        = (vlTOPp->mkAscon_engine__DOT__x___05Fh5815 
+           ^ vlTOPp->mkAscon_engine__DOT__y___05Fh5816);
+    vlTOPp->mkAscon_engine__DOT__y___05Fh5575 = (((QData)((IData)(
                                                                   (0x1ffffU 
-                                                                   & (IData)(vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_3_BITS_63_TO_ETC___05F_d95)))) 
+                                                                   & (IData)(vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_3_BITS_63_TO_ETC___05F_d94)))) 
                                                   << 0x2fU) 
                                                  | (0x7fffffffffffULL 
-                                                    & (vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_3_BITS_63_TO_ETC___05F_d95 
+                                                    & (vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_3_BITS_63_TO_ETC___05F_d94 
                                                        >> 0x11U)));
-    vlTOPp->mkAscon_engine__DOT__y___05Fh5383 = (((QData)((IData)(
+    vlTOPp->mkAscon_engine__DOT__y___05Fh5577 = (((QData)((IData)(
                                                                   (0x3ffU 
-                                                                   & (IData)(vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_3_BITS_63_TO_ETC___05F_d95)))) 
+                                                                   & (IData)(vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_3_BITS_63_TO_ETC___05F_d94)))) 
                                                   << 0x36U) 
                                                  | (0x3fffffffffffffULL 
-                                                    & (vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_3_BITS_63_TO_ETC___05F_d95 
+                                                    & (vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_3_BITS_63_TO_ETC___05F_d94 
                                                        >> 0xaU)));
-    vlTOPp->mkAscon_engine__DOT__MUX_rg_state_2_write_1___05FVAL_2 
-        = ((8U == (IData)(vlTOPp->mkAscon_engine__DOT__counter))
-            ? vlTOPp->mkAscon_engine__DOT__rg_state_2
-            : vlTOPp->mkAscon_engine__DOT__INV_rg_state_4_0_AND_rg_state_3_8_79_XOR_rg_st_ETC___05F_d191);
-    vlTOPp->mkAscon_engine__DOT__rg_state_4_0_AND_rg_state_1_4_34_XOR_rg_state___05FETC___05F_d145 
-        = (vlTOPp->mkAscon_engine__DOT__x___05Fh14222 
+    vlTOPp->mkAscon_engine__DOT__rg_state_4_0_AND_rg_state_1_4_32_XOR_rg_state___05FETC___05F_d266 
+        = (vlTOPp->mkAscon_engine__DOT__x___05Fh24077 
            ^ vlTOPp->mkAscon_engine__DOT__rg_state_0);
-    vlTOPp->mkAscon_engine__DOT__x___05Fh14351 = (vlTOPp->mkAscon_engine__DOT__x___05Fh14353 
-                                                  ^ vlTOPp->mkAscon_engine__DOT__y___05Fh14354);
-    vlTOPp->mkAscon_engine__DOT__rg_state_4_0_AND_rg_state_1_4_34_XOR_rg_state___05FETC___05F_d257 
-        = (vlTOPp->mkAscon_engine__DOT__x___05Fh20170 
-           ^ vlTOPp->mkAscon_engine__DOT__rg_state_0);
-    vlTOPp->mkAscon_engine__DOT__x___05Fh20299 = (vlTOPp->mkAscon_engine__DOT__x___05Fh20301 
-                                                  ^ vlTOPp->mkAscon_engine__DOT__y___05Fh20302);
+    vlTOPp->mkAscon_engine__DOT__x___05Fh24206 = (vlTOPp->mkAscon_engine__DOT__x___05Fh24208 
+                                                  ^ vlTOPp->mkAscon_engine__DOT__y___05Fh24209);
     vlTOPp->mkAscon_engine__DOT__MUX_rg_state_2_write_1___05FVAL_5 
         = ((IData)(vlTOPp->mkAscon_engine__DOT__counter_ULT_12___05F_d4)
-            ? vlTOPp->mkAscon_engine__DOT__INV_IF_counter_EQ_0_THEN_rg_interface_3_BITS_6_ETC___05F_d85
-            : (((QData)((IData)(vlTOPp->mkAscon_engine__DOT__intialization_output___05Fh6775[5U])) 
-                << 0x20U) | (QData)((IData)(vlTOPp->mkAscon_engine__DOT__intialization_output___05Fh6775[4U]))));
+            ? vlTOPp->mkAscon_engine__DOT__INV_IF_counter_EQ_0_THEN_rg_interface_3_BITS_6_ETC___05F_d84
+            : (((QData)((IData)(vlTOPp->mkAscon_engine__DOT__rg_state_0_2_CONCAT_rg_state_1_4_CONCAT_rg_sta_ETC___05F_d49[5U])) 
+                << 0x20U) | (QData)((IData)(vlTOPp->mkAscon_engine__DOT__rg_state_0_2_CONCAT_rg_state_1_4_CONCAT_rg_sta_ETC___05F_d49[4U]))));
     vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_3_BITS_63_TO_ETC___05F_d37 
-        = (vlTOPp->mkAscon_engine__DOT__x___05Fh3980 
+        = (vlTOPp->mkAscon_engine__DOT__x___05Fh4174 
            ^ vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_iv_constant_1_ELSE_rg_sta_ETC___05F_d33);
-    vlTOPp->mkAscon_engine__DOT__x___05Fh4109 = (vlTOPp->mkAscon_engine__DOT__x___05Fh4111 
-                                                 ^ vlTOPp->mkAscon_engine__DOT__y___05Fh4112);
-    vlTOPp->mkAscon_engine__DOT__MUX_rg_state_3_write_1___05FVAL_4 
-        = (vlTOPp->mkAscon_engine__DOT__x___05Fh21570 
-           ^ vlTOPp->mkAscon_engine__DOT__y___05Fh21571);
-    vlTOPp->mkAscon_engine__DOT__rg_state_4_0_AND_rg_state_0_2_93_XOR_rg_state___05FETC___05F_d208 
-        = (vlTOPp->mkAscon_engine__DOT__x___05Fh15622 
-           ^ vlTOPp->mkAscon_engine__DOT__y___05Fh15623);
+    vlTOPp->mkAscon_engine__DOT__x___05Fh4303 = (vlTOPp->mkAscon_engine__DOT__x___05Fh4305 
+                                                 ^ vlTOPp->mkAscon_engine__DOT__y___05Fh4306);
+    if ((8U == (IData)(vlTOPp->mkAscon_engine__DOT__counter))) {
+        vlTOPp->mkAscon_engine__DOT__MUX_rg_state_2_write_1___05FVAL_2 
+            = vlTOPp->mkAscon_engine__DOT__rg_state_2;
+        vlTOPp->mkAscon_engine__DOT__MUX_rg_state_2_write_1___05FVAL_6 
+            = (((QData)((IData)(vlTOPp->mkAscon_engine__DOT___0b0_CONCAT_rg_interface_0_2_CONCAT_0b0_44_XOR___05FETC___05F_d248[5U])) 
+                << 0x20U) | (QData)((IData)(vlTOPp->mkAscon_engine__DOT___0b0_CONCAT_rg_interface_0_2_CONCAT_0b0_44_XOR___05FETC___05F_d248[4U])));
+    } else {
+        vlTOPp->mkAscon_engine__DOT__MUX_rg_state_2_write_1___05FVAL_2 
+            = vlTOPp->mkAscon_engine__DOT__INV_rg_state_4_0_AND_rg_state_3_8_77_XOR_rg_st_ETC___05F_d189;
+        vlTOPp->mkAscon_engine__DOT__MUX_rg_state_2_write_1___05FVAL_6 
+            = vlTOPp->mkAscon_engine__DOT__INV_rg_state_4_0_AND_rg_state_3_8_77_XOR_rg_st_ETC___05F_d189;
+    }
+    vlTOPp->mkAscon_engine__DOT__rg_state_4_0_AND_rg_state_1_4_32_XOR_rg_state___05FETC___05F_d143 
+        = (vlTOPp->mkAscon_engine__DOT__x___05Fh18966 
+           ^ vlTOPp->mkAscon_engine__DOT__rg_state_0);
+    vlTOPp->mkAscon_engine__DOT__x___05Fh19095 = (vlTOPp->mkAscon_engine__DOT__x___05Fh19097 
+                                                  ^ vlTOPp->mkAscon_engine__DOT__y___05Fh19098);
+    vlTOPp->mkAscon_engine__DOT__MUX_rg_state_3_write_1___05FVAL_1 
+        = (vlTOPp->mkAscon_engine__DOT__x___05Fh25477 
+           ^ vlTOPp->mkAscon_engine__DOT__y___05Fh25478);
+    vlTOPp->mkAscon_engine__DOT__rg_state_4_0_AND_rg_state_0_2_91_XOR_rg_state___05FETC___05F_d206 
+        = (vlTOPp->mkAscon_engine__DOT__x___05Fh20366 
+           ^ vlTOPp->mkAscon_engine__DOT__y___05Fh20367);
     vlTOPp->mkAscon_engine__DOT__MUX_rg_state_4_write_1___05FVAL_5 
         = ((IData)(vlTOPp->mkAscon_engine__DOT__counter_ULT_12___05F_d4)
-            ? vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_3_BITS_63_TO_ETC___05F_d117
-            : (((QData)((IData)(vlTOPp->mkAscon_engine__DOT__intialization_output___05Fh6775[1U])) 
-                << 0x20U) | (QData)((IData)(vlTOPp->mkAscon_engine__DOT__intialization_output___05Fh6775[0U]))));
-    vlTOPp->mkAscon_engine__DOT__x___05Fh5380 = (vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_3_BITS_63_TO_ETC___05F_d95 
-                                                 ^ vlTOPp->mkAscon_engine__DOT__y___05Fh5383);
-    vlTOPp->mkAscon_engine__DOT__y___05Fh14900 = (((QData)((IData)(
+            ? vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_3_BITS_63_TO_ETC___05F_d116
+            : (((QData)((IData)(vlTOPp->mkAscon_engine__DOT__rg_state_0_2_CONCAT_rg_state_1_4_CONCAT_rg_sta_ETC___05F_d49[1U])) 
+                << 0x20U) | (QData)((IData)(vlTOPp->mkAscon_engine__DOT__rg_state_0_2_CONCAT_rg_state_1_4_CONCAT_rg_sta_ETC___05F_d49[0U]))));
+    vlTOPp->mkAscon_engine__DOT__x___05Fh5574 = (vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_3_BITS_63_TO_ETC___05F_d94 
+                                                 ^ vlTOPp->mkAscon_engine__DOT__y___05Fh5577);
+    vlTOPp->mkAscon_engine__DOT__y___05Fh24755 = (((QData)((IData)(
                                                                    (0xfffffffU 
-                                                                    & (IData)(vlTOPp->mkAscon_engine__DOT__rg_state_4_0_AND_rg_state_1_4_34_XOR_rg_state___05FETC___05F_d145)))) 
+                                                                    & (IData)(vlTOPp->mkAscon_engine__DOT__rg_state_4_0_AND_rg_state_1_4_32_XOR_rg_state___05FETC___05F_d266)))) 
                                                    << 0x24U) 
                                                   | (0xfffffffffULL 
-                                                     & (vlTOPp->mkAscon_engine__DOT__rg_state_4_0_AND_rg_state_1_4_34_XOR_rg_state___05FETC___05F_d145 
+                                                     & (vlTOPp->mkAscon_engine__DOT__rg_state_4_0_AND_rg_state_1_4_32_XOR_rg_state___05FETC___05F_d266 
                                                         >> 0x1cU)));
-    vlTOPp->mkAscon_engine__DOT__y___05Fh14902 = (((QData)((IData)(
+    vlTOPp->mkAscon_engine__DOT__y___05Fh24757 = (((QData)((IData)(
                                                                    (0x7ffffU 
-                                                                    & (IData)(vlTOPp->mkAscon_engine__DOT__rg_state_4_0_AND_rg_state_1_4_34_XOR_rg_state___05FETC___05F_d145)))) 
+                                                                    & (IData)(vlTOPp->mkAscon_engine__DOT__rg_state_4_0_AND_rg_state_1_4_32_XOR_rg_state___05FETC___05F_d266)))) 
                                                    << 0x2dU) 
                                                   | (0x1fffffffffffULL 
-                                                     & (vlTOPp->mkAscon_engine__DOT__rg_state_4_0_AND_rg_state_1_4_34_XOR_rg_state___05FETC___05F_d145 
+                                                     & (vlTOPp->mkAscon_engine__DOT__rg_state_4_0_AND_rg_state_1_4_32_XOR_rg_state___05FETC___05F_d266 
                                                         >> 0x13U)));
-    vlTOPp->mkAscon_engine__DOT__x___05Fh14349 = (vlTOPp->mkAscon_engine__DOT__x___05Fh14351 
+    vlTOPp->mkAscon_engine__DOT__x___05Fh24204 = (vlTOPp->mkAscon_engine__DOT__x___05Fh24206 
                                                   ^ vlTOPp->mkAscon_engine__DOT__rg_state_1);
-    vlTOPp->mkAscon_engine__DOT__y___05Fh20848 = (((QData)((IData)(
-                                                                   (0xfffffffU 
-                                                                    & (IData)(vlTOPp->mkAscon_engine__DOT__rg_state_4_0_AND_rg_state_1_4_34_XOR_rg_state___05FETC___05F_d257)))) 
-                                                   << 0x24U) 
-                                                  | (0xfffffffffULL 
-                                                     & (vlTOPp->mkAscon_engine__DOT__rg_state_4_0_AND_rg_state_1_4_34_XOR_rg_state___05FETC___05F_d257 
-                                                        >> 0x1cU)));
-    vlTOPp->mkAscon_engine__DOT__y___05Fh20850 = (((QData)((IData)(
-                                                                   (0x7ffffU 
-                                                                    & (IData)(vlTOPp->mkAscon_engine__DOT__rg_state_4_0_AND_rg_state_1_4_34_XOR_rg_state___05FETC___05F_d257)))) 
-                                                   << 0x2dU) 
-                                                  | (0x1fffffffffffULL 
-                                                     & (vlTOPp->mkAscon_engine__DOT__rg_state_4_0_AND_rg_state_1_4_34_XOR_rg_state___05FETC___05F_d257 
-                                                        >> 0x13U)));
-    vlTOPp->mkAscon_engine__DOT__x___05Fh20297 = (vlTOPp->mkAscon_engine__DOT__x___05Fh20299 
-                                                  ^ vlTOPp->mkAscon_engine__DOT__rg_state_1);
-    vlTOPp->mkAscon_engine__DOT__rg_state_2_D_IN = 
-        ((IData)(vlTOPp->mkAscon_engine__DOT__MUX_fsm_state_write_1___05FSEL_3)
-          ? vlTOPp->mkAscon_engine__DOT__rg_state_2
-          : ((IData)(vlTOPp->mkAscon_engine__DOT__MUX_counter_write_1___05FSEL_1)
-              ? vlTOPp->mkAscon_engine__DOT__MUX_rg_state_2_write_1___05FVAL_2
-              : ((IData)(vlTOPp->mkAscon_engine__DOT__MUX_rg_state_0_write_1___05FSEL_1)
-                  ? vlTOPp->mkAscon_engine__DOT__INV_rg_state_4_0_AND_rg_state_3_8_79_XOR_rg_st_ETC___05F_d191
-                  : ((IData)(vlTOPp->mkAscon_engine__DOT__MUX_counter_write_1___05FSEL_2)
-                      ? vlTOPp->mkAscon_engine__DOT__MUX_rg_state_2_write_1___05FVAL_4
-                      : ((IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_intialization_state)
-                          ? vlTOPp->mkAscon_engine__DOT__MUX_rg_state_2_write_1___05FVAL_5
-                          : 0ULL)))));
-    vlTOPp->mkAscon_engine__DOT__y___05Fh4658 = (((QData)((IData)(
+    vlTOPp->mkAscon_engine__DOT__y___05Fh4852 = (((QData)((IData)(
                                                                   (0xfffffffU 
                                                                    & (IData)(vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_3_BITS_63_TO_ETC___05F_d37)))) 
                                                   << 0x24U) 
                                                  | (0xfffffffffULL 
                                                     & (vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_3_BITS_63_TO_ETC___05F_d37 
                                                        >> 0x1cU)));
-    vlTOPp->mkAscon_engine__DOT__y___05Fh4660 = (((QData)((IData)(
+    vlTOPp->mkAscon_engine__DOT__y___05Fh4854 = (((QData)((IData)(
                                                                   (0x7ffffU 
                                                                    & (IData)(vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_3_BITS_63_TO_ETC___05F_d37)))) 
                                                   << 0x2dU) 
                                                  | (0x1fffffffffffULL 
                                                     & (vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_3_BITS_63_TO_ETC___05F_d37 
                                                        >> 0x13U)));
-    vlTOPp->mkAscon_engine__DOT__x___05Fh4107 = (vlTOPp->mkAscon_engine__DOT__x___05Fh4109 
+    vlTOPp->mkAscon_engine__DOT__x___05Fh4301 = (vlTOPp->mkAscon_engine__DOT__x___05Fh4303 
                                                  ^ vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_0_2_BITS_127_ETC___05F_d15);
-    vlTOPp->mkAscon_engine__DOT__MUX_rg_state_3_write_1___05FVAL_2 
-        = ((8U == (IData)(vlTOPp->mkAscon_engine__DOT__counter))
-            ? vlTOPp->mkAscon_engine__DOT__rg_state_3
-            : vlTOPp->mkAscon_engine__DOT__rg_state_4_0_AND_rg_state_0_2_93_XOR_rg_state___05FETC___05F_d208);
+    vlTOPp->mkAscon_engine__DOT__rg_state_2_D_IN = 
+        ((IData)(vlTOPp->mkAscon_engine__DOT__MUX_counter_write_1___05FSEL_1)
+          ? vlTOPp->mkAscon_engine__DOT__MUX_rg_state_2_write_1___05FVAL_1
+          : ((IData)(vlTOPp->mkAscon_engine__DOT__MUX_counter_write_1___05FSEL_2)
+              ? vlTOPp->mkAscon_engine__DOT__MUX_rg_state_2_write_1___05FVAL_2
+              : ((IData)(vlTOPp->mkAscon_engine__DOT__MUX_rg_state_0_write_1___05FSEL_2)
+                  ? vlTOPp->mkAscon_engine__DOT__INV_rg_state_4_0_AND_rg_state_3_8_77_XOR_rg_st_ETC___05F_d189
+                  : ((IData)(vlTOPp->mkAscon_engine__DOT__MUX_fsm_state_write_1___05FSEL_4)
+                      ? vlTOPp->mkAscon_engine__DOT__rg_state_2
+                      : ((IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_intialization_state)
+                          ? vlTOPp->mkAscon_engine__DOT__MUX_rg_state_2_write_1___05FVAL_5
+                          : ((IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_permutate_encrypted_data_state)
+                              ? vlTOPp->mkAscon_engine__DOT__MUX_rg_state_2_write_1___05FVAL_6
+                              : 0ULL))))));
+    vlTOPp->mkAscon_engine__DOT__y___05Fh19644 = (((QData)((IData)(
+                                                                   (0xfffffffU 
+                                                                    & (IData)(vlTOPp->mkAscon_engine__DOT__rg_state_4_0_AND_rg_state_1_4_32_XOR_rg_state___05FETC___05F_d143)))) 
+                                                   << 0x24U) 
+                                                  | (0xfffffffffULL 
+                                                     & (vlTOPp->mkAscon_engine__DOT__rg_state_4_0_AND_rg_state_1_4_32_XOR_rg_state___05FETC___05F_d143 
+                                                        >> 0x1cU)));
+    vlTOPp->mkAscon_engine__DOT__y___05Fh19646 = (((QData)((IData)(
+                                                                   (0x7ffffU 
+                                                                    & (IData)(vlTOPp->mkAscon_engine__DOT__rg_state_4_0_AND_rg_state_1_4_32_XOR_rg_state___05FETC___05F_d143)))) 
+                                                   << 0x2dU) 
+                                                  | (0x1fffffffffffULL 
+                                                     & (vlTOPp->mkAscon_engine__DOT__rg_state_4_0_AND_rg_state_1_4_32_XOR_rg_state___05FETC___05F_d143 
+                                                        >> 0x13U)));
+    vlTOPp->mkAscon_engine__DOT__x___05Fh19093 = (vlTOPp->mkAscon_engine__DOT__x___05Fh19095 
+                                                  ^ vlTOPp->mkAscon_engine__DOT__rg_state_1);
+    if ((8U == (IData)(vlTOPp->mkAscon_engine__DOT__counter))) {
+        vlTOPp->mkAscon_engine__DOT__MUX_rg_state_3_write_1___05FVAL_2 
+            = vlTOPp->mkAscon_engine__DOT__rg_state_3;
+        vlTOPp->mkAscon_engine__DOT__MUX_rg_state_3_write_1___05FVAL_6 
+            = (((QData)((IData)(vlTOPp->mkAscon_engine__DOT___0b0_CONCAT_rg_interface_0_2_CONCAT_0b0_44_XOR___05FETC___05F_d248[3U])) 
+                << 0x20U) | (QData)((IData)(vlTOPp->mkAscon_engine__DOT___0b0_CONCAT_rg_interface_0_2_CONCAT_0b0_44_XOR___05FETC___05F_d248[2U])));
+    } else {
+        vlTOPp->mkAscon_engine__DOT__MUX_rg_state_3_write_1___05FVAL_2 
+            = vlTOPp->mkAscon_engine__DOT__rg_state_4_0_AND_rg_state_0_2_91_XOR_rg_state___05FETC___05F_d206;
+        vlTOPp->mkAscon_engine__DOT__MUX_rg_state_3_write_1___05FVAL_6 
+            = vlTOPp->mkAscon_engine__DOT__rg_state_4_0_AND_rg_state_0_2_91_XOR_rg_state___05FETC___05F_d206;
+    }
     vlTOPp->mkAscon_engine__DOT__rg_state_4_D_IN = 
-        ((IData)(vlTOPp->mkAscon_engine__DOT__MUX_fsm_state_write_1___05FSEL_3)
-          ? vlTOPp->mkAscon_engine__DOT__rg_state_4
-          : ((IData)(vlTOPp->mkAscon_engine__DOT__MUX_counter_write_1___05FSEL_1)
+        ((IData)(vlTOPp->mkAscon_engine__DOT__MUX_counter_write_1___05FSEL_1)
+          ? vlTOPp->mkAscon_engine__DOT__rg_state_4_0_AND_rg_state_1_4_32_XOR_rg_state___05FETC___05F_d219
+          : ((IData)(vlTOPp->mkAscon_engine__DOT__MUX_counter_write_1___05FSEL_2)
               ? vlTOPp->mkAscon_engine__DOT__MUX_rg_state_4_write_1___05FVAL_2
-              : ((IData)(vlTOPp->mkAscon_engine__DOT__MUX_rg_state_0_write_1___05FSEL_1)
-                  ? vlTOPp->mkAscon_engine__DOT__rg_state_4_0_AND_rg_state_1_4_34_XOR_rg_state___05FETC___05F_d221
-                  : ((IData)(vlTOPp->mkAscon_engine__DOT__MUX_counter_write_1___05FSEL_2)
-                      ? vlTOPp->mkAscon_engine__DOT__rg_state_4_0_AND_rg_state_1_4_34_XOR_rg_state___05FETC___05F_d221
+              : ((IData)(vlTOPp->mkAscon_engine__DOT__MUX_rg_state_0_write_1___05FSEL_2)
+                  ? vlTOPp->mkAscon_engine__DOT__rg_state_4_0_AND_rg_state_1_4_32_XOR_rg_state___05FETC___05F_d219
+                  : ((IData)(vlTOPp->mkAscon_engine__DOT__MUX_fsm_state_write_1___05FSEL_4)
+                      ? vlTOPp->mkAscon_engine__DOT__MUX_rg_state_4_write_1___05FVAL_4
                       : ((IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_intialization_state)
                           ? vlTOPp->mkAscon_engine__DOT__MUX_rg_state_4_write_1___05FVAL_5
-                          : 0ULL)))));
-    vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_3_BITS_63_TO_ETC___05F_d103 
-        = (vlTOPp->mkAscon_engine__DOT__x___05Fh5380 
-           ^ vlTOPp->mkAscon_engine__DOT__y___05Fh5381);
-    vlTOPp->mkAscon_engine__DOT__x___05Fh14899 = (vlTOPp->mkAscon_engine__DOT__rg_state_4_0_AND_rg_state_1_4_34_XOR_rg_state___05FETC___05F_d145 
-                                                  ^ vlTOPp->mkAscon_engine__DOT__y___05Fh14902);
-    vlTOPp->mkAscon_engine__DOT__rg_state_4_0_XOR_rg_state_2_2_XOR_SEL_ARR_75_9_ETC___05F_d167 
-        = (vlTOPp->mkAscon_engine__DOT__x___05Fh14349 
+                          : ((IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_permutate_encrypted_data_state)
+                              ? vlTOPp->mkAscon_engine__DOT__MUX_rg_state_4_write_1___05FVAL_6
+                              : 0ULL))))));
+    vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_3_BITS_63_TO_ETC___05F_d102 
+        = (vlTOPp->mkAscon_engine__DOT__x___05Fh5574 
+           ^ vlTOPp->mkAscon_engine__DOT__y___05Fh5575);
+    vlTOPp->mkAscon_engine__DOT__x___05Fh24754 = (vlTOPp->mkAscon_engine__DOT__rg_state_4_0_AND_rg_state_1_4_32_XOR_rg_state___05FETC___05F_d266 
+                                                  ^ vlTOPp->mkAscon_engine__DOT__y___05Fh24757);
+    vlTOPp->mkAscon_engine__DOT__rg_state_4_0_XOR_rg_state_2_2_XOR_SEL_ARR_75_9_ETC___05F_d275 
+        = (vlTOPp->mkAscon_engine__DOT__x___05Fh24204 
            ^ vlTOPp->mkAscon_engine__DOT__rg_state_0);
-    vlTOPp->mkAscon_engine__DOT__x___05Fh20847 = (vlTOPp->mkAscon_engine__DOT__rg_state_4_0_AND_rg_state_1_4_34_XOR_rg_state___05FETC___05F_d257 
-                                                  ^ vlTOPp->mkAscon_engine__DOT__y___05Fh20850);
-    vlTOPp->mkAscon_engine__DOT__rg_state_4_0_XOR_rg_state_2_2_XOR_SEL_ARR_75_9_ETC___05F_d266 
-        = (vlTOPp->mkAscon_engine__DOT__x___05Fh20297 
-           ^ vlTOPp->mkAscon_engine__DOT__rg_state_0);
-    vlTOPp->mkAscon_engine__DOT__x___05Fh4657 = (vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_3_BITS_63_TO_ETC___05F_d37 
-                                                 ^ vlTOPp->mkAscon_engine__DOT__y___05Fh4660);
-    vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_3_BITS_63_TO_ETC___05F_d62 
-        = (vlTOPp->mkAscon_engine__DOT__x___05Fh4107 
+    vlTOPp->mkAscon_engine__DOT__x___05Fh4851 = (vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_3_BITS_63_TO_ETC___05F_d37 
+                                                 ^ vlTOPp->mkAscon_engine__DOT__y___05Fh4854);
+    vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_3_BITS_63_TO_ETC___05F_d61 
+        = (vlTOPp->mkAscon_engine__DOT__x___05Fh4301 
            ^ vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_iv_constant_1_ELSE_rg_sta_ETC___05F_d33);
+    vlTOPp->mkAscon_engine__DOT__x___05Fh19643 = (vlTOPp->mkAscon_engine__DOT__rg_state_4_0_AND_rg_state_1_4_32_XOR_rg_state___05FETC___05F_d143 
+                                                  ^ vlTOPp->mkAscon_engine__DOT__y___05Fh19646);
+    vlTOPp->mkAscon_engine__DOT__rg_state_4_0_XOR_rg_state_2_2_XOR_SEL_ARR_75_9_ETC___05F_d165 
+        = (vlTOPp->mkAscon_engine__DOT__x___05Fh19093 
+           ^ vlTOPp->mkAscon_engine__DOT__rg_state_0);
     vlTOPp->mkAscon_engine__DOT__MUX_rg_state_3_write_1___05FVAL_5 
         = ((IData)(vlTOPp->mkAscon_engine__DOT__counter_ULT_12___05F_d4)
-            ? vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_3_BITS_63_TO_ETC___05F_d103
-            : (((QData)((IData)(vlTOPp->mkAscon_engine__DOT__intialization_output___05Fh6775[3U])) 
-                << 0x20U) | (QData)((IData)(vlTOPp->mkAscon_engine__DOT__intialization_output___05Fh6775[2U]))));
-    vlTOPp->mkAscon_engine__DOT__rg_state_4_0_AND_rg_state_1_4_34_XOR_rg_state___05FETC___05F_d153 
-        = (vlTOPp->mkAscon_engine__DOT__x___05Fh14899 
-           ^ vlTOPp->mkAscon_engine__DOT__y___05Fh14900);
-    vlTOPp->mkAscon_engine__DOT__y___05Fh15141 = ((0xfffffffffe000000ULL 
-                                                   & (vlTOPp->mkAscon_engine__DOT__rg_state_4_0_XOR_rg_state_2_2_XOR_SEL_ARR_75_9_ETC___05F_d167 
+            ? vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_3_BITS_63_TO_ETC___05F_d102
+            : (((QData)((IData)(vlTOPp->mkAscon_engine__DOT__rg_state_0_2_CONCAT_rg_state_1_4_CONCAT_rg_sta_ETC___05F_d49[3U])) 
+                << 0x20U) | (QData)((IData)(vlTOPp->mkAscon_engine__DOT__rg_state_0_2_CONCAT_rg_state_1_4_CONCAT_rg_sta_ETC___05F_d49[2U]))));
+    vlTOPp->mkAscon_engine__DOT__MUX_rg_state_0_write_1___05FVAL_1 
+        = (vlTOPp->mkAscon_engine__DOT__x___05Fh24754 
+           ^ vlTOPp->mkAscon_engine__DOT__y___05Fh24755);
+    vlTOPp->mkAscon_engine__DOT__y___05Fh24996 = ((0xfffffffffe000000ULL 
+                                                   & (vlTOPp->mkAscon_engine__DOT__rg_state_4_0_XOR_rg_state_2_2_XOR_SEL_ARR_75_9_ETC___05F_d275 
                                                       << 0x19U)) 
                                                   | (QData)((IData)(
                                                                     (0x1ffffffU 
                                                                      & (IData)(
-                                                                               (vlTOPp->mkAscon_engine__DOT__rg_state_4_0_XOR_rg_state_2_2_XOR_SEL_ARR_75_9_ETC___05F_d167 
+                                                                               (vlTOPp->mkAscon_engine__DOT__rg_state_4_0_XOR_rg_state_2_2_XOR_SEL_ARR_75_9_ETC___05F_d275 
                                                                                 >> 0x27U))))));
-    vlTOPp->mkAscon_engine__DOT__y___05Fh15143 = ((0xfffffffffffffff8ULL 
-                                                   & (vlTOPp->mkAscon_engine__DOT__rg_state_4_0_XOR_rg_state_2_2_XOR_SEL_ARR_75_9_ETC___05F_d167 
+    vlTOPp->mkAscon_engine__DOT__y___05Fh24998 = ((0xfffffffffffffff8ULL 
+                                                   & (vlTOPp->mkAscon_engine__DOT__rg_state_4_0_XOR_rg_state_2_2_XOR_SEL_ARR_75_9_ETC___05F_d275 
                                                       << 3U)) 
                                                   | (QData)((IData)(
                                                                     (7U 
                                                                      & (IData)(
-                                                                               (vlTOPp->mkAscon_engine__DOT__rg_state_4_0_XOR_rg_state_2_2_XOR_SEL_ARR_75_9_ETC___05F_d167 
-                                                                                >> 0x3dU))))));
-    vlTOPp->mkAscon_engine__DOT__MUX_rg_state_0_write_1___05FVAL_2 
-        = (vlTOPp->mkAscon_engine__DOT__x___05Fh20847 
-           ^ vlTOPp->mkAscon_engine__DOT__y___05Fh20848);
-    vlTOPp->mkAscon_engine__DOT__y___05Fh21089 = ((0xfffffffffe000000ULL 
-                                                   & (vlTOPp->mkAscon_engine__DOT__rg_state_4_0_XOR_rg_state_2_2_XOR_SEL_ARR_75_9_ETC___05F_d266 
-                                                      << 0x19U)) 
-                                                  | (QData)((IData)(
-                                                                    (0x1ffffffU 
-                                                                     & (IData)(
-                                                                               (vlTOPp->mkAscon_engine__DOT__rg_state_4_0_XOR_rg_state_2_2_XOR_SEL_ARR_75_9_ETC___05F_d266 
-                                                                                >> 0x27U))))));
-    vlTOPp->mkAscon_engine__DOT__y___05Fh21091 = ((0xfffffffffffffff8ULL 
-                                                   & (vlTOPp->mkAscon_engine__DOT__rg_state_4_0_XOR_rg_state_2_2_XOR_SEL_ARR_75_9_ETC___05F_d266 
-                                                      << 3U)) 
-                                                  | (QData)((IData)(
-                                                                    (7U 
-                                                                     & (IData)(
-                                                                               (vlTOPp->mkAscon_engine__DOT__rg_state_4_0_XOR_rg_state_2_2_XOR_SEL_ARR_75_9_ETC___05F_d266 
+                                                                               (vlTOPp->mkAscon_engine__DOT__rg_state_4_0_XOR_rg_state_2_2_XOR_SEL_ARR_75_9_ETC___05F_d275 
                                                                                 >> 0x3dU))))));
     vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_3_BITS_63_TO_ETC___05F_d45 
-        = (vlTOPp->mkAscon_engine__DOT__x___05Fh4657 
-           ^ vlTOPp->mkAscon_engine__DOT__y___05Fh4658);
-    vlTOPp->mkAscon_engine__DOT__y___05Fh4899 = ((0xfffffffffe000000ULL 
-                                                  & (vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_3_BITS_63_TO_ETC___05F_d62 
+        = (vlTOPp->mkAscon_engine__DOT__x___05Fh4851 
+           ^ vlTOPp->mkAscon_engine__DOT__y___05Fh4852);
+    vlTOPp->mkAscon_engine__DOT__y___05Fh5093 = ((0xfffffffffe000000ULL 
+                                                  & (vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_3_BITS_63_TO_ETC___05F_d61 
                                                      << 0x19U)) 
                                                  | (QData)((IData)(
                                                                    (0x1ffffffU 
                                                                     & (IData)(
-                                                                              (vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_3_BITS_63_TO_ETC___05F_d62 
+                                                                              (vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_3_BITS_63_TO_ETC___05F_d61 
                                                                                >> 0x27U))))));
-    vlTOPp->mkAscon_engine__DOT__y___05Fh4901 = ((0xfffffffffffffff8ULL 
-                                                  & (vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_3_BITS_63_TO_ETC___05F_d62 
+    vlTOPp->mkAscon_engine__DOT__y___05Fh5095 = ((0xfffffffffffffff8ULL 
+                                                  & (vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_3_BITS_63_TO_ETC___05F_d61 
                                                      << 3U)) 
                                                  | (QData)((IData)(
                                                                    (7U 
                                                                     & (IData)(
-                                                                              (vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_3_BITS_63_TO_ETC___05F_d62 
+                                                                              (vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_3_BITS_63_TO_ETC___05F_d61 
                                                                                >> 0x3dU))))));
+    vlTOPp->mkAscon_engine__DOT__rg_state_4_0_AND_rg_state_1_4_32_XOR_rg_state___05FETC___05F_d151 
+        = (vlTOPp->mkAscon_engine__DOT__x___05Fh19643 
+           ^ vlTOPp->mkAscon_engine__DOT__y___05Fh19644);
+    vlTOPp->mkAscon_engine__DOT__y___05Fh19885 = ((0xfffffffffe000000ULL 
+                                                   & (vlTOPp->mkAscon_engine__DOT__rg_state_4_0_XOR_rg_state_2_2_XOR_SEL_ARR_75_9_ETC___05F_d165 
+                                                      << 0x19U)) 
+                                                  | (QData)((IData)(
+                                                                    (0x1ffffffU 
+                                                                     & (IData)(
+                                                                               (vlTOPp->mkAscon_engine__DOT__rg_state_4_0_XOR_rg_state_2_2_XOR_SEL_ARR_75_9_ETC___05F_d165 
+                                                                                >> 0x27U))))));
+    vlTOPp->mkAscon_engine__DOT__y___05Fh19887 = ((0xfffffffffffffff8ULL 
+                                                   & (vlTOPp->mkAscon_engine__DOT__rg_state_4_0_XOR_rg_state_2_2_XOR_SEL_ARR_75_9_ETC___05F_d165 
+                                                      << 3U)) 
+                                                  | (QData)((IData)(
+                                                                    (7U 
+                                                                     & (IData)(
+                                                                               (vlTOPp->mkAscon_engine__DOT__rg_state_4_0_XOR_rg_state_2_2_XOR_SEL_ARR_75_9_ETC___05F_d165 
+                                                                                >> 0x3dU))))));
     vlTOPp->mkAscon_engine__DOT__rg_state_3_D_IN = 
-        ((IData)(vlTOPp->mkAscon_engine__DOT__MUX_fsm_state_write_1___05FSEL_3)
-          ? vlTOPp->mkAscon_engine__DOT__rg_state_3
-          : ((IData)(vlTOPp->mkAscon_engine__DOT__MUX_counter_write_1___05FSEL_1)
+        ((IData)(vlTOPp->mkAscon_engine__DOT__MUX_counter_write_1___05FSEL_1)
+          ? vlTOPp->mkAscon_engine__DOT__MUX_rg_state_3_write_1___05FVAL_1
+          : ((IData)(vlTOPp->mkAscon_engine__DOT__MUX_counter_write_1___05FSEL_2)
               ? vlTOPp->mkAscon_engine__DOT__MUX_rg_state_3_write_1___05FVAL_2
-              : ((IData)(vlTOPp->mkAscon_engine__DOT__MUX_rg_state_0_write_1___05FSEL_1)
-                  ? vlTOPp->mkAscon_engine__DOT__rg_state_4_0_AND_rg_state_0_2_93_XOR_rg_state___05FETC___05F_d208
-                  : ((IData)(vlTOPp->mkAscon_engine__DOT__MUX_counter_write_1___05FSEL_2)
-                      ? vlTOPp->mkAscon_engine__DOT__MUX_rg_state_3_write_1___05FVAL_4
+              : ((IData)(vlTOPp->mkAscon_engine__DOT__MUX_rg_state_0_write_1___05FSEL_2)
+                  ? vlTOPp->mkAscon_engine__DOT__rg_state_4_0_AND_rg_state_0_2_91_XOR_rg_state___05FETC___05F_d206
+                  : ((IData)(vlTOPp->mkAscon_engine__DOT__MUX_fsm_state_write_1___05FSEL_4)
+                      ? vlTOPp->mkAscon_engine__DOT__rg_state_3
                       : ((IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_intialization_state)
                           ? vlTOPp->mkAscon_engine__DOT__MUX_rg_state_3_write_1___05FVAL_5
-                          : 0ULL)))));
-    vlTOPp->mkAscon_engine__DOT__MUX_rg_state_0_write_1___05FVAL_4 
-        = ((IData)(vlTOPp->mkAscon_engine__DOT__req_associated_data)
-            ? vlTOPp->mkAscon_engine__DOT__x___05Fh10893
-            : ((8U == (IData)(vlTOPp->mkAscon_engine__DOT__counter))
-                ? vlTOPp->mkAscon_engine__DOT__din___05Fh12423
-                : vlTOPp->mkAscon_engine__DOT__rg_state_4_0_AND_rg_state_1_4_34_XOR_rg_state___05FETC___05F_d153));
-    vlTOPp->mkAscon_engine__DOT__x___05Fh15140 = (vlTOPp->mkAscon_engine__DOT__rg_state_4_0_XOR_rg_state_2_2_XOR_SEL_ARR_75_9_ETC___05F_d167 
-                                                  ^ vlTOPp->mkAscon_engine__DOT__y___05Fh15143);
-    vlTOPp->mkAscon_engine__DOT__x___05Fh21088 = (vlTOPp->mkAscon_engine__DOT__rg_state_4_0_XOR_rg_state_2_2_XOR_SEL_ARR_75_9_ETC___05F_d266 
-                                                  ^ vlTOPp->mkAscon_engine__DOT__y___05Fh21091);
+                          : ((IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_permutate_encrypted_data_state)
+                              ? vlTOPp->mkAscon_engine__DOT__MUX_rg_state_3_write_1___05FVAL_6
+                              : 0ULL))))));
+    vlTOPp->mkAscon_engine__DOT__x___05Fh24995 = (vlTOPp->mkAscon_engine__DOT__rg_state_4_0_XOR_rg_state_2_2_XOR_SEL_ARR_75_9_ETC___05F_d275 
+                                                  ^ vlTOPp->mkAscon_engine__DOT__y___05Fh24998);
     vlTOPp->mkAscon_engine__DOT__MUX_rg_state_0_write_1___05FVAL_3 
         = ((IData)(vlTOPp->mkAscon_engine__DOT__counter_ULT_12___05F_d4)
             ? vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_3_BITS_63_TO_ETC___05F_d45
-            : (((QData)((IData)(vlTOPp->mkAscon_engine__DOT__intialization_output___05Fh6775[9U])) 
-                << 0x20U) | (QData)((IData)(vlTOPp->mkAscon_engine__DOT__intialization_output___05Fh6775[8U]))));
-    vlTOPp->mkAscon_engine__DOT__x___05Fh4898 = (vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_3_BITS_63_TO_ETC___05F_d62 
-                                                 ^ vlTOPp->mkAscon_engine__DOT__y___05Fh4901);
-    vlTOPp->mkAscon_engine__DOT__rg_state_4_0_XOR_rg_state_2_2_XOR_SEL_ARR_75_9_ETC___05F_d175 
-        = (vlTOPp->mkAscon_engine__DOT__x___05Fh15140 
-           ^ vlTOPp->mkAscon_engine__DOT__y___05Fh15141);
-    vlTOPp->mkAscon_engine__DOT__MUX_rg_state_1_write_1___05FVAL_2 
-        = (vlTOPp->mkAscon_engine__DOT__x___05Fh21088 
-           ^ vlTOPp->mkAscon_engine__DOT__y___05Fh21089);
+            : (((QData)((IData)(vlTOPp->mkAscon_engine__DOT__rg_state_0_2_CONCAT_rg_state_1_4_CONCAT_rg_sta_ETC___05F_d49[9U])) 
+                << 0x20U) | (QData)((IData)(vlTOPp->mkAscon_engine__DOT__rg_state_0_2_CONCAT_rg_state_1_4_CONCAT_rg_sta_ETC___05F_d49[8U]))));
+    vlTOPp->mkAscon_engine__DOT__x___05Fh5092 = (vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_3_BITS_63_TO_ETC___05F_d61 
+                                                 ^ vlTOPp->mkAscon_engine__DOT__y___05Fh5095);
+    vlTOPp->mkAscon_engine__DOT__MUX_rg_state_0_write_1___05FVAL_6 
+        = ((8U == (IData)(vlTOPp->mkAscon_engine__DOT__counter))
+            ? (((QData)((IData)(vlTOPp->mkAscon_engine__DOT___0b0_CONCAT_rg_interface_0_2_CONCAT_0b0_44_XOR___05FETC___05F_d248[9U])) 
+                << 0x20U) | (QData)((IData)(vlTOPp->mkAscon_engine__DOT___0b0_CONCAT_rg_interface_0_2_CONCAT_0b0_44_XOR___05FETC___05F_d248[8U])))
+            : vlTOPp->mkAscon_engine__DOT__rg_state_4_0_AND_rg_state_1_4_32_XOR_rg_state___05FETC___05F_d151);
+    vlTOPp->mkAscon_engine__DOT__MUX_rg_state_0_write_1___05FVAL_4 
+        = ((IData)(vlTOPp->mkAscon_engine__DOT__req_associated_data)
+            ? vlTOPp->mkAscon_engine__DOT__x___05Fh7099
+            : ((8U == (IData)(vlTOPp->mkAscon_engine__DOT__counter))
+                ? vlTOPp->mkAscon_engine__DOT__din___05Fh10413
+                : vlTOPp->mkAscon_engine__DOT__rg_state_4_0_AND_rg_state_1_4_32_XOR_rg_state___05FETC___05F_d151));
+    vlTOPp->mkAscon_engine__DOT__x___05Fh19884 = (vlTOPp->mkAscon_engine__DOT__rg_state_4_0_XOR_rg_state_2_2_XOR_SEL_ARR_75_9_ETC___05F_d165 
+                                                  ^ vlTOPp->mkAscon_engine__DOT__y___05Fh19887);
+    vlTOPp->mkAscon_engine__DOT__MUX_rg_state_1_write_1___05FVAL_1 
+        = (vlTOPp->mkAscon_engine__DOT__x___05Fh24995 
+           ^ vlTOPp->mkAscon_engine__DOT__y___05Fh24996);
+    vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_3_BITS_63_TO_ETC___05F_d69 
+        = (vlTOPp->mkAscon_engine__DOT__x___05Fh5092 
+           ^ vlTOPp->mkAscon_engine__DOT__y___05Fh5093);
     vlTOPp->mkAscon_engine__DOT__rg_state_0_D_IN = 
-        ((IData)(vlTOPp->mkAscon_engine__DOT__MUX_rg_state_0_write_1___05FSEL_1)
-          ? vlTOPp->mkAscon_engine__DOT__rg_state_4_0_AND_rg_state_1_4_34_XOR_rg_state___05FETC___05F_d153
-          : ((IData)(vlTOPp->mkAscon_engine__DOT__MUX_counter_write_1___05FSEL_2)
-              ? vlTOPp->mkAscon_engine__DOT__MUX_rg_state_0_write_1___05FVAL_2
+        ((IData)(vlTOPp->mkAscon_engine__DOT__MUX_counter_write_1___05FSEL_1)
+          ? vlTOPp->mkAscon_engine__DOT__MUX_rg_state_0_write_1___05FVAL_1
+          : ((IData)(vlTOPp->mkAscon_engine__DOT__MUX_rg_state_0_write_1___05FSEL_2)
+              ? vlTOPp->mkAscon_engine__DOT__rg_state_4_0_AND_rg_state_1_4_32_XOR_rg_state___05FETC___05F_d151
               : ((IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_intialization_state)
                   ? vlTOPp->mkAscon_engine__DOT__MUX_rg_state_0_write_1___05FVAL_3
                   : ((IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_associated_data_state)
                       ? vlTOPp->mkAscon_engine__DOT__MUX_rg_state_0_write_1___05FVAL_4
                       : ((IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_encryption_state)
                           ? vlTOPp->mkAscon_engine__DOT__MUX_rg_state_0_write_1___05FVAL_5
-                          : 0ULL)))));
-    vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_3_BITS_63_TO_ETC___05F_d70 
-        = (vlTOPp->mkAscon_engine__DOT__x___05Fh4898 
-           ^ vlTOPp->mkAscon_engine__DOT__y___05Fh4899);
-    vlTOPp->mkAscon_engine__DOT__MUX_rg_state_1_write_1___05FVAL_4 
-        = ((IData)(vlTOPp->mkAscon_engine__DOT__req_associated_data)
-            ? vlTOPp->mkAscon_engine__DOT__x___05Fh10982
-            : ((8U == (IData)(vlTOPp->mkAscon_engine__DOT__counter))
-                ? vlTOPp->mkAscon_engine__DOT__rg_state_1
-                : vlTOPp->mkAscon_engine__DOT__rg_state_4_0_XOR_rg_state_2_2_XOR_SEL_ARR_75_9_ETC___05F_d175));
+                          : ((IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_permutate_encrypted_data_state)
+                              ? vlTOPp->mkAscon_engine__DOT__MUX_rg_state_0_write_1___05FVAL_6
+                              : 0ULL))))));
+    vlTOPp->mkAscon_engine__DOT__rg_state_4_0_XOR_rg_state_2_2_XOR_SEL_ARR_75_9_ETC___05F_d173 
+        = (vlTOPp->mkAscon_engine__DOT__x___05Fh19884 
+           ^ vlTOPp->mkAscon_engine__DOT__y___05Fh19885);
     vlTOPp->mkAscon_engine__DOT__MUX_rg_state_1_write_1___05FVAL_3 
         = ((IData)(vlTOPp->mkAscon_engine__DOT__counter_ULT_12___05F_d4)
-            ? vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_3_BITS_63_TO_ETC___05F_d70
-            : (((QData)((IData)(vlTOPp->mkAscon_engine__DOT__intialization_output___05Fh6775[7U])) 
-                << 0x20U) | (QData)((IData)(vlTOPp->mkAscon_engine__DOT__intialization_output___05Fh6775[6U]))));
+            ? vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_3_BITS_63_TO_ETC___05F_d69
+            : (((QData)((IData)(vlTOPp->mkAscon_engine__DOT__rg_state_0_2_CONCAT_rg_state_1_4_CONCAT_rg_sta_ETC___05F_d49[7U])) 
+                << 0x20U) | (QData)((IData)(vlTOPp->mkAscon_engine__DOT__rg_state_0_2_CONCAT_rg_state_1_4_CONCAT_rg_sta_ETC___05F_d49[6U]))));
+    vlTOPp->mkAscon_engine__DOT__MUX_rg_state_1_write_1___05FVAL_6 
+        = ((8U == (IData)(vlTOPp->mkAscon_engine__DOT__counter))
+            ? (((QData)((IData)(vlTOPp->mkAscon_engine__DOT___0b0_CONCAT_rg_interface_0_2_CONCAT_0b0_44_XOR___05FETC___05F_d248[7U])) 
+                << 0x20U) | (QData)((IData)(vlTOPp->mkAscon_engine__DOT___0b0_CONCAT_rg_interface_0_2_CONCAT_0b0_44_XOR___05FETC___05F_d248[6U])))
+            : vlTOPp->mkAscon_engine__DOT__rg_state_4_0_XOR_rg_state_2_2_XOR_SEL_ARR_75_9_ETC___05F_d173);
+    vlTOPp->mkAscon_engine__DOT__MUX_rg_state_1_write_1___05FVAL_4 
+        = ((IData)(vlTOPp->mkAscon_engine__DOT__req_associated_data)
+            ? vlTOPp->mkAscon_engine__DOT__x___05Fh11626
+            : ((8U == (IData)(vlTOPp->mkAscon_engine__DOT__counter))
+                ? vlTOPp->mkAscon_engine__DOT__rg_state_1
+                : vlTOPp->mkAscon_engine__DOT__rg_state_4_0_XOR_rg_state_2_2_XOR_SEL_ARR_75_9_ETC___05F_d173));
     vlTOPp->mkAscon_engine__DOT__rg_state_1_D_IN = 
-        ((IData)(vlTOPp->mkAscon_engine__DOT__MUX_rg_state_0_write_1___05FSEL_1)
-          ? vlTOPp->mkAscon_engine__DOT__rg_state_4_0_XOR_rg_state_2_2_XOR_SEL_ARR_75_9_ETC___05F_d175
-          : ((IData)(vlTOPp->mkAscon_engine__DOT__MUX_counter_write_1___05FSEL_2)
-              ? vlTOPp->mkAscon_engine__DOT__MUX_rg_state_1_write_1___05FVAL_2
+        ((IData)(vlTOPp->mkAscon_engine__DOT__MUX_counter_write_1___05FSEL_1)
+          ? vlTOPp->mkAscon_engine__DOT__MUX_rg_state_1_write_1___05FVAL_1
+          : ((IData)(vlTOPp->mkAscon_engine__DOT__MUX_rg_state_0_write_1___05FSEL_2)
+              ? vlTOPp->mkAscon_engine__DOT__rg_state_4_0_XOR_rg_state_2_2_XOR_SEL_ARR_75_9_ETC___05F_d173
               : ((IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_intialization_state)
                   ? vlTOPp->mkAscon_engine__DOT__MUX_rg_state_1_write_1___05FVAL_3
                   : ((IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_associated_data_state)
                       ? vlTOPp->mkAscon_engine__DOT__MUX_rg_state_1_write_1___05FVAL_4
                       : ((IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_encryption_state)
                           ? vlTOPp->mkAscon_engine__DOT__MUX_rg_state_1_write_1___05FVAL_5
-                          : 0ULL)))));
+                          : ((IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_permutate_encrypted_data_state)
+                              ? vlTOPp->mkAscon_engine__DOT__MUX_rg_state_1_write_1___05FVAL_6
+                              : 0ULL))))));
 }
 
 VL_INLINE_OPT void Vtop::_sequent__TOP__5(Vtop__Syms* __restrict vlSymsp) {
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vtop::_sequent__TOP__5\n"); );
     Vtop* const __restrict vlTOPp VL_ATTR_UNUSED = vlSymsp->TOPp;
-    // Variables
-    WData/*319:0*/ __Vtemp42[10];
     // Body
-    if (vlTOPp->RST_N) {
-        if (VL_UNLIKELY((((IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_intialization_state) 
-                          & (IData)(vlTOPp->mkAscon_engine__DOT__counter_ULT_12___05F_d4)) 
-                         & (0U == (IData)(vlTOPp->mkAscon_engine__DOT__counter))))) {
-            VL_WRITEF("local_state=%x,%x,%x,%x,%x\n",
-                      64,vlTOPp->mkAscon_engine__DOT__iv_constant,
-                      64,(((QData)((IData)(vlTOPp->mkAscon_engine__DOT__rg_interface_0[3U])) 
-                           << 0x20U) | (QData)((IData)(
-                                                       vlTOPp->mkAscon_engine__DOT__rg_interface_0[2U]))),
-                      64,(((QData)((IData)(vlTOPp->mkAscon_engine__DOT__rg_interface_0[1U])) 
-                           << 0x20U) | (QData)((IData)(
-                                                       vlTOPp->mkAscon_engine__DOT__rg_interface_0[0U]))),
-                      64,(((QData)((IData)(vlTOPp->mkAscon_engine__DOT__rg_interface_3[3U])) 
-                           << 0x20U) | (QData)((IData)(
-                                                       vlTOPp->mkAscon_engine__DOT__rg_interface_3[2U]))),
-                      64,(((QData)((IData)(vlTOPp->mkAscon_engine__DOT__rg_interface_3[1U])) 
-                           << 0x20U) | (QData)((IData)(
-                                                       vlTOPp->mkAscon_engine__DOT__rg_interface_3[0U]))));
-        }
-    }
     if (vlTOPp->RST_N) {
         if (VL_UNLIKELY((((IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_intialization_state) 
                           & (IData)(vlTOPp->mkAscon_engine__DOT__counter_ULT_12___05F_d4)) 
@@ -1386,10 +1445,10 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__5(Vtop__Syms* __restrict vlSymsp) {
             VL_WRITEF("Iteration %0# - After sbox: %x %x %x %x %x\n",
                       4,vlTOPp->mkAscon_engine__DOT__counter,
                       64,vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_3_BITS_63_TO_ETC___05F_d37,
-                      64,vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_3_BITS_63_TO_ETC___05F_d62,
-                      64,vlTOPp->mkAscon_engine__DOT__INV_IF_counter_EQ_0_THEN_rg_interface_3_BITS_6_ETC___05F_d77,
-                      64,vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_3_BITS_63_TO_ETC___05F_d95,
-                      64,vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_3_BITS_63_TO_ETC___05F_d109);
+                      64,vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_3_BITS_63_TO_ETC___05F_d61,
+                      64,vlTOPp->mkAscon_engine__DOT__INV_IF_counter_EQ_0_THEN_rg_interface_3_BITS_6_ETC___05F_d76,
+                      64,vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_3_BITS_63_TO_ETC___05F_d94,
+                      64,vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_3_BITS_63_TO_ETC___05F_d108);
         }
     }
     if (vlTOPp->RST_N) {
@@ -1398,89 +1457,23 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__5(Vtop__Syms* __restrict vlSymsp) {
             VL_WRITEF("Iteration %0# - After diffusion: %x %x %x %x %x\n",
                       4,vlTOPp->mkAscon_engine__DOT__counter,
                       64,vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_3_BITS_63_TO_ETC___05F_d45,
-                      64,vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_3_BITS_63_TO_ETC___05F_d70,
-                      64,vlTOPp->mkAscon_engine__DOT__INV_IF_counter_EQ_0_THEN_rg_interface_3_BITS_6_ETC___05F_d85,
-                      64,vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_3_BITS_63_TO_ETC___05F_d103,
-                      64,vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_3_BITS_63_TO_ETC___05F_d117);
+                      64,vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_3_BITS_63_TO_ETC___05F_d69,
+                      64,vlTOPp->mkAscon_engine__DOT__INV_IF_counter_EQ_0_THEN_rg_interface_3_BITS_6_ETC___05F_d84,
+                      64,vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_3_BITS_63_TO_ETC___05F_d102,
+                      64,vlTOPp->mkAscon_engine__DOT__IF_counter_EQ_0_THEN_rg_interface_3_BITS_63_TO_ETC___05F_d116);
         }
     }
     if (vlTOPp->RST_N) {
         if (VL_UNLIKELY(((IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_intialization_state) 
                          & (~ (IData)(vlTOPp->mkAscon_engine__DOT__counter_ULT_12___05F_d4))))) {
-            VL_WRITEF("newstate ,%x\n",320,vlTOPp->mkAscon_engine__DOT__packed_associated_data___05Fh11523);
-        }
-    }
-    if (vlTOPp->RST_N) {
-        if (VL_UNLIKELY(((IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_intialization_state) 
-                         & (~ (IData)(vlTOPp->mkAscon_engine__DOT__counter_ULT_12___05F_d4))))) {
-            VL_WRITEF("packed_rg_state %x\n",320,vlTOPp->mkAscon_engine__DOT__packed_associated_data___05Fh11523);
-        }
-    }
-    if (vlTOPp->RST_N) {
-        if (VL_UNLIKELY(((IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_intialization_state) 
-                         & (~ (IData)(vlTOPp->mkAscon_engine__DOT__counter_ULT_12___05F_d4))))) {
-            VL_WRITEF("padded_key %x\n",320,vlTOPp->mkAscon_engine__DOT__padded_key___05Fh6735);
-        }
-    }
-    if (vlTOPp->RST_N) {
-        if (VL_UNLIKELY(((IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_intialization_state) 
-                         & (~ (IData)(vlTOPp->mkAscon_engine__DOT__counter_ULT_12___05F_d4))))) {
-            VL_WRITEF("intialization_output %x\n",320,
-                      vlTOPp->mkAscon_engine__DOT__intialization_output___05Fh6775);
-        }
-    }
-    if (vlTOPp->RST_N) {
-        if (VL_UNLIKELY(((IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_intialization_state) 
-                         & (~ (IData)(vlTOPp->mkAscon_engine__DOT__counter_ULT_12___05F_d4))))) {
-            VL_WRITEF("new_rg_state %x %x \n",64,(((QData)((IData)(
-                                                                   vlTOPp->mkAscon_engine__DOT__intialization_output___05Fh6775[9U])) 
-                                                   << 0x20U) 
-                                                  | (QData)((IData)(
-                                                                    vlTOPp->mkAscon_engine__DOT__intialization_output___05Fh6775[8U]))),
-                      64,(((QData)((IData)(vlTOPp->mkAscon_engine__DOT__intialization_output___05Fh6775[7U])) 
+            VL_WRITEF("new_rg_state %x %x\n",64,(((QData)((IData)(
+                                                                  vlTOPp->mkAscon_engine__DOT__rg_state_0_2_CONCAT_rg_state_1_4_CONCAT_rg_sta_ETC___05F_d49[9U])) 
+                                                  << 0x20U) 
+                                                 | (QData)((IData)(
+                                                                   vlTOPp->mkAscon_engine__DOT__rg_state_0_2_CONCAT_rg_state_1_4_CONCAT_rg_sta_ETC___05F_d49[8U]))),
+                      64,(((QData)((IData)(vlTOPp->mkAscon_engine__DOT__rg_state_0_2_CONCAT_rg_state_1_4_CONCAT_rg_sta_ETC___05F_d49[7U])) 
                            << 0x20U) | (QData)((IData)(
-                                                       vlTOPp->mkAscon_engine__DOT__intialization_output___05Fh6775[6U]))));
-        }
-    }
-    if (vlTOPp->RST_N) {
-        if (VL_UNLIKELY(((IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_associated_data_state) 
-                         & (IData)(vlTOPp->mkAscon_engine__DOT__req_associated_data)))) {
-            VL_WRITEF("rg_interface[2][127:64] %x\n",
-                      64,(((QData)((IData)(vlTOPp->mkAscon_engine__DOT__rg_interface_2[3U])) 
-                           << 0x20U) | (QData)((IData)(
-                                                       vlTOPp->mkAscon_engine__DOT__rg_interface_2[2U]))));
-        }
-    }
-    if (vlTOPp->RST_N) {
-        if (VL_UNLIKELY(((IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_associated_data_state) 
-                         & (IData)(vlTOPp->mkAscon_engine__DOT__req_associated_data)))) {
-            VL_WRITEF("rg_interface[2][63:0] %x\n",
-                      64,(((QData)((IData)(vlTOPp->mkAscon_engine__DOT__rg_interface_2[1U])) 
-                           << 0x20U) | (QData)((IData)(
-                                                       vlTOPp->mkAscon_engine__DOT__rg_interface_2[0U]))));
-        }
-    }
-    if (vlTOPp->RST_N) {
-        if (VL_UNLIKELY((((IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_associated_data_state) 
-                          & (~ (IData)(vlTOPp->mkAscon_engine__DOT__req_associated_data))) 
-                         & (8U == (IData)(vlTOPp->mkAscon_engine__DOT__counter))))) {
-            VL_WRITEF("processed_data,80000000000000000000000000000000000000000000000000000000000000000000000000000000\n");
-        }
-    }
-    if (vlTOPp->RST_N) {
-        if (VL_UNLIKELY((((IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_associated_data_state) 
-                          & (~ (IData)(vlTOPp->mkAscon_engine__DOT__req_associated_data))) 
-                         & (8U == (IData)(vlTOPp->mkAscon_engine__DOT__counter))))) {
-            VL_WRITEF("packed_associated_data %x\n",
-                      320,vlTOPp->mkAscon_engine__DOT__packed_associated_data___05Fh11523);
-        }
-    }
-    if (vlTOPp->RST_N) {
-        if (VL_UNLIKELY((((IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_associated_data_state) 
-                          & (~ (IData)(vlTOPp->mkAscon_engine__DOT__req_associated_data))) 
-                         & (8U == (IData)(vlTOPp->mkAscon_engine__DOT__counter))))) {
-            VL_WRITEF("lv_updated_asso_data %x\n",320,
-                      vlTOPp->mkAscon_engine__DOT__lv_updated_asso_data___05Fh12195);
+                                                       vlTOPp->mkAscon_engine__DOT__rg_state_0_2_CONCAT_rg_state_1_4_CONCAT_rg_sta_ETC___05F_d49[6U]))));
         }
     }
     if (vlTOPp->RST_N) {
@@ -1504,7 +1497,7 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__5(Vtop__Syms* __restrict vlSymsp) {
                       4,vlTOPp->mkAscon_engine__DOT__counter,
                       64,vlTOPp->mkAscon_engine__DOT__rg_state_0,
                       64,vlTOPp->mkAscon_engine__DOT__rg_state_1,
-                      64,vlTOPp->mkAscon_engine__DOT__rg_state_2_2_XOR_SEL_ARR_75_90_105_120_135_150_ETC___05F_d138,
+                      64,vlTOPp->mkAscon_engine__DOT__rg_state_2_2_XOR_SEL_ARR_75_90_105_120_135_150_ETC___05F_d136,
                       64,vlTOPp->mkAscon_engine__DOT__rg_state_3,
                       64,vlTOPp->mkAscon_engine__DOT__rg_state_4);
         }
@@ -1515,11 +1508,11 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__5(Vtop__Syms* __restrict vlSymsp) {
                          & (8U != (IData)(vlTOPp->mkAscon_engine__DOT__counter))))) {
             VL_WRITEF("Iteration %0# - After sbox: %x %x %x %x %x\n",
                       4,vlTOPp->mkAscon_engine__DOT__counter,
-                      64,vlTOPp->mkAscon_engine__DOT__rg_state_4_0_AND_rg_state_1_4_34_XOR_rg_state___05FETC___05F_d145,
-                      64,vlTOPp->mkAscon_engine__DOT__rg_state_4_0_XOR_rg_state_2_2_XOR_SEL_ARR_75_9_ETC___05F_d167,
-                      64,vlTOPp->mkAscon_engine__DOT__INV_rg_state_4_0_AND_rg_state_3_8_79_XOR_rg_st_ETC___05F_d183,
-                      64,vlTOPp->mkAscon_engine__DOT__rg_state_4_0_AND_rg_state_0_2_93_XOR_rg_state___05FETC___05F_d200,
-                      64,vlTOPp->mkAscon_engine__DOT__x___05Fh21813);
+                      64,vlTOPp->mkAscon_engine__DOT__rg_state_4_0_AND_rg_state_1_4_32_XOR_rg_state___05FETC___05F_d143,
+                      64,vlTOPp->mkAscon_engine__DOT__rg_state_4_0_XOR_rg_state_2_2_XOR_SEL_ARR_75_9_ETC___05F_d165,
+                      64,vlTOPp->mkAscon_engine__DOT__INV_rg_state_4_0_AND_rg_state_3_8_77_XOR_rg_st_ETC___05F_d181,
+                      64,vlTOPp->mkAscon_engine__DOT__rg_state_4_0_AND_rg_state_0_2_91_XOR_rg_state___05FETC___05F_d198,
+                      64,vlTOPp->mkAscon_engine__DOT__x___05Fh25720);
         }
     }
     if (vlTOPp->RST_N) {
@@ -1528,11 +1521,11 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__5(Vtop__Syms* __restrict vlSymsp) {
                          & (8U != (IData)(vlTOPp->mkAscon_engine__DOT__counter))))) {
             VL_WRITEF("Iteration %0# - After diffusion: %x %x %x %x %x\n",
                       4,vlTOPp->mkAscon_engine__DOT__counter,
-                      64,vlTOPp->mkAscon_engine__DOT__rg_state_4_0_AND_rg_state_1_4_34_XOR_rg_state___05FETC___05F_d153,
-                      64,vlTOPp->mkAscon_engine__DOT__rg_state_4_0_XOR_rg_state_2_2_XOR_SEL_ARR_75_9_ETC___05F_d175,
-                      64,vlTOPp->mkAscon_engine__DOT__INV_rg_state_4_0_AND_rg_state_3_8_79_XOR_rg_st_ETC___05F_d191,
-                      64,vlTOPp->mkAscon_engine__DOT__rg_state_4_0_AND_rg_state_0_2_93_XOR_rg_state___05FETC___05F_d208,
-                      64,vlTOPp->mkAscon_engine__DOT__rg_state_4_0_AND_rg_state_1_4_34_XOR_rg_state___05FETC___05F_d221);
+                      64,vlTOPp->mkAscon_engine__DOT__rg_state_4_0_AND_rg_state_1_4_32_XOR_rg_state___05FETC___05F_d151,
+                      64,vlTOPp->mkAscon_engine__DOT__rg_state_4_0_XOR_rg_state_2_2_XOR_SEL_ARR_75_9_ETC___05F_d173,
+                      64,vlTOPp->mkAscon_engine__DOT__INV_rg_state_4_0_AND_rg_state_3_8_77_XOR_rg_st_ETC___05F_d189,
+                      64,vlTOPp->mkAscon_engine__DOT__rg_state_4_0_AND_rg_state_0_2_91_XOR_rg_state___05FETC___05F_d206,
+                      64,vlTOPp->mkAscon_engine__DOT__rg_state_4_0_AND_rg_state_1_4_32_XOR_rg_state___05FETC___05F_d219);
         }
     }
     if (vlTOPp->RST_N) {
@@ -1554,7 +1547,7 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__5(Vtop__Syms* __restrict vlSymsp) {
                       4,vlTOPp->mkAscon_engine__DOT__counter,
                       64,vlTOPp->mkAscon_engine__DOT__rg_state_0,
                       64,vlTOPp->mkAscon_engine__DOT__rg_state_1,
-                      64,vlTOPp->mkAscon_engine__DOT__rg_state_2_2_XOR_SEL_ARR_75_90_105_120_135_150_ETC___05F_d138,
+                      64,vlTOPp->mkAscon_engine__DOT__rg_state_2_2_XOR_SEL_ARR_75_90_105_120_135_150_ETC___05F_d136,
                       64,vlTOPp->mkAscon_engine__DOT__rg_state_3,
                       64,vlTOPp->mkAscon_engine__DOT__rg_state_4);
         }
@@ -1564,11 +1557,11 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__5(Vtop__Syms* __restrict vlSymsp) {
                          & (8U != (IData)(vlTOPp->mkAscon_engine__DOT__counter))))) {
             VL_WRITEF("Iteration %0# - After sbox: %x %x %x %x %x\n",
                       4,vlTOPp->mkAscon_engine__DOT__counter,
-                      64,vlTOPp->mkAscon_engine__DOT__rg_state_4_0_AND_rg_state_1_4_34_XOR_rg_state___05FETC___05F_d145,
-                      64,vlTOPp->mkAscon_engine__DOT__rg_state_4_0_XOR_rg_state_2_2_XOR_SEL_ARR_75_9_ETC___05F_d167,
-                      64,vlTOPp->mkAscon_engine__DOT__INV_rg_state_4_0_AND_rg_state_3_8_79_XOR_rg_st_ETC___05F_d183,
-                      64,vlTOPp->mkAscon_engine__DOT__rg_state_4_0_AND_rg_state_0_2_93_XOR_rg_state___05FETC___05F_d200,
-                      64,vlTOPp->mkAscon_engine__DOT__x___05Fh21813);
+                      64,vlTOPp->mkAscon_engine__DOT__rg_state_4_0_AND_rg_state_1_4_32_XOR_rg_state___05FETC___05F_d143,
+                      64,vlTOPp->mkAscon_engine__DOT__rg_state_4_0_XOR_rg_state_2_2_XOR_SEL_ARR_75_9_ETC___05F_d165,
+                      64,vlTOPp->mkAscon_engine__DOT__INV_rg_state_4_0_AND_rg_state_3_8_77_XOR_rg_st_ETC___05F_d181,
+                      64,vlTOPp->mkAscon_engine__DOT__rg_state_4_0_AND_rg_state_0_2_91_XOR_rg_state___05FETC___05F_d198,
+                      64,vlTOPp->mkAscon_engine__DOT__x___05Fh25720);
         }
     }
     if (vlTOPp->RST_N) {
@@ -1576,17 +1569,17 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__5(Vtop__Syms* __restrict vlSymsp) {
                          & (8U != (IData)(vlTOPp->mkAscon_engine__DOT__counter))))) {
             VL_WRITEF("Iteration %0# - After diffusion: %x %x %x %x %x\n",
                       4,vlTOPp->mkAscon_engine__DOT__counter,
-                      64,vlTOPp->mkAscon_engine__DOT__rg_state_4_0_AND_rg_state_1_4_34_XOR_rg_state___05FETC___05F_d153,
-                      64,vlTOPp->mkAscon_engine__DOT__rg_state_4_0_XOR_rg_state_2_2_XOR_SEL_ARR_75_9_ETC___05F_d175,
-                      64,vlTOPp->mkAscon_engine__DOT__INV_rg_state_4_0_AND_rg_state_3_8_79_XOR_rg_st_ETC___05F_d191,
-                      64,vlTOPp->mkAscon_engine__DOT__rg_state_4_0_AND_rg_state_0_2_93_XOR_rg_state___05FETC___05F_d208,
-                      64,vlTOPp->mkAscon_engine__DOT__rg_state_4_0_AND_rg_state_1_4_34_XOR_rg_state___05FETC___05F_d221);
+                      64,vlTOPp->mkAscon_engine__DOT__rg_state_4_0_AND_rg_state_1_4_32_XOR_rg_state___05FETC___05F_d151,
+                      64,vlTOPp->mkAscon_engine__DOT__rg_state_4_0_XOR_rg_state_2_2_XOR_SEL_ARR_75_9_ETC___05F_d173,
+                      64,vlTOPp->mkAscon_engine__DOT__INV_rg_state_4_0_AND_rg_state_3_8_77_XOR_rg_st_ETC___05F_d189,
+                      64,vlTOPp->mkAscon_engine__DOT__rg_state_4_0_AND_rg_state_0_2_91_XOR_rg_state___05FETC___05F_d206,
+                      64,vlTOPp->mkAscon_engine__DOT__rg_state_4_0_AND_rg_state_1_4_32_XOR_rg_state___05FETC___05F_d219);
         }
     }
     if (vlTOPp->RST_N) {
         if (VL_UNLIKELY(((IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_encryption_state) 
                          & (0U == (IData)(vlTOPp->mkAscon_engine__DOT__counter))))) {
-            VL_WRITEF("rg_encrypted_data=%x %x\n",64,
+            VL_WRITEF("rg_encrypted_data=%x%x\n",64,
                       vlTOPp->mkAscon_engine__DOT__rg_encrypted_data_0,
                       64,vlTOPp->mkAscon_engine__DOT__rg_encrypted_data_1);
         }
@@ -1594,47 +1587,40 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__5(Vtop__Syms* __restrict vlSymsp) {
     if (vlTOPp->RST_N) {
         if (VL_UNLIKELY(((IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_encryption_state) 
                          & (0U == (IData)(vlTOPp->mkAscon_engine__DOT__counter))))) {
-            VL_WRITEF("encryption_result %x %x\n",64,
-                      vlTOPp->mkAscon_engine__DOT__encryption0___05Fh16813,
-                      64,vlTOPp->mkAscon_engine__DOT__encryption1___05Fh16814);
+            VL_WRITEF("encryption_result=%x%x\n",64,
+                      vlTOPp->mkAscon_engine__DOT__encryption0___05Fh16082,
+                      64,vlTOPp->mkAscon_engine__DOT__encryption1___05Fh16083);
         }
     }
     if (vlTOPp->RST_N) {
-        if (VL_UNLIKELY(((IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_encryption_state) 
-                         & (0U != (IData)(vlTOPp->mkAscon_engine__DOT__counter))))) {
-            VL_WRITEF("lv_padded_key_state%x\n",320,
-                      vlTOPp->mkAscon_engine__DOT__padded_key_state___05Fh16617);
+        if (VL_UNLIKELY(((IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_permutate_encrypted_data_state) 
+                         & (8U == (IData)(vlTOPp->mkAscon_engine__DOT__counter))))) {
+            VL_WRITEF("processed_data180000000000000000000000000000000000000000000000000000000000000000000000000000000\n");
         }
     }
     if (vlTOPp->RST_N) {
-        if (VL_UNLIKELY(((IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_encryption_state) 
-                         & (0U != (IData)(vlTOPp->mkAscon_engine__DOT__counter))))) {
-            VL_WRITEF("pre_finalized state%x\n",320,
-                      vlTOPp->mkAscon_engine__DOT__pre_finalized_state___05Fh17084);
+        if (VL_UNLIKELY(((IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_permutate_encrypted_data_state) 
+                         & (8U == (IData)(vlTOPp->mkAscon_engine__DOT__counter))))) {
+            VL_WRITEF("packed_pre_finalized_data%x\n",
+                      320,vlTOPp->mkAscon_engine__DOT__packed_pre_finalized_data___05Fh21335);
         }
     }
     if (vlTOPp->RST_N) {
-        if (VL_UNLIKELY(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_finalization_state)) {
-            __Vtemp42[0U] = (IData)(vlTOPp->mkAscon_engine__DOT__rg_state_0);
-            __Vtemp42[1U] = (IData)((vlTOPp->mkAscon_engine__DOT__rg_state_0 
-                                     >> 0x20U));
-            __Vtemp42[2U] = (IData)(vlTOPp->mkAscon_engine__DOT__rg_state_1);
-            __Vtemp42[3U] = (IData)((vlTOPp->mkAscon_engine__DOT__rg_state_1 
-                                     >> 0x20U));
-            __Vtemp42[4U] = (IData)(vlTOPp->mkAscon_engine__DOT__rg_state_2);
-            __Vtemp42[5U] = (IData)((vlTOPp->mkAscon_engine__DOT__rg_state_2 
-                                     >> 0x20U));
-            __Vtemp42[6U] = (IData)(vlTOPp->mkAscon_engine__DOT__rg_state_3);
-            __Vtemp42[7U] = (IData)((vlTOPp->mkAscon_engine__DOT__rg_state_3 
-                                     >> 0x20U));
-            __Vtemp42[8U] = (IData)(vlTOPp->mkAscon_engine__DOT__rg_state_4);
-            __Vtemp42[9U] = (IData)((vlTOPp->mkAscon_engine__DOT__rg_state_4 
-                                     >> 0x20U));
-            VL_WRITEF("lv_final_rg_state%x\n",320,__Vtemp42);
+        if (VL_UNLIKELY(((IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_permutate_encrypted_data_state) 
+                         & (8U == (IData)(vlTOPp->mkAscon_engine__DOT__counter))))) {
+            VL_WRITEF("lv_updated_finalized_data%x\n",
+                      320,vlTOPp->mkAscon_engine__DOT__lv_updated_finalized_data___05Fh22007);
         }
     }
     if (vlTOPp->RST_N) {
-        if (VL_UNLIKELY(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_finalization_state)) {
+        if (VL_UNLIKELY(((IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_permutate_encrypted_data_state) 
+                         & (8U == (IData)(vlTOPp->mkAscon_engine__DOT__counter))))) {
+            VL_WRITEF("lv_finalized_key%x\n",320,vlTOPp->mkAscon_engine__DOT__lv_finalized_key___05Fh22041);
+        }
+    }
+    if (vlTOPp->RST_N) {
+        if (VL_UNLIKELY(((IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_permutate_encrypted_data_state) 
+                         & (8U != (IData)(vlTOPp->mkAscon_engine__DOT__counter))))) {
             VL_WRITEF("Iteration %0# - Before add_constant: %x %x %x %x %x\n",
                       4,vlTOPp->mkAscon_engine__DOT__counter,
                       64,vlTOPp->mkAscon_engine__DOT__rg_state_0,
@@ -1645,40 +1631,103 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__5(Vtop__Syms* __restrict vlSymsp) {
         }
     }
     if (vlTOPp->RST_N) {
-        if (VL_UNLIKELY(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_finalization_state)) {
+        if (VL_UNLIKELY(((IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_permutate_encrypted_data_state) 
+                         & (8U != (IData)(vlTOPp->mkAscon_engine__DOT__counter))))) {
             VL_WRITEF("Iteration %0# - After add_constant: %x %x %x %x %x\n",
                       4,vlTOPp->mkAscon_engine__DOT__counter,
                       64,vlTOPp->mkAscon_engine__DOT__rg_state_0,
                       64,vlTOPp->mkAscon_engine__DOT__rg_state_1,
-                      64,vlTOPp->mkAscon_engine__DOT__rg_state_2_2_XOR_SEL_ARR_75_90_105_120_135_150_ETC___05F_d251,
+                      64,vlTOPp->mkAscon_engine__DOT__rg_state_2_2_XOR_SEL_ARR_75_90_105_120_135_150_ETC___05F_d136,
                       64,vlTOPp->mkAscon_engine__DOT__rg_state_3,
                       64,vlTOPp->mkAscon_engine__DOT__rg_state_4);
         }
     }
     if (vlTOPp->RST_N) {
-        if (VL_UNLIKELY(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_finalization_state)) {
+        if (VL_UNLIKELY(((IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_permutate_encrypted_data_state) 
+                         & (8U != (IData)(vlTOPp->mkAscon_engine__DOT__counter))))) {
             VL_WRITEF("Iteration %0# - After sbox: %x %x %x %x %x\n",
                       4,vlTOPp->mkAscon_engine__DOT__counter,
-                      64,vlTOPp->mkAscon_engine__DOT__rg_state_4_0_AND_rg_state_1_4_34_XOR_rg_state___05FETC___05F_d257,
-                      64,vlTOPp->mkAscon_engine__DOT__rg_state_4_0_XOR_rg_state_2_2_XOR_SEL_ARR_75_9_ETC___05F_d266,
-                      64,vlTOPp->mkAscon_engine__DOT__INV_rg_state_4_0_AND_rg_state_3_8_79_XOR_rg_st_ETC___05F_d269,
-                      64,vlTOPp->mkAscon_engine__DOT__rg_state_4_0_AND_rg_state_0_2_93_XOR_rg_state___05FETC___05F_d272,
-                      64,vlTOPp->mkAscon_engine__DOT__x___05Fh21813);
+                      64,vlTOPp->mkAscon_engine__DOT__rg_state_4_0_AND_rg_state_1_4_32_XOR_rg_state___05FETC___05F_d143,
+                      64,vlTOPp->mkAscon_engine__DOT__rg_state_4_0_XOR_rg_state_2_2_XOR_SEL_ARR_75_9_ETC___05F_d165,
+                      64,vlTOPp->mkAscon_engine__DOT__INV_rg_state_4_0_AND_rg_state_3_8_77_XOR_rg_st_ETC___05F_d181,
+                      64,vlTOPp->mkAscon_engine__DOT__rg_state_4_0_AND_rg_state_0_2_91_XOR_rg_state___05FETC___05F_d198,
+                      64,vlTOPp->mkAscon_engine__DOT__x___05Fh25720);
         }
     }
     if (vlTOPp->RST_N) {
-        if (VL_UNLIKELY(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_finalization_state)) {
+        if (VL_UNLIKELY(((IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_permutate_encrypted_data_state) 
+                         & (8U != (IData)(vlTOPp->mkAscon_engine__DOT__counter))))) {
             VL_WRITEF("Iteration %0# - After diffusion: %x %x %x %x %x\n",
                       4,vlTOPp->mkAscon_engine__DOT__counter,
-                      64,(vlTOPp->mkAscon_engine__DOT__x___05Fh20847 
-                          ^ vlTOPp->mkAscon_engine__DOT__y___05Fh20848),
-                      64,(vlTOPp->mkAscon_engine__DOT__x___05Fh21088 
-                          ^ vlTOPp->mkAscon_engine__DOT__y___05Fh21089),
-                      64,(vlTOPp->mkAscon_engine__DOT__x___05Fh21329 
-                          ^ vlTOPp->mkAscon_engine__DOT__y___05Fh21330),
-                      64,(vlTOPp->mkAscon_engine__DOT__x___05Fh21570 
-                          ^ vlTOPp->mkAscon_engine__DOT__y___05Fh21571),
-                      64,vlTOPp->mkAscon_engine__DOT__rg_state_4_0_AND_rg_state_1_4_34_XOR_rg_state___05FETC___05F_d221);
+                      64,vlTOPp->mkAscon_engine__DOT__rg_state_4_0_AND_rg_state_1_4_32_XOR_rg_state___05FETC___05F_d151,
+                      64,vlTOPp->mkAscon_engine__DOT__rg_state_4_0_XOR_rg_state_2_2_XOR_SEL_ARR_75_9_ETC___05F_d173,
+                      64,vlTOPp->mkAscon_engine__DOT__INV_rg_state_4_0_AND_rg_state_3_8_77_XOR_rg_st_ETC___05F_d189,
+                      64,vlTOPp->mkAscon_engine__DOT__rg_state_4_0_AND_rg_state_0_2_91_XOR_rg_state___05FETC___05F_d206,
+                      64,vlTOPp->mkAscon_engine__DOT__rg_state_4_0_AND_rg_state_1_4_32_XOR_rg_state___05FETC___05F_d219);
+        }
+    }
+    if (vlTOPp->RST_N) {
+        if (VL_UNLIKELY(((IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_finalization_state) 
+                         & (IData)(vlTOPp->mkAscon_engine__DOT__counter_ULT_12___05F_d4)))) {
+            VL_WRITEF("Iteration %0# - Before add_constant: %x %x %x %x %x\n",
+                      4,vlTOPp->mkAscon_engine__DOT__counter,
+                      64,vlTOPp->mkAscon_engine__DOT__rg_state_0,
+                      64,vlTOPp->mkAscon_engine__DOT__rg_state_1,
+                      64,vlTOPp->mkAscon_engine__DOT__rg_state_2,
+                      64,vlTOPp->mkAscon_engine__DOT__rg_state_3,
+                      64,vlTOPp->mkAscon_engine__DOT__rg_state_4);
+        }
+    }
+    if (vlTOPp->RST_N) {
+        if (VL_UNLIKELY(((IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_finalization_state) 
+                         & (IData)(vlTOPp->mkAscon_engine__DOT__counter_ULT_12___05F_d4)))) {
+            VL_WRITEF("Iteration %0# - After add_constant: %x %x %x %x %x\n",
+                      4,vlTOPp->mkAscon_engine__DOT__counter,
+                      64,vlTOPp->mkAscon_engine__DOT__rg_state_0,
+                      64,vlTOPp->mkAscon_engine__DOT__rg_state_1,
+                      64,vlTOPp->mkAscon_engine__DOT__rg_state_2_2_XOR_SEL_ARR_75_90_105_120_135_150_ETC___05F_d260,
+                      64,vlTOPp->mkAscon_engine__DOT__rg_state_3,
+                      64,vlTOPp->mkAscon_engine__DOT__rg_state_4);
+        }
+    }
+    if (vlTOPp->RST_N) {
+        if (VL_UNLIKELY(((IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_finalization_state) 
+                         & (IData)(vlTOPp->mkAscon_engine__DOT__counter_ULT_12___05F_d4)))) {
+            VL_WRITEF("Iteration %0# - After sbox: %x %x %x %x %x\n",
+                      4,vlTOPp->mkAscon_engine__DOT__counter,
+                      64,vlTOPp->mkAscon_engine__DOT__rg_state_4_0_AND_rg_state_1_4_32_XOR_rg_state___05FETC___05F_d266,
+                      64,vlTOPp->mkAscon_engine__DOT__rg_state_4_0_XOR_rg_state_2_2_XOR_SEL_ARR_75_9_ETC___05F_d275,
+                      64,vlTOPp->mkAscon_engine__DOT__INV_rg_state_4_0_AND_rg_state_3_8_77_XOR_rg_st_ETC___05F_d278,
+                      64,vlTOPp->mkAscon_engine__DOT__rg_state_4_0_AND_rg_state_0_2_91_XOR_rg_state___05FETC___05F_d281,
+                      64,vlTOPp->mkAscon_engine__DOT__x___05Fh25720);
+        }
+    }
+    if (vlTOPp->RST_N) {
+        if (VL_UNLIKELY(((IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_finalization_state) 
+                         & (IData)(vlTOPp->mkAscon_engine__DOT__counter_ULT_12___05F_d4)))) {
+            VL_WRITEF("Iteration %0# - After diffusion: %x %x %x %x %x\n",
+                      4,vlTOPp->mkAscon_engine__DOT__counter,
+                      64,(vlTOPp->mkAscon_engine__DOT__x___05Fh24754 
+                          ^ vlTOPp->mkAscon_engine__DOT__y___05Fh24755),
+                      64,(vlTOPp->mkAscon_engine__DOT__x___05Fh24995 
+                          ^ vlTOPp->mkAscon_engine__DOT__y___05Fh24996),
+                      64,(vlTOPp->mkAscon_engine__DOT__x___05Fh25236 
+                          ^ vlTOPp->mkAscon_engine__DOT__y___05Fh25237),
+                      64,(vlTOPp->mkAscon_engine__DOT__x___05Fh25477 
+                          ^ vlTOPp->mkAscon_engine__DOT__y___05Fh25478),
+                      64,vlTOPp->mkAscon_engine__DOT__rg_state_4_0_AND_rg_state_1_4_32_XOR_rg_state___05FETC___05F_d219);
+        }
+    }
+    if (vlTOPp->RST_N) {
+        if (VL_UNLIKELY(((IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_finalization_state) 
+                         & (~ (IData)(vlTOPp->mkAscon_engine__DOT__counter_ULT_12___05F_d4))))) {
+            VL_WRITEF("encryption_tag0%x\n",64,vlTOPp->mkAscon_engine__DOT__encryption_tag0___05Fh26646);
+        }
+    }
+    if (vlTOPp->RST_N) {
+        if (VL_UNLIKELY(((IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_finalization_state) 
+                         & (~ (IData)(vlTOPp->mkAscon_engine__DOT__counter_ULT_12___05F_d4))))) {
+            VL_WRITEF("encryption_tag1%x\n",64,vlTOPp->mkAscon_engine__DOT__encryption_tag1___05Fh26647);
         }
     }
 }
@@ -1687,16 +1736,6 @@ VL_INLINE_OPT void Vtop::_combo__TOP__6(Vtop__Syms* __restrict vlSymsp) {
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vtop::_combo__TOP__6\n"); );
     Vtop* const __restrict vlTOPp VL_ATTR_UNUSED = vlSymsp->TOPp;
     // Body
-    vlTOPp->mkAscon_engine__DOT__rg_interface_1_EN 
-        = vlTOPp->EN_input_function;
-    vlTOPp->mkAscon_engine__DOT__rg_interface_1_D_IN[0U] 
-        = vlTOPp->input_function_plaintext[0U];
-    vlTOPp->mkAscon_engine__DOT__rg_interface_1_D_IN[1U] 
-        = vlTOPp->input_function_plaintext[1U];
-    vlTOPp->mkAscon_engine__DOT__rg_interface_1_D_IN[2U] 
-        = vlTOPp->input_function_plaintext[2U];
-    vlTOPp->mkAscon_engine__DOT__rg_interface_1_D_IN[3U] 
-        = vlTOPp->input_function_plaintext[3U];
     vlTOPp->mkAscon_engine__DOT__rg_interface_2_EN 
         = vlTOPp->EN_input_function;
     vlTOPp->mkAscon_engine__DOT__rg_interface_2_D_IN[0U] 
@@ -1707,6 +1746,16 @@ VL_INLINE_OPT void Vtop::_combo__TOP__6(Vtop__Syms* __restrict vlSymsp) {
         = vlTOPp->input_function_associated_data[2U];
     vlTOPp->mkAscon_engine__DOT__rg_interface_2_D_IN[3U] 
         = vlTOPp->input_function_associated_data[3U];
+    vlTOPp->mkAscon_engine__DOT__rg_interface_1_EN 
+        = vlTOPp->EN_input_function;
+    vlTOPp->mkAscon_engine__DOT__rg_interface_1_D_IN[0U] 
+        = vlTOPp->input_function_plaintext[0U];
+    vlTOPp->mkAscon_engine__DOT__rg_interface_1_D_IN[1U] 
+        = vlTOPp->input_function_plaintext[1U];
+    vlTOPp->mkAscon_engine__DOT__rg_interface_1_D_IN[2U] 
+        = vlTOPp->input_function_plaintext[2U];
+    vlTOPp->mkAscon_engine__DOT__rg_interface_1_D_IN[3U] 
+        = vlTOPp->input_function_plaintext[3U];
     vlTOPp->mkAscon_engine__DOT__rg_interface_3_EN 
         = vlTOPp->EN_input_function;
     vlTOPp->mkAscon_engine__DOT__rg_interface_3_D_IN[0U] 
@@ -1728,15 +1777,17 @@ VL_INLINE_OPT void Vtop::_combo__TOP__6(Vtop__Syms* __restrict vlSymsp) {
     vlTOPp->mkAscon_engine__DOT__rg_interface_0_D_IN[3U] 
         = vlTOPp->input_function_key[3U];
     vlTOPp->mkAscon_engine__DOT__fsm_state_EN = (((
-                                                   ((((IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_encryption_state) 
-                                                      & (0U 
-                                                         != (IData)(vlTOPp->mkAscon_engine__DOT__counter))) 
-                                                     | ((IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_permutate_associated_data_state) 
-                                                        & (8U 
-                                                           == (IData)(vlTOPp->mkAscon_engine__DOT__counter)))) 
+                                                   (((((IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_permutate_associated_data_state) 
+                                                       & (8U 
+                                                          == (IData)(vlTOPp->mkAscon_engine__DOT__counter))) 
+                                                      | ((IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_permutate_encrypted_data_state) 
+                                                         & (8U 
+                                                            == (IData)(vlTOPp->mkAscon_engine__DOT__counter)))) 
+                                                     | ((IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_encryption_state) 
+                                                        & (0U 
+                                                           != (IData)(vlTOPp->mkAscon_engine__DOT__counter)))) 
                                                     | ((IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_finalization_state) 
-                                                       & (0xcU 
-                                                          == (IData)(vlTOPp->mkAscon_engine__DOT__counter)))) 
+                                                       & (~ (IData)(vlTOPp->mkAscon_engine__DOT__counter_ULT_12___05F_d4)))) 
                                                    | ((IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_intialization_state) 
                                                       & (~ (IData)(vlTOPp->mkAscon_engine__DOT__counter_ULT_12___05F_d4)))) 
                                                   | (((IData)(vlTOPp->mkAscon_engine__DOT__WILL_FIRE_RL_associated_data_state) 
@@ -1744,24 +1795,19 @@ VL_INLINE_OPT void Vtop::_combo__TOP__6(Vtop__Syms* __restrict vlSymsp) {
                                                      & (8U 
                                                         == (IData)(vlTOPp->mkAscon_engine__DOT__counter)))) 
                                                  | (IData)(vlTOPp->EN_input_function));
-    vlTOPp->mkAscon_engine__DOT__fsm_state_D_IN = ((IData)(vlTOPp->EN_input_function)
-                                                    ? 1U
-                                                    : 
-                                                   ((IData)(vlTOPp->mkAscon_engine__DOT__MUX_fsm_state_write_1___05FSEL_2)
-                                                     ? 0U
-                                                     : 
-                                                    ((IData)(vlTOPp->mkAscon_engine__DOT__MUX_fsm_state_write_1___05FSEL_3)
-                                                      ? 5U
-                                                      : 
-                                                     ((IData)(vlTOPp->mkAscon_engine__DOT__MUX_fsm_state_write_1___05FSEL_4)
-                                                       ? 4U
-                                                       : 
-                                                      ((IData)(vlTOPp->mkAscon_engine__DOT__MUX_fsm_state_write_1___05FSEL_5)
-                                                        ? 3U
-                                                        : 
-                                                       ((IData)(vlTOPp->mkAscon_engine__DOT__MUX_fsm_state_write_1___05FSEL_6)
-                                                         ? 2U
-                                                         : 0U))))));
+    vlTOPp->__Vtableidx1 = (((IData)(vlTOPp->mkAscon_engine__DOT__MUX_fsm_state_write_1___05FSEL_7) 
+                             << 6U) | (((IData)(vlTOPp->mkAscon_engine__DOT__MUX_fsm_state_write_1___05FSEL_6) 
+                                        << 5U) | (((IData)(vlTOPp->mkAscon_engine__DOT__MUX_fsm_state_write_1___05FSEL_5) 
+                                                   << 4U) 
+                                                  | (((IData)(vlTOPp->mkAscon_engine__DOT__MUX_fsm_state_write_1___05FSEL_4) 
+                                                      << 3U) 
+                                                     | (((IData)(vlTOPp->mkAscon_engine__DOT__MUX_fsm_state_write_1___05FSEL_3) 
+                                                         << 2U) 
+                                                        | (((IData)(vlTOPp->mkAscon_engine__DOT__MUX_fsm_state_write_1___05FSEL_2) 
+                                                            << 1U) 
+                                                           | (IData)(vlTOPp->EN_input_function)))))));
+    vlTOPp->mkAscon_engine__DOT__fsm_state_D_IN = vlTOPp->__Vtable1_mkAscon_engine__DOT__fsm_state_D_IN
+        [vlTOPp->__Vtableidx1];
 }
 
 void Vtop::_eval(Vtop__Syms* __restrict vlSymsp) {

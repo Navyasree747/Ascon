@@ -35,8 +35,12 @@ Rule: encryption_state
 Predicate: fsm_state == 3'd4
 Blocking rules: (none)
  
+Rule: permutate_encrypted_data_state
+Predicate: fsm_state == 3'd6
+Blocking rules: (none)
+ 
 Rule: finalization_state
-Predicate: fsm_state == 3'd5
+Predicate: fsm_state == 3'd7
 Blocking rules: (none)
  
 Logical execution order: ciphertext,
@@ -45,6 +49,7 @@ Logical execution order: ciphertext,
 			 associated_data_state,
 			 permutate_associated_data_state,
 			 encryption_state,
+			 permutate_encrypted_data_state,
 			 finalization_state,
 			 input_function
 
