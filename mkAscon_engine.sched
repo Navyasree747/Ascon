@@ -5,16 +5,26 @@ Method schedule
 Method: input_function
 Ready signal: True
 Sequenced before (restricted): input_function
-Sequenced after (restricted): ciphertext, tag
+Sequenced after (restricted): ciphertext, decrypted_data, tag, decrypted_tag
  
 Method: ciphertext
 Ready signal: ready_ciphertext
-Conflict-free: ciphertext, tag
+Conflict-free: ciphertext, decrypted_data, tag, decrypted_tag
+Sequenced before (restricted): input_function
+ 
+Method: decrypted_data
+Ready signal: ready_decrypted_data
+Conflict-free: ciphertext, decrypted_data, tag, decrypted_tag
 Sequenced before (restricted): input_function
  
 Method: tag
 Ready signal: ready_tag
-Conflict-free: ciphertext, tag
+Conflict-free: ciphertext, decrypted_data, tag, decrypted_tag
+Sequenced before (restricted): input_function
+ 
+Method: decrypted_tag
+Ready signal: ready_decrypted_tag
+Conflict-free: ciphertext, decrypted_data, tag, decrypted_tag
 Sequenced before (restricted): input_function
  
 Rule schedule
@@ -35,7 +45,11 @@ Rule: encryption_state
 Predicate: fsm_state == 3'd4
 Blocking rules: (none)
  
-Rule: permutate_encrypted_data_state
+Rule: decryption_state
+Predicate: fsm_state == 3'd5
+Blocking rules: (none)
+ 
+Rule: permutate_encrypt_decrypt_state
 Predicate: fsm_state == 3'd6
 Blocking rules: (none)
  
@@ -44,12 +58,15 @@ Predicate: fsm_state == 3'd7
 Blocking rules: (none)
  
 Logical execution order: ciphertext,
+			 decrypted_data,
 			 tag,
+			 decrypted_tag,
 			 intialization_state,
 			 associated_data_state,
 			 permutate_associated_data_state,
 			 encryption_state,
-			 permutate_encrypted_data_state,
+			 decryption_state,
+			 permutate_encrypt_decrypt_state,
 			 finalization_state,
 			 input_function
 

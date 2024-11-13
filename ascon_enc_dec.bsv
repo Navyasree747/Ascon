@@ -5,9 +5,11 @@ import FIFO::*;
 
 interface Userinterface;
 
-    method Action input_function (Bit#(128)plaintext, Bit#(128) associated_data,Bit#(128) key,Bit#(128) nonce);
+    method Action input_function (Bit#(128)plaintext, Bit#(128) associated_data,Bit#(128) key,Bit#(128) nonce,Bit#(1)mode);
     method Bit#(128) ciphertext();
+    method Bit#(128) decrypted_data();    
     method Bit#(128) tag();
+    method Bit#(128) decrypted_tag();
 endinterface
 // s-box bit slicing operation .
 
@@ -103,7 +105,7 @@ return updated_state;
 endactionvalue
 endfunction
 
-typedef enum {IDLE,INTIALIZE, ASSOCIATED_DATA,PERMUTATE_ASSOCIATED_DATA,ENCRYPTION,DECRYPTION,PERMUTATE_ENCRYPTED_DATA,FINALIZATION}Phase deriving (Bits, Eq);
+typedef enum {IDLE,INTIALIZE, ASSOCIATED_DATA,PERMUTATE_ASSOCIATED_DATA,ENCRYPTION,DECRYPTION,PERMUTATE_ENCRYPT_DECRYPT,FINALIZATION}Phase deriving (Bits, Eq);
 typedef enum {Eight, Twelve} Rounds deriving (Bits,Eq);
 
 
@@ -111,17 +113,22 @@ module mkAscon_engine(Userinterface);
 
     Reg#(Bit#(64)) iv_constant <- mkReg(64'h80800c0800000000);
     Reg#(Bit#(1))ready_ciphertext<-mkReg(0);
+    Reg#(Bit#(1))ready_decrypted_data<-mkReg(0);
     Reg#(Bit#(1))ready_tag<-mkReg(0);
+    Reg#(Bit#(1))ready_decrypted_tag<-mkReg(0);
+
   
 
     Vector#(2,Reg#(Bit#(64)))rg_encrypted_data <-replicateM(mkReg(0));
+    Vector#(2,Reg#(Bit#(64)))rg_decrypted_data <-replicateM(mkReg(0));
     Vector#(2,Reg#(Bit#(64)))rg_encryption_tag <-replicateM(mkReg(0));
+    Vector#(2,Reg#(Bit#(64)))rg_decryption_tag <-replicateM(mkReg(0));
 
    
     Reg#(Bit#(4)) counter<-mkReg(0);
     Reg#(Bit#(1))req_associated_data<-mkReg(1);
     Vector# (4,Reg#(Bit#(128)))rg_interface <- replicateM(mkReg(0));
-    //Wire#(Bit#(1)) select <- mkWire(0);
+    Reg#(Bit#(1)) select <- mkReg(0);
 
     
    Vector# (5,Reg#(Bit#(64)))rg_state <- replicateM(mkReg(0));
@@ -252,11 +259,21 @@ rule  permutate_associated_data_state(fsm_state==PERMUTATE_ASSOCIATED_DATA) ;
 
     else
         begin
+            if(select==1)
+                begin
     
 
-            fsm_state <=ENCRYPTION;
-            counter<=0;
+                    fsm_state <=ENCRYPTION;
+                    counter<=0;
+                end
+            else 
+                begin
+                    fsm_state<=DECRYPTION;
+                    counter<=0;
+                end
+        
         end
+
     
 endrule
 
@@ -267,7 +284,7 @@ rule encryption_state(fsm_state==ENCRYPTION);
             begin
             rg_state[0]<=rg_interface[1][127:64]^rg_state[0];
             rg_state[1]<=rg_interface[1][63:0]^rg_state[1]; // xoring with first two rows to get ciphertext
-           
+            
             let encryption0=rg_interface[1][127:64]^rg_state[0]; 
             let encryption1=rg_interface[1][63:0]^rg_state[1];
             $display("rg_encrypted_data=%h%h",rg_encrypted_data[0],rg_encrypted_data[1]);
@@ -280,10 +297,10 @@ rule encryption_state(fsm_state==ENCRYPTION);
             end
         else 
             begin
-            
             rg_encrypted_data[0]<=rg_state[1];
             rg_encrypted_data[1]<=rg_state[0];
             ready_ciphertext<=1;
+
             lv_encrypted_state[4]=rg_state[0];
             lv_encrypted_state[3]=rg_state[1];
             lv_encrypted_state[2]=rg_state[2];
@@ -314,7 +331,7 @@ rule encryption_state(fsm_state==ENCRYPTION);
                  //let permutation_value1<-permutation(lv_updated_state,Eight,counter);
                // writeVReg(rg_state,permutation_value1); 
                 
-                fsm_state <=PERMUTATE_ENCRYPTED_DATA;
+                fsm_state <=PERMUTATE_ENCRYPT_DECRYPT;
                 //ready_ciphertext<=0;
                  counter<=0;
                
@@ -322,8 +339,70 @@ rule encryption_state(fsm_state==ENCRYPTION);
         //local_counter2=counter+1;
         
 endrule
+rule decryption_state(fsm_state==DECRYPTION);
+    Vector#(5,Bit#(64))new_decrypted_lv_state;
+    Vector#(5,Bit#(64))lv_decrypted_state;
+        if(counter==0)
+            begin
+            rg_state[0]<=rg_interface[1][127:64]^rg_state[0];
+            rg_state[1]<=rg_interface[1][63:0]^rg_state[1]; // xoring with first two rows to get ciphertext
+           
+            let decryption0=rg_interface[1][127:64]^rg_state[0]; 
+            let decryption1=rg_interface[1][63:0]^rg_state[1];
+            $display("rg_encrypted_data=%h%h",rg_decrypted_data[0],rg_decrypted_data[1]);
+            $display("encryption_result=%h%h",decryption0,decryption1);
+            
+            
+                counter<=counter+1;
+                
+                
+            end
+        else 
+            begin
+            rg_decrypted_data[0]<=rg_state[1];
+            rg_decrypted_data[1]<=rg_state[0];
+            ready_decrypted_data<=1;
 
-rule permutate_encrypted_data_state(fsm_state==PERMUTATE_ENCRYPTED_DATA);
+            lv_decrypted_state[4]=rg_state[0];
+            lv_decrypted_state[3]=rg_state[1];
+            lv_decrypted_state[2]=rg_state[2];
+            lv_decrypted_state[1]=rg_state[3];
+            lv_decrypted_state[0]=rg_state[4];
+            
+            
+                let lv_updated_decrypted=pack(lv_decrypted_state);
+               // $display("lv_updated_encrypted_state%h",lv_updated_encrypted);
+                //let padded_key_state = {rg_interface[0],192'b0};
+                let lv_processed_data2={319'b0, 1'b1};
+                //$display("lv_padded_key_state%h",padded_key_state);
+                //$display("lv_processed_data%h",lv_processed_data);
+                let pre_finalized_dec_state=lv_updated_decrypted^lv_processed_data2;
+                
+                //$display("pre_finalized state%h",pre_finalized_state);
+                
+                new_decrypted_lv_state[0]=unpack(pre_finalized_dec_state[319:256]);
+                new_decrypted_lv_state[1]=unpack(pre_finalized_dec_state[255:192]);
+                new_decrypted_lv_state[2]=unpack(pre_finalized_dec_state[191:128]);
+                new_decrypted_lv_state[3]=unpack(pre_finalized_dec_state[127:64]);
+                new_decrypted_lv_state[4]=unpack(pre_finalized_dec_state[63:0]);
+               // $display("new_encrypted_lv_state%h",new_encrypted_lv_state);
+
+                writeVReg(rg_state,new_decrypted_lv_state);
+
+
+                 //let permutation_value1<-permutation(lv_updated_state,Eight,counter);
+               // writeVReg(rg_state,permutation_value1); 
+                
+                fsm_state <=PERMUTATE_ENCRYPT_DECRYPT;
+                //ready_ciphertext<=0;
+                 counter<=0;
+               
+            end
+
+
+endrule
+
+rule permutate_encrypt_decrypt_state(fsm_state==PERMUTATE_ENCRYPT_DECRYPT);
     if(counter!=8)
         begin
 
@@ -385,21 +464,39 @@ rule finalization_state(fsm_state==FINALIZATION);
 
     
     else 
+
         begin
-            rg_encryption_tag[1]<=rg_interface[0][127:64]^rg_state[3];
-            rg_encryption_tag[0]<=rg_interface[0][63:0]^rg_state[4];
-            let encryption_tag0=rg_interface[0][127:64]^rg_state[3];
-            let encryption_tag1=rg_interface[0][63:0]^rg_state[4];
-            $display("encryption_tag0%h",encryption_tag0);
-            $display("encryption_tag1%h",encryption_tag1);
+            if(select==1)
+                begin
+                rg_encryption_tag[1]<=rg_interface[0][127:64]^rg_state[3];
+                rg_encryption_tag[0]<=rg_interface[0][63:0]^rg_state[4];
+                let encryption_tag0=rg_interface[0][127:64]^rg_state[3];
+                let encryption_tag1=rg_interface[0][63:0]^rg_state[4];
+                $display("encryption_tag0%h",encryption_tag0);
+                $display("encryption_tag1%h",encryption_tag1);
             
-            fsm_state <=IDLE  ;
-            ready_tag<=1;
-        end    
+                fsm_state <=IDLE  ;
+                ready_tag<=1;
+            end    
+            else
+                begin
+                    rg_decryption_tag[1]<=rg_interface[0][127:64]^rg_state[3];
+                    rg_decryption_tag[0]<=rg_interface[0][63:0]^rg_state[4];
+                    let decryption_tag0=rg_interface[0][127:64]^rg_state[3];
+                    let decryption_tag1=rg_interface[0][63:0]^rg_state[4];
+                     $display("encryption_tag0%h",decryption_tag0);
+                     $display("encryption_tag1%h",decryption_tag1);
+            
+                    fsm_state <=IDLE  ;
+                    ready_decrypted_tag<=1;
+                end
+
+        end
+
 
 endrule
 
-method Action input_function(Bit#(128)plaintext,Bit#(128)associated_data,Bit#(128)key,Bit#(128)nonce);
+method Action input_function(Bit#(128)plaintext,Bit#(128)associated_data,Bit#(128)key,Bit#(128)nonce,Bit#(1)mode);
     
     // rg_state[0] <= iv;
     // rg_state[1] <= key[127:64];
@@ -408,6 +505,8 @@ method Action input_function(Bit#(128)plaintext,Bit#(128)associated_data,Bit#(12
     rg_interface[1]<= plaintext;
     rg_interface[2]<= associated_data;
     rg_interface[3]<= nonce;
+    select<=mode;
+    
    
     fsm_state <= INTIALIZE;
 endmethod
@@ -420,6 +519,14 @@ endmethod
 method Bit#(128)tag()if(ready_tag==1);
    
     return pack(readVReg(rg_encryption_tag));
+endmethod
+method Bit#(128)decrypted_data()if(ready_decrypted_data==1);
+       
+   return pack(readVReg(rg_decrypted_data));
+endmethod
+method Bit#(128)decrypted_tag()if(ready_decrypted_tag==1);
+   
+    return pack(readVReg(rg_decryption_tag));
 endmethod
 endmodule
 endpackage

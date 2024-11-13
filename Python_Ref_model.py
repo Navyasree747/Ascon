@@ -1,25 +1,22 @@
 #!/usr/bin/env python3
 
 
-
 debug = True
-debugpermutation =True
-
-# === Ascon hash/xof ===
-
-    # Finalization (Squeezing)
-
-
-
-
-
+debugpermutation = True
 
 
 # === Ascon AEAD encryption and decryption ===
 
+
+
+
 def ascon_encrypt(key, nonce, associateddata, plaintext, variant="Ascon-128a"):
-    
+
     assert variant in ["Ascon-128", "Ascon-128a", "Ascon-80pq"]
+    # Convert key and nonce to bytes if they are integers
+    key = int_to_bytes(key, 16) if isinstance(key, int) else key
+    nonce = int_to_bytes(nonce, 16) if isinstance(nonce, int) else nonce
+
     if variant in ["Ascon-128", "Ascon-128a"]: assert(len(key) == 16 and len(nonce) == 16)
     if variant == "Ascon-80pq": assert(len(key) == 20 and len(nonce) == 16)
     S = [0, 0, 0, 0, 0]
@@ -29,15 +26,23 @@ def ascon_encrypt(key, nonce, associateddata, plaintext, variant="Ascon-128a"):
     rate = 16 if variant == "Ascon-128a" else 8   # bytes
 
     ascon_initialize(S, k, rate, a, b, key, nonce)
+    # Convert associateddata to bytes if it's an integer
+    associateddata = int_to_bytes(associateddata, (associateddata.bit_length() + 7) // 8) if isinstance(associateddata, int) else associateddata
     ascon_process_associated_data(S, b, rate, associateddata)
+    # Convert plaintext to bytes if it's an integer
+    plaintext = int_to_bytes(plaintext, (plaintext.bit_length() + 7) // 8) if isinstance(plaintext, int) else plaintext
     ciphertext = ascon_process_plaintext(S, b, rate, plaintext)
     tag = ascon_finalize(S, rate, a, key)
     return ciphertext + tag
 
 
 def ascon_decrypt(key, nonce, associateddata, ciphertext, variant="Ascon-128"):
-  
+
     assert variant in ["Ascon-128", "Ascon-128a", "Ascon-80pq"]
+
+    key = int_to_bytes(key, 16) if isinstance(key, int) else key
+    nonce = int_to_bytes(nonce, 16) if isinstance(nonce, int) else nonce
+
     if variant in ["Ascon-128", "Ascon-128a"]: assert(len(key) == 16 and len(nonce) == 16 and len(ciphertext) >= 16)
     if variant == "Ascon-80pq": assert(len(key) == 20 and len(nonce) == 16 and len(ciphertext) >= 16)
     S = [0, 0, 0, 0, 0]
@@ -47,23 +52,28 @@ def ascon_decrypt(key, nonce, associateddata, ciphertext, variant="Ascon-128"):
     rate = 16 if variant == "Ascon-128a" else 8   # bytes
 
     ascon_initialize(S, k, rate, a, b, key, nonce)
+    associateddata = int_to_bytes(associateddata, (associateddata.bit_length() + 7) // 8) if isinstance(associateddata, int) else associateddata
     ascon_process_associated_data(S, b, rate, associateddata)
+    ciphertext = int_to_bytes(ciphertext, (ciphertext.bit_length() + 7) // 8) if isinstance(ciphertext, int) else ciphertext
     plaintext = ascon_process_ciphertext(S, b, rate, ciphertext[:-16])
-    tag = ascon_finalize(S, rate, a, key)
+    tag = ascon_finalize(S, rate, a,key)
     if tag == ciphertext[-16:]:
-        return plaintext
+        return plaintext 
     else:
         return None
 
 
-# === Ascon AEAD building blocks ===
+
+
+# === Ascon AEAD building blocks ==
+
 
 def ascon_initialize(S, k, rate, a, b, key, nonce):
-   
+
     iv_zero_key_nonce = to_bytes([k, rate * 8, a, b]) + zero_bytes(20-len(key)) + key + nonce
     S[0], S[1], S[2], S[3], S[4] = bytes_to_state(iv_zero_key_nonce)
     if debug: printstate(S, "initial value:")
-
+    if debug: printstate(S, "initialization:")
     ascon_permutation(S, a)
 
     zero_key = bytes_to_state(zero_bytes(40-len(key)) + key)
@@ -72,11 +82,11 @@ def ascon_initialize(S, k, rate, a, b, key, nonce):
     S[2] ^= zero_key[2]
     S[3] ^= zero_key[3]
     S[4] ^= zero_key[4]
-    if debug: printstate(S, "initialization:")
+
 
 
 def ascon_process_associated_data(S, b, rate, associateddata):
-  
+    if debug: printstate(S, "process associated data:")
     if len(associateddata) > 0:
         a_padding = to_bytes([0x80]) + zero_bytes(rate - (len(associateddata) % rate) - 1)
         a_padded = associateddata + a_padding
@@ -86,14 +96,14 @@ def ascon_process_associated_data(S, b, rate, associateddata):
             if rate == 16:
                 S[1] ^= bytes_to_int(a_padded[block+8:block+16])
 
+
             ascon_permutation(S, b)
 
     S[4] ^= 1
-    if debug: printstate(S, "process associated data:")
 
 
 def ascon_process_plaintext(S, b, rate, plaintext):
- 
+    print("this is my ciphertext block")
     p_lastlen = len(plaintext) % rate
     p_padding = to_bytes([0x80]) + zero_bytes(rate-p_lastlen-1)
     p_padded = plaintext + p_padding
@@ -122,10 +132,9 @@ def ascon_process_plaintext(S, b, rate, plaintext):
         ciphertext += (int_to_bytes(S[0], 8)[:min(8,p_lastlen)] + int_to_bytes(S[1], 8)[:max(0,p_lastlen-8)])
     if debug: printstate(S, "process plaintext:")
     return ciphertext
-
-
 def ascon_process_ciphertext(S, b, rate, ciphertext):
-   
+
+
     c_lastlen = len(ciphertext) % rate
     c_padded = ciphertext + zero_bytes(rate - c_lastlen)
 
@@ -163,12 +172,13 @@ def ascon_process_ciphertext(S, b, rate, ciphertext):
         else:
             S[0] = Ci[0]
             S[1] = Ci[1] ^ (S[1] & c_mask) ^ c_padding1
-    if debug: printstate(S, "process ciphertext:")
+        #printstate(S, "process ciphertext:")
+        if debug: printstate(S, "process ciphertext:")
     return plaintext
 
 
 def ascon_finalize(S, rate, a, key):
-   
+    print("finalization process statrted")
     assert(len(key) in [16,20])
     S[rate//8+0] ^= bytes_to_int(key[0:8])
     S[rate//8+1] ^= bytes_to_int(key[8:16])
@@ -186,7 +196,7 @@ def ascon_finalize(S, rate, a, key):
 # === Ascon permutation ===
 
 def ascon_permutation(S, rounds=1):
-   
+
     assert(rounds <= 12)
     if debugpermutation: printwords(S, "permutation input:")
     for r in range(12-rounds, 12):
@@ -214,7 +224,7 @@ def ascon_permutation(S, rounds=1):
         if debugpermutation: printwords(S, "linear diffusion layer:")
 
 
-# === helper functions ===
+
 
 def get_random_bytes(num):
     import os
@@ -252,26 +262,34 @@ def printwords(S, description=""):
 
 
 # === some demo if called directly ===
+def int_to_bytes(value, length):
+      return value.to_bytes(length, byteorder='big')
 
 def demo_print(data):
     maxlen = max([len(text) for (text, val) in data])
     for text, val in data:
-        print("{text}:{align} 0x{val} ({length} bytes)".format(text=text, align=((maxlen - len(text)) * " "), val=bytes_to_hex(val), length=len(val)))
-
+        # Convert val to bytes if it's an integer
+        val_bytes = int_to_bytes(val, (val.bit_length() + 7) // 8) if isinstance(val, int) else val
+        print("{text}:{align} 0x{val} ({length} bytes)".format(text=text, align=((maxlen - len(text)) * " "), val=bytes_to_hex(val_bytes), length=len(val_bytes)))
 def demo_aead(variant):
     assert variant in ["Ascon-128", "Ascon-128a", "Ascon-80pq"]
     keysize = 20 if variant == "Ascon-80pq" else 16
     print("=== demo encryption using {variant} ===".format(variant=variant))
 
     # choose a cryptographically strong random key and a nonce that never repeats for the same key:
-    key   =0x1234567890abcdef1234567890abcdef # zero_bytes(keysize)
-    nonce = 0x0a0f42aa3047244a143ad116b1bc93eb      # zero_bytes(16)
+    key   = 0xf4baa4a53e154f941d3f26079817a0dc
+    nonce = 0x0a0f42aa3047244a143ad116b1bc93eb
 
     associateddata = 0x0987654321abcdeffedcba1234567890
     plaintext      = 0x1234567890abcdef1234567890abcdef
 
-    ciphertext        = ascon_encrypt(key, nonce, associateddata, plaintext,  variant)
-    receivedplaintext = ascon_decrypt(key, nonce, associateddata, ciphertext, variant)
+    # Convert associateddata and plaintext to bytes using int_to_bytes
+
+    associateddata_bytes = int_to_bytes(associateddata, (associateddata.bit_length() + 7) // 8)
+    plaintext_bytes = int_to_bytes(plaintext, (plaintext.bit_length() + 7) // 8)
+
+    ciphertext        = ascon_encrypt(key, nonce, associateddata_bytes, plaintext_bytes,  variant)
+    receivedplaintext = ascon_decrypt(key, nonce, associateddata_bytes, ciphertext, variant)
 
     if receivedplaintext == None: print("verification failed!")
 
@@ -281,8 +299,8 @@ def demo_aead(variant):
                 ("ass.data", associateddata),
                 ("ciphertext", ciphertext[:-16]),
                 ("tag", ciphertext[-16:]),
-                ("received", receivedplaintext),
-               ])
+                ("received plainext",receivedplaintext),
+                  ])
 
 
 
