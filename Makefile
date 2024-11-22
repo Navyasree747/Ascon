@@ -42,6 +42,6 @@ endif
 EXTRA_ARGS = --trace-fst --trace-structs -Wno-TIMESCALEMOD
 # EXTRA_ARGS += --coverage
 TOPLEVEL := mkAscon_engine# module name in verilog
-MODULE   := ascon_test1#name of the python file
+MODULE   := ascon_enc_dec_test#name of the python file
 
 include $(shell cocotb-config --makefiles)/Makefile.sim
