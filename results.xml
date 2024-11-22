@@ -1,6 +1,0 @@
-<testsuites name="results">
-  <testsuite name="all" package="all">
-    <property name="random_seed" value="1731481470" />
-    <testcase name="ascon_test" classname="ascon_test1" file="/home/navya/Ascon/Ascon/ascon_test1.py" lineno="5" time="0.005300045013427734" sim_time_ns="590.001" ratio_time="111319.99794439945" />
-  </testsuite>
-</testsuites>
