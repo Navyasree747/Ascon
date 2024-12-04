@@ -416,9 +416,7 @@ endrule
 rule finalization_state(fsm_state==FINALIZATION);
    // Bit#(4)local_counter3=counter;
     let lv_final_rg_state=readVReg(rg_state);
-    //$display("lv_final_rg_state%h",lv_final_rg_state);
     
-    //if(local_counter3<12)
     if(counter<12)
         begin
             let permutation_value3<-permutation(lv_final_rg_state,Twelve,counter);
