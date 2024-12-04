@@ -322,8 +322,9 @@ rule decryption_state(fsm_state==DECRYPTION );
     Vector#(5,Bit#(64))lv_decrypted_state;
         if(counter==0)
             begin
-            rg_decrypted_data[0]<=rg_interface[1][127:64]^rg_state[0];
-            rg_decrypted_data[1]<=rg_interface[1][63:0]^rg_state[1]; // xoring with first two rows to get ciphertext
+            rg_decrypted_data[1]<=rg_interface[1][127:64]^rg_state[0];
+            rg_decrypted_data[0]<=rg_interface[1][63:0]^rg_state[1];
+            // xoring with first two rows to get ciphertext
             rg_state[0]<=rg_interface[1][127:64];
             rg_state[1]<=rg_interface[1][63:0];
             let decryption0=rg_interface[1][127:64]^rg_state[0]; 
@@ -334,9 +335,8 @@ rule decryption_state(fsm_state==DECRYPTION );
             end
         else 
             begin
-            $display("rg_encrypted_data=%h%h",rg_decrypted_data[0],rg_decrypted_data[1]);
-            rg_decrypted_data[0]<=rg_state[1];
-            rg_decrypted_data[1]<=rg_state[0];
+            $display("rg_decrypted_data=%h%h",rg_decrypted_data[0],rg_decrypted_data[1]);
+            
             ready_decrypted_data<=1;
 
             lv_decrypted_state[4]=rg_state[0];
@@ -447,8 +447,8 @@ rule finalization_state(fsm_state==FINALIZATION);
                     rg_decryption_tag[0]<=rg_interface[0][63:0]^rg_state[4];
                     let decryption_tag0=rg_interface[0][127:64]^rg_state[3];
                     let decryption_tag1=rg_interface[0][63:0]^rg_state[4];
-                     $display("encryption_tag0%h",decryption_tag0);
-                     $display("encryption_tag1%h",decryption_tag1);
+                     $display("decryption_tag0%h",decryption_tag0);
+                     $display("decryption_tag1%h",decryption_tag1);
             
                     fsm_state <=IDLE  ;
                     ready_decrypted_tag<=1;
