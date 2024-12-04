@@ -335,8 +335,8 @@ rule decryption_state(fsm_state==DECRYPTION );
         else 
             begin
             $display("rg_encrypted_data=%h%h",rg_decrypted_data[0],rg_decrypted_data[1]);
-            //rg_decrypted_data[0]<=rg_state[1];
-            //rg_decrypted_data[1]<=rg_state[0];
+            rg_decrypted_data[0]<=rg_state[1];
+            rg_decrypted_data[1]<=rg_state[0];
             ready_decrypted_data<=1;
 
             lv_decrypted_state[4]=rg_state[0];
