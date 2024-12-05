@@ -6,7 +6,7 @@ import FIFO::*;
 
 interface Userinterface;
 
-    method Action input_function (Bit#(128)plaintext, Bit#(128) associated_data,Bit#(128) key,Bit#(128) nonce,Bit#(1)mode,Bit#(5)AD_reg);
+    method Action input_function (Bit#(128)plaintext, Bit#(128) associated_data,Bit#(128) key,Bit#(128) nonce,Bit#(1)mode);
     method Bit#(128) ciphertext();
     method Bit#(128) decrypted_data();    
     method Bit#(128) tag();

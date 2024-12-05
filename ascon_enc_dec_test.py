@@ -4,11 +4,11 @@ from cocotb.triggers import RisingEdge,FallingEdge
 
 @cocotb.test()
 async def ascon_test(dut):
-    in_plaintext=0x8f2e9c7b3d1a4b65f80c7d3e2b9f6a41
+    in_plaintext=0x34eeee7993005ad8f43fcf7d6ecf2329
     in_nonce=0x3a18d9f831fe71cd203602f0cc00dfde
     in_key=0x8ead53800481879583d9b6e920276b4a
     in_associated_data=0xa7f4c3e1d2b9f6e8075c9d3b2f1e6a80
-    in_mode=1
+    in_mode=0
     cocotb.start_soon(Clock(dut.CLK, 10, units='ns').start())
     await RST_N(dut)
     await RisingEdge(dut.CLK)
